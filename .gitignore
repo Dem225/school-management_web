@@ -1,0 +1,31 @@
+Environnements virtuels (À ne jamais pousser sur Git)
+.venv/
+venv/
+env/
+ENV/
+local/
+
+# Caches Python et fichiers compilés
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+
+# Fichiers de configuration et variables d'environnement (Sensible)
+.env
+.env.local
+*.secrets
+
+# Idéas et Éditeurs de code
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Distribution / Paquetages (Si vous créez une librairie)
+dist/
+build/
+*.egg-info/
+
