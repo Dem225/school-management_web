@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'configus' ,
     'Profils',
     'Relever_NA',
     'Ecoles'
@@ -108,11 +107,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
-LANGUAGE_code = 'fr-fr'
-
+LANGUAGE_CODE = 'fr-fr'
 
 TIME_ZONE = 'Africa/Abidjan'
-
 
 USE_I18N = True
 
@@ -128,3 +125,14 @@ STATIC_URL = 'static/'
 # settings.py
 
 AUTH_USER_MODEL = 'Profils.Utilisateur'
+
+STATICFILES_DIRS = [
+    BASE_DIR / STATIC_URL
+]
+
+STATIC_ROOT=BASE_DIR/"staticfiles"
+
+
+
+LOGIN_REDIRECT_URL='/admin'
+LOGOUT_REDIRECT_URL='/connexion'

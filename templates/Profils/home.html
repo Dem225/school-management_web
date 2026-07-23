@@ -3,7 +3,9 @@
 {% block content %}
 
     <h1>
-        BIENVENUE DANS VOTRE ESPACE  
+  
+        {% if user.is_authenticated %}{% endif %}
+         BIENVENUE DANS VOTRE ESPACE   Mr ou Md {{user.username}}
     </h1>
 
 

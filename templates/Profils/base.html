@@ -7,14 +7,25 @@
 </head>
 <body>
     
-    <header>
+   <header>
         <a href="{% url 'home' %}">Home</a>
-        <a href="{% url 'connexion' %}">Connection</a>
-       
         
+        {% if user.is_authenticated %}
+           
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit">DÉCONNEXION</button>
+            </form>
+        {% else %}
+           
+            <a href="{% url 'login' %}">CONNEXION</a>
+        {% endif %}
+
+
     </header>
 
     {% block content %}
+    
     {% endblock %}
       
 </body>

@@ -5,3 +5,5 @@ urlpatterns = [
     path('',Home, name='home' ),
     path('connexion/',ConnexionView , name='connexion'),
 ]
+
+

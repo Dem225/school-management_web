@@ -1,6 +1,14 @@
 {% extends "Profils/base.html" %}
 
 {% block content %}
-    <h2>Page de login</h2>
+    <h2>Login page</h2>
+
+    <form method='post'>
+        {% csrf_token %}
+        {{form.as_p}}
+        <p> 
+              <button type='submit' > Connection</button>
+        </p>
+    </form>
    
 {% endblock content %}
