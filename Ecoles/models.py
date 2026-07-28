@@ -28,7 +28,7 @@ class Etudiant (models.Model):
     id_user =models.OneToOneField(Utilisateur, on_delete=models.CASCADE, related_name='etudiant' , null=True)
 
     def __str__(self):
-        return f"{self.nom} - {self.matricule} - {self.classe}"
+        return f"{self.nom} - {self.prenom} - {self.classe} - {self.matricule}"
 
 
 
