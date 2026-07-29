@@ -2,38 +2,57 @@ from django.shortcuts import render , redirect
 from django.views.generic import ListView
 from django.contrib.auth import authenticate ,login
 from Profils.models import Utilisateur
-
+from Profils.forms import authis
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 # Create your views here.
 
-@login_required
 def Authantification (request):
+    form= authis()
     if request.method== 'POST':
         
-        username= request.POST.get("username")
-        password= request.POST.get("password")
-        utilisateur=authenticate(request, username=username,password=password )
-        if utilisateur is None:
-            return render (request , "registration/login.html")
+        form=authis(request.POST)
         
-        if utilisateur.role=='admin':
-            return redirect ('Tableau_de_bord_admin')
+        if form.is_valid():
+            username= form.cleaned_data["username"]
+            password= form.cleaned_data["password"]
+            
+            user=authenticate(request, username=username,password=password )
+            
+            if user is not None:
+                login(request,user)
+                role = user.role
+                if role=='admin':
+                    return redirect ('Tableau_de_bord_admin')
 
-        elif utilisateur.role=='professeur':
-            return  redirect ('Tableau_de_bord_professeur')
+                elif role=='professeur':
+                    return  redirect ('Tableau_de_bord_professeur')
 
-        elif utilisateur.role=='etudiant':
-            return redirect ('Tableau_de_bord_etudiant')
-    else:
-        return render (request ,"registration/login.html", )
+                elif role =='etudiant':
+                    return redirect ('Tableau_de_bord_etudiant')
+
+            messages.error(request,"votre Nom d 'utilisateur ou mot de passe incorrest ")
+        
+
+            
+    return render (request ,"Profils/connexion.html", {'forms':form})
+
+
+
 
 def Home(request):
     return render(request,"Profils/home.html" )
 
 
 def ConnexionView(resquest):
-    return render(resquest , "registration/login.html")
+    return render(resquest , "Profils/connexion.html")
 
+def Deconnexion(request):
+    return redirect('connexion')
+
+
+
+    
 # page d'accueil pour les utilisateur
 
 def  Tableau_de_bord_Admin(resquest):
@@ -77,5 +96,7 @@ def  Gestions_absence(resquest):
 
 def  Gestions_matiere(resquest):
     return render(resquest,"Profils/ADMIN/Gestions_matiere.html" )
+
+
 
     

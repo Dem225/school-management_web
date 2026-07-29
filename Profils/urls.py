@@ -3,7 +3,8 @@ from django.urls import path
 
 urlpatterns = [
     path('',Home, name='home' ),
-    path('login/',ConnexionView , name='login'),
+    path('connexion/',Authantification , name='connexion'),
+    path('deconnexion/',Deconnexion , name='deconnexion'),
     path('Tableau_de_bord_admin/',Tableau_de_bord_Admin , name='Tableau_de_bord_admin'),
     path('Tableau_de_bord_professeur/',Tableau_de_bord_PROFESSEUR , name='Tableau_de_bord_professeur'),
     path('Tableau_de_bord_etudiant/',Tableau_de_bord_ETUDIANT , name='Tableau_de_bord_etudiant'),
