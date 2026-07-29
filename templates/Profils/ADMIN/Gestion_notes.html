@@ -1,0 +1,212 @@
+
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registre des Évaluations - Institutional Ledger</title>
+    <link rel="stylesheet" href="{% static "ADMIN/css/Gestion_notes.css" %}">
+</head>
+<body>
+
+    <div id="app">
+
+        <aside id="sidebar">
+            <div class="logo">
+                <h1 class="logo-title">Institutional Ledger</h1>
+                <span class="logo-subtitle">Admin Portal v1.0</span>
+            </div>
+
+            <nav class="menu">
+                <ul>
+                    <li class="menu-item"><a href="{% url "Tableau_de_bord_admin" %}"><span class="menu-icon"></span> Tableau de bord</a></li>
+                    <li class="menu-item"><a href="{% url "Gestions_utilisateur_ADMIN" %}"><span class="menu-icon"></span> Utilisateurs</a></li>
+                    <li class="menu-item"><a href="{% url "Gestion_Etudiant" %}"><span class="menu-icon"></span> Étudiants</a></li>
+                    <li class="menu-item"><a href="{% url "Gestions_professeur" %}"><span class="menu-icon"></span> Professeurs</a></li>
+                    <li class="menu-item"><a href="{% url "Gestions_matiere" %}"><span class="menu-icon"></span> Matières</a></li>
+                    <li class="menu-item active"><a href="{% url "Gestions_matiere" %}"><span class="menu-icon"></span> Notes</a></li>
+                    <li class="menu-item"><a href="#"><span class="menu-icon"></span> Absences</a></li>
+                    <li class="menu-item"><a href="#"><span class="menu-icon"></span> Statistiques</a></li>
+                </ul>
+            </nav>
+
+            <div class="footer">
+                <a href="#" class="footer-link"> Paramètres</a>
+                <a href="#" class="footer-link">↩Déconnexion</a>
+            </div>
+        </aside>
+
+        <main id="main">
+
+            <header class="topbar">
+                <div class="window-bar">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                    <span class="topbar-window-title">GESTION DES NOTES — SEMESTRE 1</span>
+                </div>
+                <div class="action-bar">
+                    <div class="search-box">
+                        <input type="text" placeholder="Rechercher un étudiant ou une matière..." id="search">
+                    </div>
+                    <button class="btn-new">+ Ajouter une note</button>
+                    <div class="icons">
+                        <span class="icon-notification"></span>
+                        <span class="icon-help"></span>
+                    </div>
+                </div>
+            </header>
+
+            <section class="page-header">
+                <h2 class="page-title">Registre des Évaluations</h2>
+                <p class="page-subtitle">Récapitulatif complet des performances académiques pour la période en cours.</p>
+            </section>
+
+            <section class="cards">
+                <div class="card">
+                    <span class="card-label">MOYENNE GÉNÉRALE</span>
+                    <div class="card-value">14.2</div>
+                    <span class="trend-up">↗ +0.4 pts</span>
+                </div>
+                <div class="card">
+                    <span class="card-label">NOTES SAISIES</span>
+                    <div class="card-value">842</div>
+                    <span class="card-sub">Cette semaine</span>
+                </div>
+                <div class="card">
+                    <span class="card-label">ALERTES ÉCHECS</span>
+                    <div class="card-value text-danger">12</div>
+                    <span class="card-sub alert">Action requise</span>
+                </div>
+                <div class="card">
+                    <span class="card-label">MAJOR DE PROMO</span>
+                    <div class="card-value card-value-text">Jean Dupont</div>
+                    <span class="card-sub">ID: #ST-9821</span>
+                </div>
+            </section>
+
+            <section class="grades">
+                <div class="table-wrap">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ÉTUDIANT</th>
+                                <th>MATIÈRE</th>
+                                <th>NOTE /20</th>
+                                <th>MOYENNE ACTUELLE</th>
+                                <th>ACTIONS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="student-cell">
+                                        <span class="student-avatar grey">JD</span>
+                                        <div class="student-name-id">
+                                            <span class="student-name">Jean Dupont</span>
+                                            <span class="student-id">#2024-001</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Mathématiques</td>
+                                <td><span class="grade-value fail">08.50</span></td>
+                                <td>12.30</td>
+                                <td class="actions"><span class="icon-edit"></span> <span class="icon-delete">🗑️</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="student-cell">
+                                        <span class="student-avatar yellow">AL</span>
+                                        <div class="student-name-id">
+                                            <span class="student-name">Alice Lefebvre</span>
+                                            <span class="student-id">#2024-045</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Histoire-Géo</td>
+                                <td><span class="grade-value">18.00</span></td>
+                                <td>16.85</td>
+                                <td class="actions"><span class="icon-edit"></span> <span class="icon-delete">🗑️</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="student-cell">
+                                        <span class="student-avatar blue">MB</span>
+                                        <div class="student-name-id">
+                                            <span class="student-name">Marc Bernard</span>
+                                            <span class="student-id">#2024-112</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Physique-Chimie</td>
+                                <td><span class="grade-value">12.50</span></td>
+                                <td>11.40</td>
+                                <td class="actions"><span class="icon-edit"></span> <span class="icon-delete">🗑️</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="student-cell">
+                                        <span class="student-avatar green">SV</span>
+                                        <div class="student-name-id">
+                                            <span class="student-name">Sophie Vallet</span>
+                                            <span class="student-id">#2024-088</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Littérature</td>
+                                <td><span class="grade-value">15.25</span></td>
+                                <td>14.10</td>
+                                <td class="actions"><span class="icon-edit"></span> <span class="icon-delete">🗑️</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="student-cell">
+                                        <span class="student-avatar pink">RK</span>
+                                        <div class="student-name-id">
+                                            <span class="student-name">Ryan Kim</span>
+                                            <span class="student-id">#2024-204</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Anglais</td>
+                                <td><span class="grade-value fail">09.00</span></td>
+                                <td>10.05</td>
+                                <td class="actions"><span class="icon-edit"></span> <span class="icon-delete">🗑️</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pagination">
+                    <span class="pagination-info">Affichage de 1-5 sur 248 entrées</span>
+                    <div class="pagination-controls">
+                        <button class="page-btn text">Précédent</button>
+                        <button class="page-btn active">1</button>
+                        <button class="page-btn">2</button>
+                        <button class="page-btn">3</button>
+                        <button class="page-btn text">Suivant</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="legend">
+                <div class="legend-header">
+                    <span class="legend-dot">●</span>
+                    <span class="legend-title">LÉGENDE DU REGISTRE</span>
+                </div>
+                <div class="legend-body">
+                    <p class="legend-text">Les notes sont soumises à la validation finale du conseil de classe. Toute modification après saisie génère un log d'audit permanent dans le registre.</p>
+                    <span class="legend-updated">Dernière mise à jour</span>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+</body>
+</html>
+
+
+

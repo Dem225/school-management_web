@@ -1,0 +1,207 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registre des Matières - Institutional Ledger</title>
+
+
+    
+         <link rel="stylesheet" href="{% static "ADMIN/css/Gestions_matiere.css" %}">
+  </head>
+  <body>
+    <div id="app">
+      <aside id="sidebar">
+        <div class="logo">
+          <h1 class="logo-title">Institutional Ledger</h1>
+          <span class="logo-subtitle">Admin Portal v1.0</span>
+        </div>
+        <nav class="menu">
+          <ul>
+            <li class="menu-item">
+              <a href="{% url "Tableau_de_bord_admin" %}"><span class="menu-icon"></span> Tableau de bord</a>
+            </li>
+            <li class="menu-item">
+              <a href=""{% url "Gestions_utilisateur_ADMIN" %}><span class="menu-icon"></span> Utilisateurs</a>
+            </li>
+            <li class="menu-item">
+              <a href="{% url "Gestion_Etudiant" %}"><span class="menu-icon"></span> Étudiants</a>
+            </li>
+            <li class="menu-item">
+              <a href="{% url "Gestions_professeur" %}"><span class="menu-icon"></span> Professeurs</a>
+            </li>
+            <li class="menu-item active">
+              <a href="{% url "Gestions_matiere" %}"><span class="menu-icon"></span> Matières</a>
+            </li>
+            <li class="menu-item">
+              <a href="{% url "Gestion_notes" %}"><span class="menu-icon"></span> Notes</a>
+            </li>
+            <li class="menu-item">
+              <a href="#"><span class="menu-icon"></span> Absences</a>
+            </li>
+            <li class="menu-item">
+              <a href="#"><span class="menu-icon"></span> Statistiques</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="footer">
+          <a href="#" class="footer-link"> Paramètres</a>
+          <a href="#" class="footer-link">↩Déconnexion</a>
+        </div>
+      </aside>
+      <main id="main">
+        <header class="topbar">
+          <div class="window-dots">
+            <span class="dot red"></span> <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="topbar-window-title">Registre des Matières</span>
+          </div>
+          <div class="topbar-right">
+            <div class="search-box">
+              <input
+                type="text"
+                placeholder="Rechercher une matière..."
+                id="search"
+              />
+            </div>
+            <div class="icons">
+              <span class="icon-notification"></span>
+              <span class="icon-help"></span>
+            </div>
+          </div>
+        </header>
+        <section class="page-header">
+          <div class="page-header-text">
+            <h2 class="page-title">Matières Curricula</h2>
+            <p class="page-subtitle">
+              Gérez le catalogue des cours et l'affectation du corps enseignant.
+            </p>
+          </div>
+          <button class="btn-new">+ Ajouter une matière</button>
+        </section>
+        <section class="cards">
+          <div class="card">
+            <span class="card-label">TOTAL MATIÈRES</span>
+            <div class="card-value">24</div>
+          </div>
+          <div class="card">
+            <span class="card-label">NON AFFECTÉES</span>
+            <div class="card-value text-danger">03</div>
+          </div>
+          <div class="card">
+            <span class="card-label">MOYENNE GÉNÉRALE</span>
+            <div class="card-value">14.2</div>
+          </div>
+          <div class="card highlight">
+            <span class="card-label">DERNIÈRE MISE À JOUR</span>
+            <div class="card-value card-value-small">12 OCT 2023</div>
+          </div>
+        </section>
+        <section class="subjects">
+          <div class="table-wrap">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>CODE ID</th>
+                  <th>NOM DE LA MATIÈRE</th>
+                  <th>DÉPARTEMENT</th>
+                  <th>PROFESSEUR AFFECTÉ</th>
+                  <th>ACTIONS</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>MT-01</td>
+                  <td>Mathématiques Avancées</td>
+                  <td>Sciences Exactes</td>
+                  <td>
+                    <span class="professor"
+                      ><span class="professor-icon"> </span> Jean-Pierre
+                      Dupont</span
+                    >
+                  </td>
+                  <td class="actions">⋮</td>
+                </tr>
+                <tr>
+                  <td>MT-02</td>
+                  <td>Histoire-Géographie</td>
+                  <td>Sciences Humaines</td>
+                  <td>
+                    <span class="badge-unassigned">NON AFFECTÉE</span>
+                    <a href="#" class="link-assign">Affecter</a>
+                  </td>
+                  <td class="actions">⋮</td>
+                </tr>
+                <tr>
+                  <td>MT-03</td>
+                  <td>Physique Quantique</td>
+                  <td>Sciences Exactes</td>
+                  <td>
+                    <span class="professor"
+                      ><span class="professor-icon"> </span> Marie
+                      Curie-Sklodowska</span
+                    >
+                  </td>
+                  <td class="actions">⋮</td>
+                </tr>
+                <tr>
+                  <td>MT-04</td>
+                  <td>Littérature Française</td>
+                  <td>Lettres</td>
+                  <td>
+                    <span class="badge-unassigned">NON AFFECTÉE</span>
+                    <a href="#" class="link-assign">Affecter</a>
+                  </td>
+                  <td class="actions">⋮</td>
+                </tr>
+                <tr>
+                  <td>MT-05</td>
+                  <td>Langues Vivantes (Anglais)</td>
+                  <td>International</td>
+                  <td>
+                    <span class="professor"
+                      ><span class="professor-icon"> </span> William Shakespeare
+                      Jr.</span
+                    >
+                  </td>
+                  <td class="actions">⋮</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="pagination">
+            <span class="pagination-info"
+              >Affichage de 1-5 sur 24 matières</span
+            >
+            <div class="pagination-controls">
+              <button class="page-btn"></button>
+              <button class="page-btn active">1</button>
+              <button class="page-btn">2</button>
+              <button class="page-btn">3</button>
+              <button class="page-btn"></button>
+            </div>
+          </div>
+        </section>
+        <section class="bottom-section">
+          <div class="info-box">
+            <h4 class="info-box-title">Directives d'affectation</h4>
+            <p class="info-box-text">
+              Chaque matière doit être liée à au moins un professeur titulaire.
+              Les matières "Non affectées" ne seront pas visibles dans le
+              portail étudiant jusqu'à ce qu'un enseignant soit désigné.
+            </p>
+          </div>
+          <div class="support-box">
+            <h4 class="support-box-title">Support Administrateur</h4>
+            <p class="support-box-text">
+              Besoin d'aide pour configurer de nouvelles matières ?
+            </p>
+            <button class="btn-doc">Consulter la doc</button>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

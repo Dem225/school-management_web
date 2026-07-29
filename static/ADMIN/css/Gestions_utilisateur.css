@@ -1,0 +1,365 @@
+/* --- GLOBAL BASE ET RESET --- */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 120vh;
+    background-color: #F8F9FB;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #333333;
+}
+
+/* --- STRUCTURE GÉNÉRALE DU DASHBOARD --- */
+#app {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+/* --- SIDEBAR --- */
+#sidebar {
+    width: 240px;
+    height: 100%;
+    background-color: #111111;
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+.logo {
+    padding: 0 20px 20px 20px;
+    border-bottom: 1px solid #222222;
+}
+
+.logo-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.logo-subtitle {
+    font-size: 11px;
+    color: #888888;
+}
+
+.menu {
+    flex-grow: 1;
+    margin-top: 20px;
+}
+
+.menu ul {
+    list-style: none;
+}
+
+.menu .menu-item {
+    padding: 12px 20px;
+}
+
+.menu .menu-item.active,
+.menu .menu-item:hover {
+    background-color: #222222;
+    border-left: 4px solid #4EA149;
+}
+
+.menu .menu-item a {
+    text-decoration: none;
+    color: #CCCCCC;
+    font-size: 14px;
+}
+
+.footer {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-top: 1px solid #222222;
+}
+
+.footer-link {
+    color: #888888;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+/* --- ZONE PRINCIPALE --- */
+#main {
+    flex-grow: 1;
+    height: 100%;
+    overflow-y: auto;
+    background-color: #F8F9FB;
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* --- HEADER DE GESTION --- */
+.topbar {
+    height: auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: transparent;
+    border-bottom: 1px solid #E5E7EB;
+    padding-bottom: 15px;
+}
+
+.topbar-title h2 {
+    font-size: 22px;
+    font-weight: bold;
+    color: #111111;
+    margin-bottom: 5px;
+}
+
+.topbar-subtitle {
+    font-size: 12px;
+    color: #666666;
+}
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.total-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.total-label {
+    font-size: 9px;
+    font-weight: bold;
+    color: #777;
+}
+
+.total-value {
+    font-size: 18px;
+    font-weight: bold;
+    color: #111;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 16px;
+}
+
+/* --- SECTION FORMULAIRE : AJOUTER UN UTILISATEUR --- */
+.add-user {
+    width: 100%;
+}
+
+.form-card {
+    background-color: #FFFFFF;
+    border: 1px solid #EAEAEA;
+    border-radius: 8px;
+    padding: 15px 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.form-title {
+    font-size: 13px;
+    font-weight: bold;
+    color: #111;
+    margin-bottom: 15px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr auto;
+    gap: 10px;
+    align-items: flex-end;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-group label {
+    font-size: 9px;
+    font-weight: bold;
+    color: #777777;
+    letter-spacing: 0.5px;
+}
+
+.form-group input,
+.form-group select {
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid #D1D5DB;
+    background-color: #FFFFFF;
+    font-size: 12px;
+    color: #333;
+    width: 100%;
+}
+
+.btn-add {
+    height: 35px;
+    padding: 0 20px;
+    background-color: #111111;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-add:hover {
+    background-color: #333333;
+}
+
+/* --- SECTION TABLEAU DES UTILISATEURS --- */
+.users {
+    background-color: #FFFFFF;
+    border: 1px solid #EAEAEA;
+    border-radius: 8px;
+    padding: 15px 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.table-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.search-box input {
+    padding: 7px 12px;
+    border-radius: 6px;
+    border: 1px solid #D1D5DB;
+    font-size: 12px;
+    width: 250px;
+}
+
+.table-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-filter,
+.btn-export {
+    padding: 6px 12px;
+    background-color: #F3F4F6;
+    border: 1px solid #E5E7EB;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: bold;
+    color: #374151;
+    cursor: pointer;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.table th {
+    background-color: #F9FAFB;
+    font-size: 10px;
+    color: #6B7280;
+    padding: 10px;
+    border-bottom: 1px solid #E5E7EB;
+    font-weight: bold;
+}
+
+.table td {
+    padding: 12px 10px;
+    font-size: 13px;
+    color: #1F2937;
+    border-bottom: 1px solid #F3F4F6;
+}
+
+/* Badges de rôles */
+.role-badge {
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.role-badge.admin {
+    color: #2563EB;
+}
+
+.role-badge.professeur {
+    color: #7C3AED;
+}
+
+.role-badge.etudiant {
+    color: #059669;
+}
+
+/* Statuts pastilles */
+.status {
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.status.active {
+    color: #10B981;
+}
+
+.status.pending {
+    color: #F59E0B;
+}
+
+.status.suspendu {
+    color: #EF4444;
+}
+
+.actions {
+    letter-spacing: 8px;
+    cursor: pointer;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid #F3F4F6;
+}
+
+.pagination-info {
+    font-size: 11px;
+    color: #6B7280;
+}
+
+.pagination-controls {
+    display: flex;
+    gap: 5px;
+}
+
+.page-btn {
+    width: 25px;
+    height: 25px;
+    background-color: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 4px;
+    font-size: 11px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-btn.active {
+    background-color: #111111;
+    color: #FFFFFF;
+    border-color: #111111;
+}

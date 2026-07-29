@@ -1,12 +1,100 @@
-{% extends "Profils/base.html" %}
+{% load static %}
 
-{% block content %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil Institutionnel - Institutional Ledger</title>
+   <link rel="stylesheet" href="{% static "Accueil/css/style.css" %}">
+</head>
+<body>
 
-    <h1>
-  
-        {% if user.is_authenticated %}{% endif %}
-         BIENVENUE DANS VOTRE ESPACE   Mr ou Md {{user.username}}
-    </h1>
+    <div id="page">
 
+        <header class="topbar">
+            <a href="{% url "login" %}" class="btn-portal">ACCÉDER AU PORTAIL </a>
+        </header>
 
-{% endblock content %}
+        <section class="hero">
+            <span class="hero-tag">SYSTÈME OFFICIEL DE CERTIFICATION</span>
+            <h1 class="hero-title">Votre Registre Académique Numérique</h1>
+            <p>L'outil central souverain pour la gestion des notes, le suivi rigoureux des absences et l'intégrité de l'administration scolaire moderne.</p>
+        </section>
+
+        <section class="portals">
+            <h2 class="portals-title">Écosystème de Gestion Intégré</h2>
+
+            <div class="portal-cards">
+                <div class="portal-card">
+                    <div class="portal-icon"></div>
+                    <h3 class="portal-name">Portail Étudiant</h3>
+                    <p class="portal-text">Accédez en temps réel à votre livret scolaire numérique. Suivez vos moyennes, justifiez vos absences et mettez à jour votre dossier administratif.</p>
+                    <ul class="portal-list">
+                        <li> Mes notes ; bulletins</li>
+                        <li> État des absences</li>
+                        <li> Profil académique</li>
+                    </ul>
+                    <a href="dashboard-etudiant.html" class="portal-link">ACCÉDER →</a>
+                </div>
+
+                <div class="portal-card">
+                    <div class="portal-icon"></div>
+                    <h3 class="portal-name">Portail Enseignant</h3>
+                    <p class="portal-text">Optimisez la gestion de vos classes. Saisie rapide des évaluations, appel numérique et suivi pédagogique individualisé pour chaque élève.</p>
+                    <ul class="portal-list">
+                        <li> Gestion des classes</li>
+                        <li> Saisie des notes</li>
+                        <li> Rapports d'évaluation</li>
+                    </ul>
+                    <a href="tableau-enseignant.html" class="portal-link">ACCÉDER →</a>
+                </div>
+
+                <div class="portal-card">
+                    <div class="portal-icon"></div>
+                    <h3 class="portal-name">Portail Administratif</h3>
+                    <p class="portal-text">Le cœur de pilotage de l'établissement. Gestion des droits utilisateurs, analyse statistique des résultats et structuration des matières.</p>
+                    <ul class="portal-list">
+                        <li> Gestion des utilisateurs</li>
+                        <li> Statistiques globales</li>
+                        <li> Configuration matières</li>
+                    </ul>
+                    <a href="tableau_de_bord.html" class="portal-link">ACCÉDER →</a>
+                </div>
+            </div>
+        </section>
+
+        <footer class="site-footer">
+            <div class="footer-columns">
+                <div class="footer-brand">
+                    <h4> Institutional Ledger</h4>
+                    <p>La plateforme de référence pour la centralisation des données académiques. Chaque entrée est enregistrée de manière immuable pour garantir la valeur administrative du document.</p>
+                </div>
+
+                <div class="footer-links">
+                    <span class="footer-heading">PLATEFORME</span>
+                    <a href="#">Portail Étudiant</a>
+                    <a href="#">Portail Enseignant</a>
+                    <a href="#">Administration</a>
+                    <a href="#">Support Technique</a>
+                </div>
+
+                <div class="footer-links">
+                    <span class="footer-heading">LÉGAL</span>
+                    <a href="#">Mentions Légales</a>
+                    <a href="#">Politique de Confidentialité</a>
+                    <a href="#">CGU / Certification</a>
+                    <a href="#">Accessibilité</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>© 2024 Institutional Ledger. Tous droits réservés.</span>
+                <span class="system-status"><span class="status-dot"></span> SYSTEM STATUS: NORMAL</span>
+            </div>
+        </footer>
+
+    </div>
+
+</body>
+</html>

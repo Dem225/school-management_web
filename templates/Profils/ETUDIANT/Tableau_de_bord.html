@@ -1,0 +1,148 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tableau de bord Étudiant - Portail Étudiant</title>
+    
+     <link rel="stylesheet" href="{% static 'ETUDIANT/css/style.css' %}" />
+
+
+  </head>
+  <body>
+    <div id="app">
+      <aside id="sidebar">
+        <div class="brand">
+          <h1 class="brand-title">Portail Étudiant</h1>
+          <span class="brand-subtitle">Système de Gestion</span>
+        </div>
+        <nav class="menu">
+          <ul>
+            <li class="menu-item active">
+              <a href="dashboard-etudiant.html"
+                ><span class="menu-icon"> </span> Tableau de bord</a
+              >
+            </li>
+            <li class="menu-item">
+              <a href="notes-etudiant.html"
+                ><span class="menu-icon"> </span> Mes notes</a
+              >
+            </li>
+            <li class="menu-item">
+              <a href="absences-etudiant.html"
+                ><span class="menu-icon"> </span> Mes absences</a
+              >
+            </li>
+            <li class="menu-item">
+              <a href="profil-etudiant.html"
+                ><span class="menu-icon"> </span> Mon profil</a
+              >
+            </li>
+          </ul>
+        </nav>
+        <div class="profile">
+          <span class="profile-photo"></span>
+          <span class="profile-name">Jean Dupont</span>
+        </div>
+      </aside>
+      <main id="main">
+        <header class="topbar">
+          <div class="window-dots">
+            <span class="dot red"></span> <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="topbar-title"
+              >REGISTRE SCOLAIRE — SESSION 2023/2024</span
+            >
+          </div>
+          <div class="search">
+            <input type="text" placeholder="Rechercher une note, un cours..." />
+          </div>
+          <span class="icon"> </span>
+        </header>
+        <section class="page-header">
+          <h2 class="page-title">Bonjour, Jean Dupont</h2>
+          <p class="page-subtitle">
+            Bienvenue sur votre registre numérique. Voici un aperçu de vos
+            performances académiques pour le trimestre en cours.
+          </p>
+        </section>
+        <section class="cards">
+          <div class="card">
+            <div class="card-top">
+              <span class="card-label">MA MOYENNE GÉNÉRALE</span>
+              <span class="icon"> </span>
+            </div>
+            <div class="card-value">14.2 <span class="unit">/20</span></div>
+            <span class="card-note positive">+0.4 ce mois</span>
+          </div>
+          <div class="card">
+            <div class="card-top">
+              <span class="card-label">MES ABSENCES</span>
+              <span class="icon"> </span>
+            </div>
+            <div class="card-value">3 <span class="unit">jours</span></div>
+            <span class="card-note warning"
+              >Attention : seuil d'alerte à 5</span
+            >
+          </div>
+          <div class="card">
+            <div class="card-top">
+              <span class="card-label">MA CLASSE</span>
+              <span class="icon"> </span>
+            </div>
+            <div class="card-value">3ème A</div>
+            <span class="card-note">Professeur principal : M. Martin</span>
+          </div>
+        </section>
+        <section class="grades">
+          <div class="grades-header">
+            <h3>Mes dernières notes</h3>
+            <a href="notes-etudiant.html" class="link">Voir tout le carnet →</a>
+          </div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>MATIÈRE</th>
+                <th>ÉVALUATION</th>
+                <th>NOTE /20</th>
+                <th>DATE</th>
+                <th>STATUT</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="subject-dot blue"></span> Mathématiques</td>
+                <td>Algèbre &amp; Fonctions</td>
+                <td>15.0</td>
+                <td>12 Oct 2023</td>
+                <td><span class="status status-ok">Validé</span></td>
+              </tr>
+              <tr>
+                <td><span class="subject-dot red"></span> Histoire</td>
+                <td>La Révolution Française</td>
+                <td>12.0</td>
+                <td>10 Oct 2023</td>
+                <td><span class="status status-ok">Validé</span></td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="subject-dot yellow"></span> Physique-Chimie
+                </td>
+                <td>Tableau Périodique</td>
+                <td>—</td>
+                <td>08 Oct 2023</td>
+                <td><span class="status status-wait">En attente</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        <div class="page-footer">
+          <span>Identifiant étudiant : ET-2026-001</span>
+          <span>Dernière synchronisation : aujourd'hui à 09:45</span>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,422 @@
+/* --- GLOBAL BASE ET RESET --- */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background-color: #F8F9FB;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #333333;
+}
+
+/* --- LAYOUT GLOBAL --- */
+#app {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+/* --- SIDEBAR --- */
+#sidebar {
+    width: 240px;
+    height: 100%;
+    background-color: #111111;
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+.logo {
+    padding: 0 20px 20px 20px;
+    border-bottom: 1px solid #222222;
+}
+
+.logo-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.logo-subtitle {
+    font-size: 10px;
+    color: #888888;
+    letter-spacing: 1px;
+}
+
+.menu {
+    flex-grow: 1;
+    margin-top: 20px;
+}
+
+.menu ul {
+    list-style: none;
+}
+
+.menu .menu-item {
+    padding: 12px 20px;
+}
+
+.menu .menu-item.active,
+.menu .menu-item:hover {
+    background-color: #222222;
+    border-left: 4px solid #4EA149;
+}
+
+.menu .menu-item a {
+    text-decoration: none;
+    color: #CCCCCC;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.menu-icon {
+    font-size: 14px;
+}
+
+.footer {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-top: 1px solid #222222;
+}
+
+.footer-link {
+    color: #888888;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+/* --- ZONE PRINCIPALE --- */
+#main {
+    flex-grow: 1;
+    height: 100%;
+    overflow-y: auto;
+    background-color: #F8F9FB;
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* --- TOPBAR (fenêtre) --- */
+.topbar {
+    height: 50px;
+    width: 100%;
+    background-color: #FFFFFF;
+    border: 1px solid #EAEAEA;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+}
+
+.window-dots {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.dot.red {
+    background-color: #FF5F56;
+}
+
+.dot.yellow {
+    background-color: #FFBD2E;
+}
+
+.dot.green {
+    background-color: #27C93F;
+}
+
+.topbar-window-title {
+    margin-left: 10px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #333333;
+}
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#search {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid #D1D5DB;
+    background-color: #F8F9FB;
+    font-size: 12px;
+    width: 220px;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* --- EN-TÊTE DE PAGE --- */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.page-title {
+    font-size: 26px;
+    font-weight: bold;
+    color: #111111;
+    margin-bottom: 5px;
+}
+
+.page-subtitle {
+    font-size: 13px;
+    color: #666666;
+}
+
+.btn-new {
+    background-color: #111111;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-new:hover {
+    background-color: #333333;
+}
+
+/* --- CARTES KPI --- */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    width: 100%;
+}
+
+.card {
+    background-color: #FFFFFF;
+    padding: 15px 20px;
+    border-radius: 8px;
+    border: 1px solid #EAEAEA;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.card.highlight {
+    border-left: 4px solid #FFBD2E;
+}
+
+.card-label {
+    font-size: 10px;
+    font-weight: bold;
+    color: #777777;
+    letter-spacing: 0.5px;
+}
+
+.card-value {
+    font-size: 26px;
+    font-weight: bold;
+    color: #111111;
+}
+
+.card-value.text-danger {
+    color: #DC2626;
+}
+
+.card-value-small {
+    font-size: 15px;
+}
+
+/* --- SECTION MATIÈRES --- */
+.subjects {
+    background-color: #FFFFFF;
+    border: 1px solid #EAEAEA;
+    border-radius: 8px;
+    padding: 15px 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.table th {
+    background-color: #F9FAFB;
+    font-size: 10px;
+    color: #6B7280;
+    padding: 10px;
+    border-bottom: 1px solid #E5E7EB;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.table td {
+    padding: 13px 10px;
+    font-size: 13px;
+    color: #1F2937;
+    border-bottom: 1px solid #F3F4F6;
+}
+
+.professor {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.professor-icon {
+    background-color: #E5E7EB;
+    border-radius: 50%;
+    padding: 4px 6px;
+    font-size: 11px;
+}
+
+.badge-unassigned {
+    background-color: #FDE2E7;
+    color: #C0245A;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-right: 8px;
+}
+
+.link-assign {
+    font-size: 12px;
+    font-weight: bold;
+    color: #111111;
+    text-decoration: underline;
+}
+
+.actions {
+    text-align: right;
+    color: #9CA3AF;
+    cursor: pointer;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid #F3F4F6;
+}
+
+.pagination-info {
+    font-size: 11px;
+    color: #6B7280;
+}
+
+.pagination-controls {
+    display: flex;
+    gap: 5px;
+}
+
+.page-btn {
+    width: 25px;
+    height: 25px;
+    background-color: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 4px;
+    font-size: 11px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-btn.active {
+    background-color: #111111;
+    color: #FFFFFF;
+    border-color: #111111;
+}
+
+/* --- SECTION BASSE : DIRECTIVES + SUPPORT --- */
+.bottom-section {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 15px;
+}
+
+.info-box {
+    background-color: #FFFFFF;
+    border: 1px solid #EAEAEA;
+    border-radius: 8px;
+    padding: 15px 20px;
+}
+
+.info-box-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #111111;
+    margin-bottom: 6px;
+}
+
+.info-box-text {
+    font-size: 12px;
+    color: #666666;
+    line-height: 1.5;
+}
+
+.support-box {
+    background-color: #FEF3C7;
+    border-radius: 8px;
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.support-box-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #111111;
+}
+
+.support-box-text {
+    font-size: 12px;
+    color: #555555;
+}
+
+.btn-doc {
+    background-color: #111111;
+    color: #FFFFFF;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    align-self: flex-start;
+    margin-top: 5px;
+}
+
+.btn-doc:hover {
+    background-color: #333333;
+}

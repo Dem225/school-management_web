@@ -1,0 +1,217 @@
+{% load static %}
+<!DOCTYPE html>
+
+
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestion des Absences - Institutional Ledger</title>
+   
+     <link rel="stylesheet" href="{% static "ADMIN/css/Gestions_absence.css" %}">
+  </head>
+  <body>
+    <div id="app">
+      <aside id="sidebar">
+        <div class="logo">
+          <h1 class="logo-title">Institutional Ledger</h1>
+          <span class="logo-subtitle">Admin Portal v1.0</span>
+        </div>
+        <nav class="menu">
+          <ul>
+            <li class="menu-item">
+              <a href="{% url "Tableau_de_bord_admin" %}"><span class="menu-icon"></span> Tableau de bord</a>
+            </li>
+            <li class="menu-item">
+              <a href="{% url "Gestions_utilisateur_ADMIN" %}"><span class="menu-icon"></span> Utilisateurs</a>
+            </li>
+            <li class="menu-item">
+              <a href="{% url "Gestion_Etudiant" %}"><span class="menu-icon"></span> Étudiants</a>
+            </li>
+            <li class="menu-item">
+              <a href="{% url "Gestions_professeur" %}"><span class="menu-icon"></span> Professeurs</a>
+            </li>
+            <li class="menu-item">
+              <a href="{% url "Gestions_matiere" %}"><span class="menu-icon"></span> Matières</a>
+            </li>
+            <li class="menu-item">
+              <a href="{% url "Gestion_notes" %}"><span class="menu-icon"></span> Notes</a>
+            </li>
+            <li class="menu-item active">
+              <a href="#"><span class="menu-icon"></span> Absences</a>
+            </li>
+            <li class="menu-item">
+              <a href="#"><span class="menu-icon"></span> Statistiques</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="footer">
+          <a href="#" class="footer-link"> Paramètres</a>
+          <a href="#" class="footer-link"> Déconnexion</a>
+        </div>
+      </aside>
+      <main id="main">
+        <header class="topbar">
+          <div class="window-bar">
+            <span class="dot red"></span> <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="topbar-window-title">Registres / Absences</span>
+          </div>
+          <div class="action-bar">
+            <div class="search-box">
+              <input
+                type="text"
+                placeholder="Rechercher un dossier..."
+                id="search"
+              />
+            </div>
+            <div class="icons">
+              <span class="icon-notification"></span>
+              <span class="icon-help"></span> <span class="avatar-photo"></span>
+            </div>
+          </div>
+        </header>
+        <section class="page-header">
+          <div class="page-header-text">
+            <h2 class="page-title">Gestion des Absences</h2>
+            <p class="page-subtitle">
+              Consultez, enregistrez et justifiez les absences des étudiants
+              pour l'année académique en cours.
+            </p>
+          </div>
+          <button class="btn-new">+ Enregistrer une absence</button>
+        </section>
+        <section class="cards">
+          <div class="card">
+            <span class="card-label">TOTAL DU MOIS</span>
+            <div class="card-value">142</div>
+          </div>
+          <div class="card">
+            <span class="card-label">À JUSTIFIER</span>
+            <div class="card-value">24</div>
+          </div>
+          <div class="card accent-danger">
+            <span class="card-label">NON JUSTIFIÉS</span>
+            <div class="card-value text-danger">08</div>
+          </div>
+          <div class="card">
+            <span class="card-label">TAUX D'ASSIDUITÉ</span>
+            <div class="card-value">97.4%</div>
+          </div>
+        </section>
+        <section class="absences">
+          <div class="filters-bar">
+            <button class="filter-pill">Toutes les promotions</button>
+            <button class="filter-pill">Tous les statuts</button>
+            <button class="btn-advanced-filters">☰ Filtres avancés</button>
+          </div>
+          <div class="table-wrap">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ÉTUDIANT</th>
+                  <th>DATE ; HEURE</th>
+                  <th>MATIÈRE</th>
+                  <th>STATUT</th>
+                  <th>ACTIONS</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="student-cell">
+                      <span class="student-avatar grey">JM</span>
+                      <div class="student-name-id">
+                        <span class="student-name">Jean Michel</span>
+                        <span class="student-id">ID: 2023-4412</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td>24 Oct. 2023 – 08:30</td>
+                  <td>Architecture des Systèmes</td>
+                  <td><span class="status tojustify">À JUSTIFIER</span></td>
+                  <td class="actions">
+                    <a href="#" class="action-link"> Justifier</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="student-cell">
+                      <span class="student-avatar orange">SL</span>
+                      <div class="student-name-id">
+                        <span class="student-name">Sophie Laurent</span>
+                        <span class="student-id">ID: 2023-4589</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td>23 Oct. 2023 – 14:00</td>
+                  <td>Algorithmique avancée</td>
+                  <td><span class="status justified">JUSTIFIÉE</span></td>
+                  <td class="actions">
+                    <a href="#" class="action-link"> Motif</a>
+                  </td>
+                </tr>
+                <tr class="alert-row">
+                  <td>
+                    <div class="student-cell">
+                      <span class="student-avatar dark">MD</span>
+                      <div class="student-name-id">
+                        <span class="student-name">Marc Dupont</span>
+                        <span class="student-id">ID: 2023-4122</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td>22 Oct. 2023 – 10:15</td>
+                  <td>Économie Numérique</td>
+                  <td><span class="status unjustified">NON JUSTIFIÉE</span></td>
+                  <td class="actions">
+                    <a href="#" class="action-link danger"> Détails</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="student-cell">
+                      <span class="student-avatar pink">EB</span>
+                      <div class="student-name-id">
+                        <span class="student-name">Elena Bertin</span>
+                        <span class="student-id">ID: 2023-4802</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td>22 Oct. 2023 – 08:30</td>
+                  <td>Mathématiques Discrètes</td>
+                  <td><span class="status tojustify">À JUSTIFIER</span></td>
+                  <td class="actions">
+                    <a href="#" class="action-link"> Justifier</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="pagination">
+            <span class="pagination-info"
+              >Affichage de 1-15 sur 142 absences</span
+            >
+            <div class="pagination-controls">
+              <button class="page-btn">&lt;</button>
+              <button class="page-btn active">1</button>
+              <button class="page-btn">2</button>
+              <button class="page-btn">3</button>
+              <span class="pagination-dots">...</span>
+              <button class="page-btn">10</button>
+              <button class="page-btn">&gt;</button>
+            </div>
+          </div>
+        </section>
+        <div class="footer-meta">
+          <span class="footer-meta-left"
+            >DERNIÈRE SYNCHRONISATION: 24/10/2023 10:45</span
+          >
+          <span class="footer-meta-right"
+            >INSTITUTIONAL LEDGER — LEDGER INTEGRITY VERIFIED</span
+          >
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

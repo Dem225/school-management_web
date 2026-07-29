@@ -130,9 +130,37 @@ STATICFILES_DIRS = [
     BASE_DIR / STATIC_URL
 ]
 
-STATIC_ROOT=BASE_DIR/"staticfiles"
+
+# L'URL de base pour appeler vos fichiers
+STATIC_URL = 'static/'
+
+# (Optionnel mais recommandé) Le dossier physique où vous mettez vos fichiers
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
+
+# STATIC_ROOT=BASE_DIR/"staticfiles"
+
+# <link rel="stylesheet" href="{% static "css/style.css" %}">
+
+
+# settings.py
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = 'login'
 
 
 
-LOGIN_REDIRECT_URL='/admin'
-LOGOUT_REDIRECT_URL='/connexion'
+
+
+# {% if user.is_authenticated %}
+           
+#             <form method="post" action="{% url 'logout' %}">
+#                 {% csrf_token %}
+#                 <button type="submit">DÉCONNEXION</button>
+#             </form>
+#         {% else %}
+           
+#             <a href="{% url 'login' %}">CONNEXION</a>
+#         {% endif %}
+#  {% endcomment %}
