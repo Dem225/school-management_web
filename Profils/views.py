@@ -68,7 +68,9 @@ def  Tableau_de_bord_PROFESSEUR(resquest):
 # Gestion des  utilisateurs de L'ADMIN
 
 def  Gestions_utilisateur(resquest):
-    return render(resquest,"Profils/ADMIN/Gestions_utilisateurs.html" )
+    Utilisateurs= Utilisateur.objects.all()
+    conte_Users= Utilisateur.objects.count()
+    return render(resquest,"Profils/ADMIN/Gestions_utilisateurs.html", {"Utilisateurs":Utilisateurs, "conte_Users" :conte_Users}  )
 
 
 
@@ -98,5 +100,5 @@ def  Gestions_matiere(resquest):
     return render(resquest,"Profils/ADMIN/Gestions_matiere.html" )
 
 
+#information des untilisateur admin 
 
-    

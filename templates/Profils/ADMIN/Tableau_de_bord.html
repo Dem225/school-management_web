@@ -28,7 +28,8 @@
           </ul>
         </nav>
         <div class="footer">
-          <a href="#" class="footer-link">Paramètres</a>
+          <a href="#" class="footer-link">Parameters</a>
+          
           <a href="{% url "deconnexion" %}" class="footer-link">Déconnexion</a>
         </div>
       </aside>
@@ -46,7 +47,9 @@
             <div class="icons">
               <span class="icon-notification"></span>
               <span class="icon-help"></span>
-              <div class="avatar">AD</div>
+              {% if user.is_authenticated  %}
+                <div class="avatar">{{user.username}}</div>
+               {% endif %}
             </div>
           </div>
         </header>
@@ -65,16 +68,7 @@
             <div class="card-value">14</div>
             <span class="card-sub">Effectif stable</span>
           </div>
-          {% comment %} <div class="card" id="card-average">
-            <span class="card-label">MOYENNE GÉNÉRALE</span>
-            <div class="card-value">13.4 <span class="unit">/20</span></div>
-            <span class="card-sub">Promotion 2024</span>
-          </div> {% endcomment %}
-          {% comment %} <div class="card" id="card-absences">
-            <span class="card-label">ABSENCES DU MOIS</span>
-            <div class="card-value text-danger">37</div>
-            <span class="card-sub down">-12% vs mois dernier</span>
-          </div> {% endcomment %}
+     
         </section>
 
 

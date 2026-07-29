@@ -1,4 +1,3 @@
-
 {% load static %}
 <!DOCTYPE html>
 <html lang="fr">
@@ -6,161 +5,153 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gestion des Utilisateurs - Institutional Ledger</title>
-    <link rel="stylesheet" href="{% static "ADMIN/css/Gestions_utilisateur.css" %}">
+    <link rel="stylesheet" href="{% static 'ADMIN/css/Gestions_utilisateur.css' %}">
   </head>
   <body>
     <div id="app">
+
       <aside id="sidebar">
         <div class="logo">
-          <h1 class="logo-title">Institutional Ledger</h1>
-          <span class="logo-subtitle">Admin Portal </span>
+          <h1 class="logoTitle">Institutional Ledger</h1>
+          <span class="logoSubtitle">Admin Portal</span>
         </div>
+
         <nav class="menu">
           <ul>
-           <li class="menu-item"><a href="{% url "Tableau_de_bord_admin" %}">Tableau de bord</a></li>
-            <li class="menu-item active"><a href="{% url "Gestions_utilisateur_ADMIN" %}">Utilisateurs</a></li>
-            <li class="menu-item"><a href="{% url "Gestion_Etudiant" %}">Étudiants</a></li>
-            <li class="menu-item"><a href="{% url "Gestions_professeur" %}">Professeurs</a></li>
-            <li class="menu-item"><a href="{% url "Gestions_matiere" %}">Matières</a></li>
-            <li class="menu-item"><a href="{% url "Gestion_notes" %}">Notes</a></li>
-            <li class="menu-item"><a href="#">Absences</a></li>
-            <li class="menu-item"><a href="#">Statistiques</a></li>
+            <li class="menuItem"><a href="{% url 'Tableau_de_bord_admin' %}">Tableau de bord</a></li>
+            <li class="menuItem active"><a href="{% url 'Gestions_utilisateur_ADMIN' %}">Utilisateurs</a></li>
+            <li class="menuItem"><a href="{% url 'Gestion_Etudiant' %}">Étudiants</a></li>
+            <li class="menuItem"><a href="{% url 'Gestions_professeur' %}">Professeurs</a></li>
+            <li class="menuItem"><a href="{% url 'Gestions_matiere' %}">Matières</a></li>
+            <li class="menuItem"><a href="{% url 'Gestion_notes' %}">Notes</a></li>
+            <li class="menuItem"><a href="#">Absences</a></li>
+            <li class="menuItem"><a href="#">Statistiques</a></li>
           </ul>
         </nav>
+
         <div class="footer">
-          <a href="#" class="footer-link">Paramètres</a>
-          <a href="#" class="footer-link">Déconnexion</a>
+          <a href="#" class="footerLink">Paramètres</a>
+          <a href="{% url 'deconnexion' %}" class="footerLink">Déconnexion</a>
         </div>
       </aside>
+
       <main id="main">
+
         <header class="topbar">
-          <div class="topbar-title">
+          <div class="topbarTitle">
             <h2>Gestion des Utilisateurs</h2>
-            <p class="topbar-subtitle">
-              Créez, gérez et supervisez les privilèges d'accès de
-              l'établissement.
+            <p class="topbarSubtitle">
+              Créez, gérez et supervisez les privilèges d'accès de l'établissement.
             </p>
           </div>
-          <div class="topbar-right">
-            <div class="total-badge">
-              <span class="total-label">TOTAL UTILISATEURS</span>
-              <span class="total-value">1,248</span>
+          <div class="topbarRight">
+            <div class="totalBadge">
+              <span class="totalLabel">TOTAL UTILISATEURS</span>
+              <span class="totalValue">   {{conte_Users}} </span>
             </div>
             <div class="icons">
-              <span class="icon-notification"> </span>
-              <span class="icon-help"> </span>
+              <span class="iconNotification"></span>
+              <span class="iconHelp"></span>
             </div>
           </div>
         </header>
-        <section class="add-user">
-          <div class="form-card">
-            <div class="form-title">
-              <span> </span> Ajouter un nouvel utilisateur
-            </div>
-            <div class="form-grid">
-              <div class="form-group">
-                <label>NOM COMPLET</label>
-                <input type="text" placeholder="ex: Jean Dupc" />
+
+        <section class="addUser">
+          <div class="formCard">
+            <div class="formTitle">Ajouter un nouvel utilisateur</div>
+
+            <form class="formGrid">
+              <div class="formGroup">
+                <label>Nom complet</label>
+                <input type="text" placeholder="ex: Jean Dupont" />
               </div>
-              <div class="form-group">
-                <label>RÔLE</label>
+
+              <div class="formGroup">
+                <label>Rôle</label>
                 <select>
                   <option>Étudiant</option>
                   <option>Professeur</option>
                   <option>Admin</option>
                 </select>
               </div>
-              <div class="form-group">
-                <label>IDENTIFIANT</label>
+
+              <div class="formGroup">
+                <label>Identifiant</label>
                 <input type="text" placeholder="identifiant" />
               </div>
-              <div class="form-group">
-                <label>NOM D'UTILISATEUR</label>
+
+              <div class="formGroup">
+                <label>Nom d'utilisateur</label>
                 <input type="text" value="j.dupont" />
               </div>
-              <div class="form-group">
-                <label>MOT DE PASSE</label>
-                <input type="password" value="••••••••" />
+
+              <div class="formGroup">
+                <label>Mot de passe</label>
+                <input type="password" value="********" />
               </div>
-              <div class="form-group button-group">
-                <button class="btn-add">Ajouter</button>
+
+              <div class="formGroup submitGroup">
+                <button type="submit" class="btnAdd">Ajouter</button>
               </div>
-            </div>
+            </form>
           </div>
         </section>
+
         <section class="users">
-          <div class="table-toolbar">
-            <div class="search-box">
-              <input type="text" placeholder="Rechercher par nom ou ID..." />
-            </div>
-            <div class="table-buttons">
-              <button class="btn-filter">FILTRER</button>
-              <button class="btn-export">EXPORTER</button>
+          <div class="tableToolbar">
+            <input class="searchInput" type="text" placeholder="Rechercher par nom ou ID..." />
+            <div class="tableButtons">
+              <button class="btnFilter">Filtrer</button>
+              <button class="btnExport">Exporter</button>
             </div>
           </div>
-          <div class="table-wrap">
+
+          <div class="tableWrap">
             <table class="table">
               <thead>
                 <tr>
                   <th>ID</th>
                   <th>Nom</th>
                   <th>Rôle</th>
-                  <th>Statut</th>
+                  <th>Username</th>
+                  <th>EMAIL</th>
                   <th>Actions</th>
+                  
                 </tr>
               </thead>
               <tbody>
+
+                {% for Users in Utilisateurs %}
+                
                 <tr>
-                  <td>#ADM-8902</td>
-                  <td>Marc Lemoine</td>
-                  <td><span class="role-badge admin">ADMIN</span></td>
-                  <td><span class="status active">● ACTIF</span></td>
-                  <td class="actions"></td>
+                  <td> {{Users.id}} </td>
+                  <td>    {{Users.last_name}}  </td>
+                  <td><span class="roleBadge admin">   {{Users.role}}  </span></td>
+                  <td>   {{Users.username}}  </td>
+                   <td>    {{Users.email}}  </td>
+                  <td class="actions">
+                    <a href="#">Modifier</a>
+                    <button  type="submit " style="background-color: rgb(213, 31, 31); color: black;" >Supprimer</button>
+                    
+                  </td>
                 </tr>
-                <tr>
-                  <td>#PRF-4431</td>
-                  <td>Dr. Élise Girard</td>
-                  <td><span class="role-badge professeur">PROFESSEUR</span></td>
-                  <td><span class="status active">● ACTIF</span></td>
-                  <td class="actions"></td>
-                </tr>
-                <tr>
-                  <td>#STD-1002</td>
-                  <td>Sophie Martin</td>
-                  <td><span class="role-badge etudiant">ÉTUDIANT</span></td>
-                  <td><span class="status active">● ACTIF</span></td>
-                  <td class="actions"></td>
-                </tr>
-                <tr>
-                  <td>#STD-1005</td>
-                  <td>Lucas Bernard</td>
-                  <td><span class="role-badge etudiant">ÉTUDIANT</span></td>
-                  <td><span class="status pending">● EN ATTENTE</span></td>
-                  <td class="actions"></td>
-                </tr>
-                <tr>
-                  <td>#STD-1192</td>
-                  <td>Chloé Petit</td>
-                  <td><span class="role-badge etudiant">ÉTUDIANT</span></td>
-                  <td><span class="status suspendu">● SUSPENDU</span></td>
-                  <td class="actions"></td>
-                </tr>
+                {% endfor %}
               </tbody>
             </table>
           </div>
+
           <div class="pagination">
-            <span class="pagination-info"
-              >Affichage de 5 sur 1,248 utilisateurs</span
-            >
-            <div class="pagination-controls">
-              <button class="page-btn"></button>
-              <button class="page-btn active">1</button>
-              <button class="page-btn">2</button>
-              <button class="page-btn">3</button>
-              <button class="page-btn"></button>
+            <span class="paginationInfo"></span>
+            <div class="paginationControls">
+              <button class="pageBtn"></button>
+              <button class="pageBtn active">1</button>
+              <button class="pageBtn">2</button>
+              <button class="pageBtn">3</button>
+              <button class="pageBtn"></button>
             </div>
           </div>
         </section>
+
       </main>
     </div>
   </body>
