@@ -114,7 +114,7 @@ class Addmatiere(forms.ModelForm):
              fields=['nom']
              widgets={
                         'nom': forms.TextInput(attrs={
-                                                         'placeholder': 'Entrez le nom de la Matieres'
+                                         'placeholder': 'Entrez le nom de la Matieres'
                                      }),
                                      
                      }

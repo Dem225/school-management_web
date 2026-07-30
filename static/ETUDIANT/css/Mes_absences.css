@@ -78,12 +78,15 @@ body {
     border-left: 4px solid #F5A623;
 }
 
+.sidebar-bottom {
+    border-top: 1px solid #222;
+}
+
 .profile {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 20px;
-    border-top: 1px solid #222;
+    padding: 20px 20px 10px;
 }
 
 .profile-photo {
@@ -97,6 +100,12 @@ body {
 .profile-name {
     font-size: 13px;
     font-weight: bold;
+}
+
+.school-badge {
+    font-size: 10px;
+    color: #888;
+    padding: 0 20px 15px;
 }
 
 /* Barre du haut */
@@ -169,12 +178,6 @@ body {
 }
 
 /* En-tête de page */
-.page-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-
 .page-title {
     font-size: 24px;
     margin-bottom: 5px;
@@ -183,19 +186,7 @@ body {
 .page-subtitle {
     font-size: 13px;
     color: #666;
-    max-width: 600px;
-}
-
-.page-meta {
-    text-align: right;
-    font-size: 10px;
-    color: #999;
-}
-
-.page-meta strong {
-    display: block;
-    font-size: 12px;
-    color: #333;
+    max-width: 650px;
 }
 
 /* Cartes */
@@ -212,17 +203,12 @@ body {
     padding: 18px;
 }
 
-.card-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-}
-
 .card-label {
+    display: block;
     font-size: 10px;
     font-weight: bold;
     color: #888;
+    margin-bottom: 8px;
 }
 
 .card-value {
@@ -230,51 +216,32 @@ body {
     font-weight: bold;
 }
 
-.unit {
-    font-size: 13px;
-    color: #999;
-    font-weight: normal;
-}
-
-.card-note {
-    display: block;
-    font-size: 11px;
-    color: #666;
-    margin-top: 6px;
-}
-
-.card-note.positive {
-    color: #10B981;
-}
-
-.card-note.warning {
+.card-value.negative {
     color: #DC2626;
 }
 
-/* Tableau des notes */
-.grades {
+/* Tableau des absences */
+.attendance {
     background: #fff;
     border: 1px solid #EAEAEA;
     border-radius: 8px;
     padding: 20px;
 }
 
-.grades-header {
+.attendance-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 12px;
 }
 
-.grades-header h3 {
-    font-size: 16px;
+.attendance-header h3 {
+    font-size: 14px;
 }
 
-.link {
-    font-size: 12px;
-    font-weight: bold;
-    color: #111;
-    text-decoration: none;
+.updated-note {
+    font-size: 10px;
+    color: #888;
 }
 
 .table {
@@ -294,26 +261,6 @@ body {
     padding: 12px 10px;
     font-size: 13px;
     border-bottom: 1px solid #F3F4F6;
-}
-
-.subject-dot {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    margin-right: 6px;
-}
-
-.subject-dot.blue {
-    background: #3B82F6;
-}
-
-.subject-dot.red {
-    background: #EF4444;
-}
-
-.subject-dot.yellow {
-    background: #F59E0B;
 }
 
 .status {
@@ -338,10 +285,90 @@ body {
     color: #991B1B;
 }
 
-/* Pied de page */
-.page-footer {
+.pagination {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.pagination-info {
+    font-size: 11px;
+    color: #888;
+}
+
+.pagination-controls {
+    display: flex;
+    gap: 5px;
+}
+
+.page-btn {
+    width: 26px;
+    height: 26px;
+    border: 1px solid #E5E7EB;
+    border-radius: 4px;
+    background: #fff;
+    cursor: pointer;
+}
+
+/* Bas de page : infos + rappel */
+.bottom-section {
+    display: flex;
+    gap: 15px;
+}
+
+.info-box,
+.rule-box {
+    flex: 1;
+    border-radius: 8px;
+    padding: 18px;
+}
+
+.info-box {
+    background: #fff;
+    border: 1px solid #EAEAEA;
+}
+
+.info-box h4 {
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.info-box ul {
+    padding-left: 18px;
+    font-size: 12px;
+    color: #666;
+    line-height: 1.6;
+}
+
+.rule-box {
+    background: #111;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.rule-box h4 {
+    font-size: 13px;
+}
+
+.rule-box p {
+    font-size: 12px;
+    font-style: italic;
+    color: #ccc;
+    line-height: 1.5;
+}
+
+.rule-ref {
     font-size: 10px;
     color: #999;
+}
+
+.link {
+    font-size: 12px;
+    font-weight: bold;
+    color: #F5A623;
+    text-decoration: none;
+    align-self: flex-end;
 }

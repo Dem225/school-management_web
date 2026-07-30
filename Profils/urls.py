@@ -7,10 +7,13 @@ urlpatterns = [
     path('deconnexion/',Deconnexion , name='deconnexion'),
     path('Tableau_de_bord_admin/',Tableau_de_bord_Admin , name='Tableau_de_bord_admin'),
     path('Tableau_de_bord_professeur/',Tableau_de_bord_PROFESSEUR , name='Tableau_de_bord_professeur'),
+
+
+    
     path('Tableau_de_bord_etudiant/',Tableau_de_bord_ETUDIANT , name='Tableau_de_bord_etudiant'),
-
-
-
+    path('Voirnote_etd/',Voirnote_etd , name='Voirnote_etd'),
+    path('Voir_absences_etd/',Voir_absences_etd , name='Voir_absences_etd'),
+    path('Voirprofil_etd/',Voirprofil_etd , name='Voirprofil_etd'),
 
     
     path('Gestions_utilisateur_ADMIN/',Gestions_utilisateur , name='Gestions_utilisateur_ADMIN'),
@@ -18,6 +21,7 @@ urlpatterns = [
 
     path('ajoutetudiant/',add_etudiant_view , name='ajoutetudiant'),
     path('addprofesseur/',add_professeur_view , name='addprofesseur'),
+    path('addmatiere/',addmatiere , name='addmatiere'),
 
 
 

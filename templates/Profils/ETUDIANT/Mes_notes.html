@@ -1,0 +1,139 @@
+{% load static %}
+
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relevé de Notes - Portail Étudiant</title>
+   <link rel="stylesheet" href="{% static 'ETUDIANT/css/Mes_notes.css' %}">
+</head>
+<body>
+
+    <div id="app">
+
+        <aside id="sidebar">
+            <div class="brand">
+                <h1 class="brand-title">Portail Étudiant</h1>
+                <span class="brand-subtitle">Système de Gestion</span>
+            </div>
+
+            <nav class="menu">
+                <ul>
+                    <li class="menu-item"><a href="{% url "Tableau_de_bord_etudiant" %}"><span class="menu-icon"></span> Tableau de bord</a></li>
+                    <li class="menu-item active"><a href="{% url "Voirnote_etd" %}"><span class="menu-icon"></span> Mes notes</a></li>
+                    <li class="menu-item"><a href="{% url "Voir_absences_etd" %}"><span class="menu-icon"></span> Mes absences</a></li>
+                    <li class="menu-item"><a href="{% url "Voirprofil_etd" %}"><span class="menu-icon"></span> Mon profil</a></li>
+                </ul>
+            </nav>
+
+            <div class="profile">
+                <span class="profile-photo orange">JD</span>
+                <div class="profile-text">
+                    <span class="profile-name">Jean Dupont</span>
+                    <span class="profile-detail">ET-2026-001</span>
+                </div>
+            </div>
+        </aside>
+
+        <main id="main">
+
+            <header class="topbar">
+                <div class="window-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                    <span class="topbar-title">REGISTRE SCOLAIRE — TERMINALE S-1</span>
+                </div>
+                <div class="search">
+                    <input type="text" placeholder="Rechercher une matière...">
+                </div>
+                <span class="icon">🔔</span>
+                <span class="icon">⚙️</span>
+                <button class="btn-logout">Déconnexion</button>
+            </header>
+
+            <section class="page-header">
+                <div>
+                    <h2 class="page-title">Relevé de Notes</h2>
+                    <p class="page-subtitle">Semestre 1 • Année Académique 2023-2024</p>
+                </div>
+                <div class="page-meta">
+                    <span>DERNIÈRE MISE À JOUR</span>
+                    <strong>12 Oct 2023, 14:32</strong>
+                </div>
+            </section>
+
+            <section class="grades">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>MATIÈRE</th>
+                            <th>NOTE /20</th>
+                            <th>DATE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Mathématiques Expert</td>
+                            <td>16.5</td>
+                            <td>05/10/2023</td>
+                        </tr>
+                        <tr>
+                            <td>Physique-Chimie</td>
+                            <td>14.2</td>
+                            <td>02/10/2023</td>
+                        </tr>
+                        <tr>
+                            <td>Philosophie</td>
+                            <td>11.0</td>
+                            <td>28/09/2023</td>
+                        </tr>
+                        <tr>
+                            <td>Histoire-Géographie</td>
+                            <td class="grade-fail">08.5</td>
+                            <td>25/09/2023</td>
+                        </tr>
+                        <tr>
+                            <td>Anglais (LV1)</td>
+                            <td>17.0</td>
+                            <td>20/09/2023</td>
+                        </tr>
+                        <tr>
+                            <td>Espagnol (LV2)</td>
+                            <td>13.0</td>
+                            <td>15/09/2023</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="average-box">
+                    <span class="average-label">MA MOYENNE GÉNÉRALE</span>
+                    <div class="average-value">14.2 <span class="unit">/20</span></div>
+                    <span class="status status-ok">Validé par le rectorat</span>
+                </div>
+            </section>
+
+            <div class="page-footer">
+                <div class="footer-column">
+                    <span class="footer-label">RANG DANS LA CLASSE</span>
+                </div>
+                <div class="footer-column">
+                    <span class="footer-label">DEVOIRS À VENIR</span>
+                </div>
+                <div class="footer-column">
+                    <span class="footer-label">PROGRESSION</span>
+                </div>
+            </div>
+            <div class="page-footer small">
+                <span>Certifié par l'administration scolaire</span>
+                <span>Code numérique officiel — Document ID : PX5-990-063</span>
+            </div>
+
+        </main>
+    </div>
+
+</body>
+</html>

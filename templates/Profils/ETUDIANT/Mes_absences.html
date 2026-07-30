@@ -1,0 +1,160 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes Absences - Portail Étudiant</title>
+     <link rel="stylesheet" href="{% static 'ETUDIANT/css/Mes_absences.css' %}">
+</head>
+<body>
+
+    <div id="app">
+
+        <aside id="sidebar">
+            <div class="brand">
+                <h1 class="brand-title">Portail Étudiant</h1>
+                <span class="brand-subtitle">Système de Gestion</span>
+            </div>
+
+            <nav class="menu">
+                <ul>
+                    <li class="menu-item"><a href="{% url "Tableau_de_bord_etudiant" %}"><span class="menu-icon"></span> Tableau de bord</a></li>
+                    <li class="menu-item"><a href="{% url "Voirnote_etd" %}"><span class="menu-icon"></span> Mes notes</a></li>
+                    <li class="menu-item active"><a href="{% url "Voir_absences_etd" %}"><span class="menu-icon"></span> Mes absences</a></li>
+                    <li class="menu-item"><a href="{% url "Voirprofil_etd" %}"><span class="menu-icon"></span> Mon profil</a></li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <div class="profile">
+                    <span class="profile-photo"></span>
+                    <span class="profile-name">Jean Dupont</span>
+                </div>
+                <div class="school-badge"> Lycée Registry</div>
+            </div>
+        </aside>
+
+        <main id="main">
+
+            <header class="topbar">
+                <div class="window-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                    <span class="topbar-title">REGISTRE SCOLAIRE — SESSION 2023/2024</span>
+                </div>
+                <div class="search">
+                    <input type="text" placeholder="Rechercher une note, un cours...">
+                </div>
+                <button class="btn-logout">Déconnexion</button>
+            </header>
+
+            <section class="page-header">
+                <h2 class="page-title">Mes Absences</h2>
+                <p class="page-subtitle">Consultez l'historique de vos présences. Conformément au règlement intérieur, toutes les absences doivent être justifiées auprès de la vie scolaire dans un délai de 48 heures.</p>
+            </section>
+
+            <section class="cards">
+                <div class="card">
+                    <span class="card-label">TOTAL ABSENCES</span>
+                    <div class="card-value">08</div>
+                </div>
+                <div class="card">
+                    <span class="card-label">À JUSTIFIER</span>
+                    <div class="card-value">02</div>
+                </div>
+                <div class="card">
+                    <span class="card-label">NON JUSTIFIÉES</span>
+                    <div class="card-value negative">01</div>
+                </div>
+            </section>
+
+            <section class="attendance">
+                <div class="attendance-header">
+                    <h3>Registre des assiduités — Semestre 1</h3>
+                    <span class="updated-note">Mis à jour : aujourd'hui à 09:12</span>
+                </div>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>DATE</th>
+                            <th>MATIÈRE CONCERNÉE</th>
+                            <th>DURÉE</th>
+                            <th>STATUT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>14 Nov 2023</td>
+                            <td>Mathématiques Avancées</td>
+                            <td>2 Heures</td>
+                            <td><span class="status status-wait">À justifier</span></td>
+                        </tr>
+                        <tr>
+                            <td>12 Nov 2023</td>
+                            <td>Littérature Française</td>
+                            <td>1 Heure</td>
+                            <td><span class="status status-ok">Justifiée</span></td>
+                        </tr>
+                        <tr>
+                            <td>08 Nov 2023</td>
+                            <td>Physique-Chimie</td>
+                            <td>3 Heures</td>
+                            <td><span class="status status-bad">Non justifiée</span></td>
+                        </tr>
+                        <tr>
+                            <td>05 Nov 2023</td>
+                            <td>Histoire-Géographie</td>
+                            <td>1 Heure</td>
+                            <td><span class="status status-ok">Justifiée</span></td>
+                        </tr>
+                        <tr>
+                            <td>02 Nov 2023</td>
+                            <td>Anglais (LV1)</td>
+                            <td>2 Heures</td>
+                            <td><span class="status status-wait">À justifier</span></td>
+                        </tr>
+                        <tr>
+                            <td>28 Oct 2023</td>
+                            <td>Philosophie</td>
+                            <td>4 Heures</td>
+                            <td><span class="status status-ok">Justifiée</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="pagination">
+                    <span class="pagination-info">Affichage 1-6 sur 8 entrées</span>
+                    <div class="pagination-controls">
+                        <button class="page-btn"></button>
+                        <button class="page-btn"></button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bottom-section">
+                <div class="info-box">
+                    <h4> Informations de régularisation</h4>
+                    <ul>
+                        <li>Les motifs de santé doivent être accompagnés d'un certificat médical officiel déposé en format papier.</li>
+                        <li>Les corrections officielles (tuteurs, parents) valent justification automatique après validation.</li>
+                        <li>Au-delà de 10% d'absences non justifiées, un avertissement académique sera notifié.</li>
+                    </ul>
+                </div>
+                <div class="rule-box">
+                    <h4>Rappel Règlementaire</h4>
+                    <p>"L'assiduité aux cours est un devoir fondamental de l'étudiant. Elle garantit l'équité des évaluations et la continuité pédagogique."</p>
+                    <span class="rule-ref">Article 4.2</span>
+                    <a href="#" class="link"> Charte de Vie Scolaire</a>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+</body>
+</html>

@@ -87,16 +87,35 @@ body {
 }
 
 .profile-photo {
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
     border-radius: 6px;
     background: #444;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.profile-photo.orange {
+    background: #F5A623;
+    color: #111;
+}
+
+.profile-text {
+    display: flex;
+    flex-direction: column;
 }
 
 .profile-name {
     font-size: 13px;
     font-weight: bold;
+}
+
+.profile-detail {
+    font-size: 10px;
+    color: #999;
 }
 
 /* Barre du haut */
@@ -183,7 +202,6 @@ body {
 .page-subtitle {
     font-size: 13px;
     color: #666;
-    max-width: 600px;
 }
 
 .page-meta {
@@ -198,83 +216,12 @@ body {
     color: #333;
 }
 
-/* Cartes */
-.cards {
-    display: flex;
-    gap: 15px;
-}
-
-.card {
-    flex: 1;
-    background: #fff;
-    border: 1px solid #EAEAEA;
-    border-radius: 8px;
-    padding: 18px;
-}
-
-.card-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-}
-
-.card-label {
-    font-size: 10px;
-    font-weight: bold;
-    color: #888;
-}
-
-.card-value {
-    font-size: 26px;
-    font-weight: bold;
-}
-
-.unit {
-    font-size: 13px;
-    color: #999;
-    font-weight: normal;
-}
-
-.card-note {
-    display: block;
-    font-size: 11px;
-    color: #666;
-    margin-top: 6px;
-}
-
-.card-note.positive {
-    color: #10B981;
-}
-
-.card-note.warning {
-    color: #DC2626;
-}
-
 /* Tableau des notes */
 .grades {
     background: #fff;
     border: 1px solid #EAEAEA;
     border-radius: 8px;
     padding: 20px;
-}
-
-.grades-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 12px;
-}
-
-.grades-header h3 {
-    font-size: 16px;
-}
-
-.link {
-    font-size: 12px;
-    font-weight: bold;
-    color: #111;
-    text-decoration: none;
 }
 
 .table {
@@ -296,24 +243,9 @@ body {
     border-bottom: 1px solid #F3F4F6;
 }
 
-.subject-dot {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    margin-right: 6px;
-}
-
-.subject-dot.blue {
-    background: #3B82F6;
-}
-
-.subject-dot.red {
-    background: #EF4444;
-}
-
-.subject-dot.yellow {
-    background: #F59E0B;
+.grade-fail {
+    color: #DC2626;
+    font-weight: bold;
 }
 
 .status {
@@ -328,19 +260,56 @@ body {
     color: #065F46;
 }
 
-.status-wait {
-    background: #FEF3C7;
-    color: #92400E;
+/* Encadré moyenne générale */
+.average-box {
+    margin: 20px 0 0 auto;
+    width: 220px;
+    border: 2px dashed #D1D5DB;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
 }
 
-.status-bad {
-    background: #FEE2E2;
-    color: #991B1B;
+.average-label {
+    display: block;
+    font-size: 10px;
+    font-weight: bold;
+    color: #888;
+    margin-bottom: 6px;
+}
+
+.average-value {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.unit {
+    font-size: 14px;
+    color: #999;
+    font-weight: normal;
 }
 
 /* Pied de page */
 .page-footer {
     display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.footer-label {
+    font-size: 10px;
+    font-weight: bold;
+    color: #888;
+}
+
+.page-footer.small {
     justify-content: space-between;
     font-size: 10px;
     color: #999;

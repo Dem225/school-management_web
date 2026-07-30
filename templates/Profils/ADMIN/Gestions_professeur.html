@@ -66,20 +66,34 @@
               <thead>
                 <tr>
                   <th>ID PROFESSEUR</th>
-                  <th>NOM COMPLET</th>
+                  <th>NOM </th>
+                  <th>PRENOM </th>
+                  <th> classe </th>
                   <th>MATIÈRE ENSEIGNÉE</th>
-                 
                   <th>ACTIONS</th>
                 </tr>
               </thead>
+             
               <tbody>
+                 {% for prof in professeurs %}
+
                 <tr>
-                  <td>PR-01</td>
-                  <td>Dr. Jean-Pierre Laurent</td>
-                  <td>Mathématiques Avancées</td>
-                  <td class="actions"></td>
+                  <td>  {{prof.id}} </td>
+                  <td>{{prof.nom}} </td>
+                  <td>{{prof.prenom}} </td>
+                  <td>{{prof.classe}} </td>
+                  <td>{{prof.matiere}} </td>
+                   
+                  <td >
+                      <a href="" style="color: black; text-decoration: none; ">MODIFIE</a>
+
+                    <button  type='submite' style="padding: 5px; margin-left: 9px; background-color: red; border-radius: 5px; border: transparent;"> SUPPRIMER</button>
+                  </td>
                 </tr>
+
+                 {% endfor %}
               </tbody>
+             
             </table>
           </div>
           {% comment %} <div class="pagination">

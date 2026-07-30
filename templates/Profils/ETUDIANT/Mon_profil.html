@@ -1,0 +1,135 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiche Individuelle de l'Élève - Portail Étudiant</title>
+     <link rel="stylesheet" href="{% static 'ETUDIANT/css/Mon_profil.css' %}">
+</head>
+<body>
+
+    <div id="app">
+
+        <aside id="sidebar">
+            <div class="brand">
+                <h1 class="brand-title">Portail Étudiant</h1>
+                <span class="brand-subtitle">Système de Gestion</span>
+            </div>
+
+            <nav class="menu">
+                <ul>
+                    <li class="menu-item"><a href="{% url "Tableau_de_bord_etudiant" %}"><span class="menu-icon"></span> Tableau de bord</a></li>
+                    <li class="menu-item"><a href="{% url "Voirnote_etd" %}"><span class="menu-icon"></span> Mes notes</a></li>
+                    <li class="menu-item"><a href="{% url "Voir_absences_etd" %}"><span class="menu-icon"></span> Mes absences</a></li>
+                    <li class="menu-item active"><a href="{% url "Voirprofil_etd" %}"><span class="menu-icon"></span> Mon profil</a></li>
+                </ul>
+            </nav>
+
+            <div class="profile">
+                <span class="profile-photo orange">JD</span>
+                <span class="profile-name">Années scolaire 2023-2024</span>
+            </div>
+        </aside>
+
+        <main id="main">
+
+             <header class="topbar">
+                <div class="window-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                    <span class="topbar-title">REGISTRE SCOLAIRE — SESSION 2023/2024</span>
+                </div>
+                <div class="search">
+                    <input type="text" placeholder="Rechercher une note, un cours...">
+                </div>
+               
+                <button class="btn-logout">Déconnexion</button>
+            </header>
+
+            <section class="page-header">
+                <h2 class="page-title">Fiche Individuelle de l'Élève</h2>
+            </section>
+
+            <section class="profile-card">
+                <div class="profile-left">
+                    <img class="profile-picture" src="./souce_index/IMAGES/jean.jpeg" alt="Jean Dupont">
+                    <span class="profile-label">IDENTIFIANT UNIQUE</span>
+                    <span class="profile-id">ET-2026-001</span>
+                    <span class="tag">ACTIF / RÉGULIER</span>
+
+                    <h4 class="stats-title">Statistiques</h4>
+                    <div class="stats-row">
+                        <div class="stat">
+                            <div class="stat-value">14.5</div>
+                            <span class="stat-label">MOYENNE GÉN.</span>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">98%</div>
+                            <span class="stat-label">ASSIDUITÉ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-right">
+                    <div class="profile-right-top">
+                        <span class="profile-label">INFORMATIONS CIVILES</span>
+                        <span class="tag">3ème A</span>
+                    </div>
+                    <h3 class="profile-fullname">DUPONT Jean</h3>
+
+                    <div class="fields-row">
+                        <div class="field">
+                            <span class="profile-label">NOM DE FAMILLE</span>
+                            <span class="field-value">Dupont</span>
+                        </div>
+                        <div class="field">
+                            <span class="profile-label">PRÉNOM</span>
+                            <span class="field-value">Jean</span>
+                        </div>
+                    </div>
+
+                    <div class="fields-row">
+                        <div class="field">
+                            <span class="profile-label">ÂGE RÉVOLU</span>
+                            <span class="field-value">15 ans</span>
+                        </div>
+                        <div class="field">
+                            <span class="profile-label">DATE DE NAISSANCE</span>
+                            <span class="field-value">12 Mai 2009</span>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <span class="profile-label">LIEU DE NAISSANCE</span>
+                        <span class="field-value">Paris, France</span>
+                    </div>
+
+                    <span class="profile-label section-label">CONTACT  PARENTÉ</span>
+                    <div class="contact-row">
+                        <div class="contact-box">
+                            <span class="profile-label">TUTEUR LÉGAL</span>
+                            <span class="field-value">M. Pierre Dupont</span>
+                            <span class="field-value">+33 6 32 54 56 78</span>
+                        </div>
+                        <div class="contact-box">
+                            <span class="profile-label">ADRESSE DE RÉSIDENCE</span>
+                            <span class="field-value">14 Rue de l'Éducation, 75005 Paris</span>
+                        </div>
+                    </div>
+
+                    <div class="profile-actions">
+                        <button class="btn-outline"> Imprimer la Fiche</button>
+                        <button class="btn-locked"> Modification Verrouillée</button>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+</body>
+</html>

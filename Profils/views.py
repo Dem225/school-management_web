@@ -14,7 +14,7 @@ from  Profils.forms  import Addclasse
 
 from Ecoles.models import Etudiant
 from Ecoles.models import Professeur
-
+from Ecoles.models import Matieres
 # Create your views here.
 
 def Authantification (request):
@@ -183,8 +183,27 @@ def add_professeur_view(resquest):
 
     return render(resquest, "Profils/ADMIN/addprofesseur.html", context)
 
+def addmatiere(resquest):
+    form = Addmatiere()
+    if resquest.method == 'POST':
+        form = Addmatiere(resquest.POST)
+        if form.is_valid():
+            nom = form.cleaned_data.get("nom")
+            
+            if Matieres.objects.filter(nom=nom).exists():
+                messages.error(resquest, "CE NOM DE MATIÈRE EXISTE DÉJÀ, UTILISEZ UN AUTRE NOM")
+            else:
+                Matieres.objects.create(nom=nom)
+                form = Addmatiere() 
+                messages.success(resquest, "VOTRE MATIÈRE A BIEN ÉTÉ CRÉÉE")
+
+    context = {
+        'form': form
+    }
+    return render(resquest, "Profils/ADMIN/addmatiere.html", context)
 
 
+          
 def  Gestion_Etudiant(resquest):
     etudiant= Etudiant.objects.all()
     conte_Users= Etudiant.objects.count()
@@ -193,11 +212,15 @@ def  Gestion_Etudiant(resquest):
 
         
 def  Gestions_professeur(resquest):
-    return render(resquest,"Profils/ADMIN/Gestions_professeur.html" )
+    professeurs= Professeur.objects.all()
+    conte_Users= Professeur.objects.count()
+    return render(resquest,"Profils/ADMIN/Gestions_professeur.html"  ,{"professeurs":professeurs, "conte_Users" :conte_Users} )
 
         
 def  Gestions_matiere(resquest):
-    return render(resquest,"Profils/ADMIN/Gestions_matiere.html" )
+    gsmath= Matieres.objects.all()
+    conte_Users= Matieres.objects.count()
+    return render(resquest,"Profils/ADMIN/Gestions_matiere.html"  ,{"gsmath":gsmath, "conte_Users" :conte_Users} )
 
 
 def  Gestion_notes(resquest):
@@ -208,10 +231,13 @@ def  Gestion_notes(resquest):
 def  Gestions_absence(resquest):
     return render(resquest,"Profils/ADMIN/Gestions_absence.html" )
 
+def Voirnote_etd(resquest):
+    return render (resquest,"Profils/ETUDIANT/Mes_notes.html")
+def Voir_absences_etd(resquest):
+    return render (resquest,"Profils/ETUDIANT/Mes_absences.html")
+def Voirprofil_etd(resquest):
+    return render (resquest,"Profils/ETUDIANT/Mon_profil.html")
 
-
-def  Gestions_matiere(resquest):
-    return render(resquest,"Profils/ADMIN/Gestions_matiere.html" )
 
 
 #information des untilisateur admin 
