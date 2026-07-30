@@ -60,8 +60,9 @@
           <div class="formCard">
             <div class="formTitle">Ajouter un nouvel utilisateur</div>
 
-            <form class="formGrid">
-              <div class="formGroup">
+             <form class="formGrid">
+              
+              {% comment %} <div class="formGroup">
                 <label>Nom complet</label>
                 <input type="text" placeholder="ex: Jean Dupont" />
               </div>
@@ -88,10 +89,12 @@
               <div class="formGroup">
                 <label>Mot de passe</label>
                 <input type="password" value="********" />
-              </div>
+              </div>  {% endcomment %}
 
               <div class="formGroup submitGroup">
-                <button type="submit" class="btnAdd">Ajouter</button>
+                <button type="submit" class="btnAdd">
+                  
+                  <a href="{% url "ajouterutilisateur" %}" style="text-decoration: none; color: white;"> Ajouter </a> </button>
               </div>
             </form>
           </div>

@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gestion des Utilisateurs - Institutional Ledger</title>
+  <link rel="stylesheet" href="{% static 'ADMIN/css/Gestions_utilisateur.css' %}">
+</head>
+
+<body>
+  <div id="app">
+
+    <aside id="sidebar">
+      <div class="logo">
+        <h1 class="logoTitle">Institutional Ledger</h1>
+        <span class="logoSubtitle">Admin Portal</span>
+      </div>
+
+      <nav class="menu">
+        <ul>
+          <li class="menuItem"><a href="{% url 'Tableau_de_bord_admin' %}">Tableau de bord</a></li>
+          <li class="menuItem "><a href="{% url 'Gestions_utilisateur_ADMIN' %}">Utilisateurs</a></li>
+          <li class="menuItem"><a href="{% url 'Gestion_Etudiant' %}">Étudiants</a></li>
+          <li class="menuItem active"><a href="{% url 'Gestions_professeur' %}">Professeurs</a></li>
+          <li class="menuItem"><a href="{% url 'Gestions_matiere' %}">Matières</a></li>
+          <li class="menuItem"><a href="{% url 'Gestion_notes' %}">Notes</a></li>
+          <li class="menuItem"><a href="#">Absences</a></li>
+          <li class="menuItem"><a href="#">Statistiques</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer">
+        <a href="#" class="footerLink">Paramètres</a>
+        <a href="{% url 'deconnexion' %}" class="footerLink">Déconnexion</a>
+      </div>
+    </aside>
+
+    <main id="main">
+
+      <header class="topbar">
+        <div class="topbarTitle">
+          <h2>Gestion des Utilisateurs</h2>
+          <p class="topbarSubtitle">
+            Créez, gérez et supervisez les privilèges d'accès de l'établissement.
+          </p>
+        </div>
+        <div class="topbarRight">
+          <div class="totalBadge">
+            <span class="totalLabel">TOTAL UTILISATEURS</span>
+            <span class="totalValue">{{ conte_Users }}</span>
+          </div>
+          <div class="icons">
+            <span class="iconNotification"></span>
+            <span class="iconHelp"></span>
+          </div>
+        </div>
+      </header>
+
+      <section class="addUser">
+        <div class="formCard">
+          <div class="formTitle">Ajouter un nouvel utilisateur</div>
+
+          <form class="formGrid" method="POST">
+            {% csrf_token %}
+
+            {% for field in form %}
+              <div class="formGroup">
+                {{ field.label_tag }}
+                {{ field }}
+                {% if field.errors %}
+                  <span class="fieldError">{{ field.errors|striptags }}</span>
+                {% endif %}
+              </div>
+            {% endfor %}
+
+            <div class="formGroup submitGroup">
+              <button type="submit" class="btnAdd">Ajouter</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</body>
+
+</html>

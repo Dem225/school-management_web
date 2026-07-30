@@ -14,9 +14,10 @@ urlpatterns = [
 
     
     path('Gestions_utilisateur_ADMIN/',Gestions_utilisateur , name='Gestions_utilisateur_ADMIN'),
+    path('ajouterutilisateur/',add_utilisateur_view , name='ajouterutilisateur'),
 
-
-
+    path('ajoutetudiant/',add_etudiant_view , name='ajoutetudiant'),
+    path('addprofesseur/',add_professeur_view , name='addprofesseur'),
 
 
 

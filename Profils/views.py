@@ -5,6 +5,16 @@ from Profils.models import Utilisateur
 from Profils.forms import authis
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from  Profils.forms  import Addutilisateur
+from Ecoles.genere import GrMatricule
+from  Profils.forms  import Addetudiant
+from  Profils.forms  import Addprofesseur
+from  Profils.forms  import Addmatiere
+from  Profils.forms  import Addclasse
+
+from Ecoles.models import Etudiant
+from Ecoles.models import Professeur
+
 # Create your views here.
 
 def Authantification (request):
@@ -73,9 +83,113 @@ def  Gestions_utilisateur(resquest):
     return render(resquest,"Profils/ADMIN/Gestions_utilisateurs.html", {"Utilisateurs":Utilisateurs, "conte_Users" :conte_Users}  )
 
 
+def add_utilisateur_view(resquest):
+    form = Addutilisateur()
+    if resquest.method=='POST':
+        form=Addutilisateur(resquest.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            first_name = form.cleaned_data.get('first_name')
+            last_name = form.cleaned_data.get('last_name')
+            email = form.cleaned_data.get('email')
+            role = form.cleaned_data.get('role')
+            password = form.cleaned_data.get('password')
+            if Utilisateur.objects.filter(username=username).exists():
+                form.add_error('username', "ce username existe déja !")
+            elif Utilisateur.objects.filter(email=email).exists():
+                   form.add_error('email', "ce email existe déja !")
+            else:
+                Utilisateur.objects.create_user(
+
+                    username=username,
+                    first_name=first_name,
+                    last_name=last_name,
+                    email=email,
+                    role=role,
+                    password=password,
+                )
+                form=Addutilisateur()
+
+    context={
+        'form' : form
+    }
+    
+    return render (resquest, "Profils/ADMIN/addutilisateur.html", context)
+
+def add_etudiant_view(resquest):
+    form=Addetudiant()
+    if resquest.method=='POST':
+        form=Addetudiant(resquest.POST)
+        if form.is_valid():
+            nom = form.cleaned_data.get('nom')
+            prenom = form.cleaned_data.get('prenom')
+            age = form.cleaned_data.get('age')
+            classe = form.cleaned_data.get('classe')
+            id_user = form.cleaned_data.get('id_user')
+            matricule = GrMatricule()
+            if Etudiant.objects.filter(matricule=matricule).exists():
+                messages.error(resquest, "Erreur de génération du matricule, veuillez réessayer.")
+
+            elif Etudiant.objects.filter(id_user=id_user).exists():
+               form.add_error('id_user', "ce id_user existe déjà !")
+            else:
+                Etudiant.objects.create(
+
+                    nom=nom,
+                    prenom=prenom,
+                    age=age,
+                    classe=classe,
+                    id_user=id_user,
+                    matricule=matricule,
+
+                     )
+                form=Addetudiant()
+                messages.success(resquest , "ÉTUDIANT AJOUTER AVEC SUCCES")
+    context={
+        'form' : form
+    }
+
+    return render (resquest, "Profils/ADMIN/addetudiant.html", context)
+
+def add_professeur_view(resquest):
+    form = Addprofesseur()
+    if resquest.method == 'POST':
+        form = Addprofesseur(resquest.POST)
+        if form.is_valid():
+            nom = form.cleaned_data.get('nom')
+            prenom = form.cleaned_data.get('prenom')
+            age = form.cleaned_data.get('age')
+            classe = form.cleaned_data.get('classe')
+            matiere = form.cleaned_data.get('matiere')
+            id_user = form.cleaned_data.get('id_user')
+            
+            if Professeur.objects.filter(id_user=id_user).exists():
+                form.add_error('id_user', "Ce id_user est déjà assigné à un professeur !")
+            else:
+                Professeur.objects.create(
+                    nom=nom,
+                    prenom=prenom,
+                    age=age,
+                    classe=classe,
+                    matiere=matiere,
+                    id_user=id_user,
+                )
+                form = Addprofesseur()
+                messages.success(resquest, "PROFESSEUR AJOUTÉ AVEC SUCCÈS")
+                
+    context = {
+        'form': form
+    }
+
+    return render(resquest, "Profils/ADMIN/addprofesseur.html", context)
+
+
 
 def  Gestion_Etudiant(resquest):
-    return render(resquest,"Profils/ADMIN/Gestion_Etudiant.html" )
+    etudiant= Etudiant.objects.all()
+    conte_Users= Etudiant.objects.count()
+    
+    return render(resquest,"Profils/ADMIN/Gestion_Etudiant.html" ,{"etudiant":etudiant, "conte_Users" :conte_Users}  )
 
         
 def  Gestions_professeur(resquest):

@@ -6,6 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Registre Académique - Institutional Ledger</title>
+
      <link rel="stylesheet" href="{% static "ADMIN/css/Gestion_Etudiant.css" %}">
   </head>
   <body>
@@ -61,13 +62,10 @@
               <span class="filter-label">FILTRER PAR CLASSE</span>
               <select class="class-select">
                 <option>Toutes les classes</option>
-                <option>Terminale S</option>
-                <option>1ère S</option>
-                <option>1ère L</option>
               </select>
             </div>
             <div class="add-student">
-              <button class="btn-new">+ Nouvel Étudiant</button>
+              <button class="btn-new"> <a href="{% url "ajoutetudiant" %}" style="color: white; text-decoration: none;">  + Nouvel Étudiant </a>  </button>
             </div>
           </div>
           <div class="table-wrap">
@@ -83,46 +81,24 @@
                 </tr>
               </thead>
               <tbody>
+                 {% for ED in etudiant %}
                 <tr>
-                  <td>ET-2026-001</td>
-                  <td>LECLERC</td>
-                  <td>Aurélien</td>
-                  <td>18</td>
-                  <td><span class="class-badge term-s">Terminale S</span></td>
-                  <td class="actions"></td>
+                  <td> {{ED.matricule}} </td>
+                  <td> {{ED.nom}} </td>
+                  <td>   {{ED.prenom}}  </td>
+                  <td>    {{ED.age}}  </td>
+                  <td>    {{ED.classe}}  </td>
+                  <td>
+                      <p class="viande">  <a href="#" style="text-decoration: none; color: black;">Modifier</a></p>
+                    <button  type="submit " style="background-color: rgb(213, 31, 31); color: black; border-radius: 2px; border: transparent; padding: 4px;" >Supprimer</button>
+                    
+                  </td>
+
+                  
                 </tr>
-                <tr>
-                  <td>ET-2026-002</td>
-                  <td>DIOP</td>
-                  <td>Moussa</td>
-                  <td>17</td>
-                  <td><span class="class-badge premiere-s">1ère S</span></td>
-                  <td class="actions"></td>
-                </tr>
-                <tr>
-                  <td>ET-2026-042</td>
-                  <td>MOREAU</td>
-                  <td>Camille</td>
-                  <td>16</td>
-                  <td><span class="class-badge term-s">Terminale S</span></td>
-                  <td class="actions"></td>
-                </tr>
-                <tr>
-                  <td>ET-2026-105</td>
-                  <td>GARCIA</td>
-                  <td>Sofia</td>
-                  <td>18</td>
-                  <td><span class="class-badge term-s">Terminale S</span></td>
-                  <td class="actions"></td>
-                </tr>
-                <tr>
-                  <td>ET-2026-112</td>
-                  <td>SMITH</td>
-                  <td>Jordan</td>
-                  <td>17</td>
-                  <td><span class="class-badge premiere-l">1ère L</span></td>
-                  <td class="actions"></td>
-                </tr>
+                
+                
+                {% endfor %}
               </tbody>
             </table>
           </div>
@@ -131,13 +107,13 @@
               >Affichage de 5 sur 842 étudiants enregistrés</span
             >
             <div class="pagination-controls">
-              <button class="page-btn">&lt;</button>
+              {% comment %} <button class="page-btn">&lt;</button>
               <button class="page-btn active">1</button>
               <button class="page-btn">2</button>
               <button class="page-btn">3</button>
               <span class="pagination-dots">...</span>
               <button class="page-btn">169</button>
-              <button class="page-btn">&gt;</button>
+              <button class="page-btn">&gt;</button> {% endcomment %}
             </div>
           </div>
         </section>
@@ -148,20 +124,20 @@
               842 <span class="trend-up">+12% vs année préc.</span>
             </div>
           </div>
-          <div class="card" id="card-attendance">
-            <span class="card-label">TAUX D'ASSIDUITÉ</span>
+          {% comment %} <div class="card" id="card-attendance"> {% endcomment %}
+            {% comment %} <span class="card-label">TAUX D'ASSIDUITÉ</span>
             <div class="card-value">
               94.8% <span class="card-note">Excellent</span>
             </div>
-          </div>
-          <div class="card" id="card-average">
+          </div> {% endcomment %}
+          {% comment %} <div class="card" id="card-average">
             <span class="card-label">MOYENNE GÉNÉRALE</span>
             <div class="card-value">13.4 <span class="unit">Sur 20</span></div>
-          </div>
-          <div class="card" id="card-pending">
+          </div> {% endcomment %}
+          {% comment %} <div class="card" id="card-pending">
             <span class="card-label">DOSSIERS EN ATTENTE</span>
             <div class="card-value text-danger">14 !</div>
-          </div>
+          </div> {% endcomment %}
         </section>
       </main>
     </div>
