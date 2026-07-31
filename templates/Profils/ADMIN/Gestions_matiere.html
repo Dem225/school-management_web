@@ -112,6 +112,15 @@
                   <th>ACTIONS</th>
                 </tr>
               </thead>
+               {% if messages %}
+            <div class="messagesContainer">
+              {% for message in messages %}
+                <div class="alert {{ message.tags }}">
+                  {{ message }}
+                </div>
+              {% endfor %}
+            </div>
+      {% endif %}
               <tbody>
                 {% for GS in gsmath %}
                   <tr>
@@ -126,7 +135,10 @@
                    <td >
                       <p class="viande">  <a href=" {% url 'Updatematier' GS.id %} " style="text-decoration: none; color: black;"> modifier</a> </p>
 
-                        <button  type='submite' style="padding: 5px; margin-left: 9px; background-color: red; border-radius: 5px; border: transparent;"> SUPPRIMER</button>
+                      <form action="{% url "Deltmatiere" GS.id %}" method="post">
+                        {% csrf_token %}
+                    <button  type='submite' style="padding: 5px; margin-left: 9px; background-color: red; border-radius: 5px; border: transparent;"> SUPPRIMER</button>
+                     </form>
                       </td> 
                   </tr>
                 {% empty %}

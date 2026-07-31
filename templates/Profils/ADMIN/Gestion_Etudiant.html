@@ -80,6 +80,15 @@
                   <th>ACTIONS</th>
                 </tr>
               </thead>
+               {% if messages %}
+            <div class="messagesContainer">
+              {% for message in messages %}
+                <div class="alert {{ message.tags }}">
+                  {{ message }}
+                </div>
+              {% endfor %}
+            </div>
+           {% endif %}
               <tbody>
                  {% for ED in etudiant %}
                 <tr>
@@ -90,7 +99,11 @@
                   <td>    {{ED.classe}}  </td>
                   <td>
                     <p class="viande">  <a href=" {% url 'modifier_etudiant' ED.id %} " style="text-decoration: none; color: black;"> modifier</a> </p>
-                    <button  type="submit " style="background-color: rgb(213, 31, 31); color: black; border-radius: 2px; border: transparent; padding: 4px;" >Supprimer</button>
+                   
+                      <form action="{% url "Deltettudiant" ED.id %}" method="post">
+                        {% csrf_token %}
+                    <button  type='submite' style="padding: 5px; margin-left: 9px; background-color: red; border-radius: 5px; border: transparent;"> SUPPRIMER</button>
+                     </form>
                     
                   </td>
 

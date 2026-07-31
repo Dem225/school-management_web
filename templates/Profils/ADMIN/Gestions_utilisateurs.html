@@ -95,6 +95,16 @@
                   
                 </tr>
               </thead>
+
+               {% if messages %}
+              <div class="messagesContainer">
+              {% for message in messages %}
+                <div class="alert {{ message.tags }}">
+                  {{ message }}
+                </div>
+              {% endfor %}
+            </div>
+            {% endif %}
               <tbody>
 
                 {% for Users in Utilisateurs %}
@@ -107,8 +117,10 @@
                    <td>    {{Users.email}}  </td>
                   <td class="actions">
                    <p class="viande">  <a href=" {% url 'UpdateUtilisateur' Users.id %} " style="text-decoration: none; color: black;"> modifier</a> </p>
+                   <form action="{% url "Deltutilisateur" Users.id %}" method="post">
+                      {% csrf_token %}
                     <button  type="submit " style="background-color: rgb(213, 31, 31); color: black;" >Supprimer</button>
-                    
+                   </form>
                   </td>
                 </tr>
                 {% endfor %}

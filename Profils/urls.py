@@ -43,6 +43,13 @@ urlpatterns = [
     path('UpdateUtilisateur/<int:id>/', UpdateUtilisateur, name='UpdateUtilisateur'),
     path('Updateprofe/<int:id>/', Updateprofe, name='Updateprofe'),
     path('Updatematier/<int:id>/', Updatematier, name='Updatematier'),
+
+    path('Deltutilisateur/<int:id>/', Deltutilisateur, name='Deltutilisateur'),
+    path('Deltettudiant/<int:id>/', Deltettudiant, name='Deltettudiant'),
+    path('Deltprofe/<int:id>/', Deltprofe, name='Deltprofe'),
+    path('Deltmatiere/<int:id>/', Deltmatiere, name='Deltmatiere'),
+
+    
     
 
 

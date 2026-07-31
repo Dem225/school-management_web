@@ -50,6 +50,43 @@ class Addutilisateur(forms.ModelForm):
             }
 
 
+class Addutilisateurpasse(forms.ModelForm):
+    # password = forms.CharField(widget=forms.PasswordInput)
+    class Meta:
+        model = Utilisateur
+        fields = ['username', 'first_name', 'last_name', 'email', 'role', ]
+
+
+
+        widgets={
+                'username': forms.TextInput(attrs={
+                    'placeholder': "Entrez le nom d'utilisateur"
+                }),
+                'first_name': forms.TextInput(attrs={
+                    'placeholder': 'Entrez le prénom'
+                }),
+                'last_name': forms.TextInput(attrs={
+                    'placeholder': 'Entrez le nom'
+                }),
+                'email': forms.EmailInput(attrs={
+                    'placeholder': 'exemple@domaine.com'
+                }),
+                'role': forms.Select(attrs={
+                }),
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
 class Addetudiant(forms.ModelForm):
     class Meta:
         model=Etudiant
@@ -73,6 +110,7 @@ class Addetudiant(forms.ModelForm):
                                              
                                          }),
         }
+
 
 
 

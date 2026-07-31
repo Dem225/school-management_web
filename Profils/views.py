@@ -5,7 +5,8 @@ from Profils.models import Utilisateur
 from Profils.forms import authis
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from  Profils.forms  import Addutilisateur
+from  Profils.forms  import Addutilisateur 
+from  Profils.forms  import Addutilisateurpasse
 from Ecoles.genere import GrMatricule
 from  Profils.forms  import Addetudiant
 from  Profils.forms  import Addprofesseur
@@ -98,9 +99,9 @@ def add_utilisateur_view(resquest):
             email = form.cleaned_data.get('email')
             role = form.cleaned_data.get('role')
             if Utilisateur.objects.filter(username=username).exists():
-                form.add_error('username', "ce username existe déja !")
+                messages.add_error('username', "ce username existe déja !")
             elif Utilisateur.objects.filter(email=email).exists():
-                   form.add_error('email', "ce email existe déja !")
+                   messages.add_error('email', "ce email existe déja !")
             else:
                 Utilisateur.objects.create_user(
 
@@ -111,7 +112,7 @@ def add_utilisateur_view(resquest):
                     role=role,
                 )
                 form=Addutilisateur()
-
+                messages.success(resquest , "UTILISATEUR AJOUTER AVEC SUCCES")
     context={
         'form' : form
     }
@@ -278,15 +279,16 @@ def UpdateEtudiant(resquest,id):
 def UpdateUtilisateur(resquest,id):
 
     Utils=get_object_or_404(Utilisateur, id=id)
-    form=Addutilisateur(instance=Utils)
+    form=Addutilisateurpasse(instance=Utils)
     if resquest.method=="POST":
-        form=Addetudiant(resquest.POST, instance=Utils)
+        form=Addutilisateurpasse(resquest.POST, instance=Utils)
         if form.is_valid():
             form.save()
             messages.success(resquest, "MODIFICATION EFFECTUÉE AVEC SUCCÈS")
             return redirect('Gestions_utilisateur_ADMIN')
         else:
-            form=Addutilisateur(instance=Utils)
+            form=Addutilisateurpasse(instance=Utils)
+            messages.success(resquest, "MODIFICATIONs EFFECTUÉE AVEC SUCCÈS")
     context = {
         'form': form,
         'Utils': Utils 
@@ -310,6 +312,7 @@ def Updateprofe(resquest,id):
             return redirect('Gestions_professeur')
         else:
             form=Addprofesseur(instance=profe)
+            messages.success(resquest, "MODIFICATION EFFECTUÉE AVEC SUCCÈS")
     context = {
         'form': form,
         'profe': profe 
@@ -333,9 +336,56 @@ def Updatematier(resquest,id):
             return redirect('Gestions_matiere')
         else:
             form=Addmatiere(instance=Mathiere)
+            messages.success(resquest, "MODIFICATION EFFECTUÉE AVEC SUCCÈS")
     context = {
         'form': form,
         'Mathiere': Mathiere 
     }
   
-    return render(resquest, "Profils/ADMIN/modifiermatiere.html", context) 
+    return render(resquest, "Profils/ADMIN/modifiermatiere.html", context)
+
+
+
+
+#SUPPRIMER
+
+def Deltutilisateur(resquest, id):
+    if resquest.method=="POST":
+        recipe=get_object_or_404(Utilisateur, id=id)
+        recipe.delete()
+        messages.success(resquest, "Utilisateur supprimer avce success")
+        return redirect("Gestions_utilisateur_ADMIN")
+    messages.success(resquest , "Envoyer uniqueent en post ")
+    return redirect("Gestions_utilisateur_ADMIN")
+
+
+
+def Deltettudiant(resquest, id):
+    if resquest.method=="POST":
+        recipe=get_object_or_404(Etudiant, id=id)
+        recipe.delete()
+        messages.success(resquest, "Utilisateur supprimer avce success")
+        return redirect("Gestions_utilisateur_ADMIN")
+    messages.success(resquest , "Envoyer uniqueent en post ")
+    return redirect("Gestions_utilisateur_ADMIN")
+
+
+def Deltprofe(resquest, id):
+    if resquest.method=="POST":
+        recipe=get_object_or_404(Professeur, id=id)
+        recipe.delete()
+        messages.success(resquest, "Utilisateur supprimer avce success")
+        return redirect("Gestions_utilisateur_ADMIN")
+    messages.success(resquest , "Envoyer uniqueent en post ")
+    return redirect("Gestions_utilisateur_ADMIN")
+
+
+
+def Deltmatiere(resquest, id):
+    if resquest.method=="POST":
+        recipe=get_object_or_404(Matieres, id=id)
+        recipe.delete()
+        messages.success(resquest, "MATIERE SUPPRIMER supprimer avce success")
+        return redirect("Gestions_matiere")
+    messages.success(resquest , "Envoyer uniqueent en post ")
+    return redirect("Gestions_matiere")

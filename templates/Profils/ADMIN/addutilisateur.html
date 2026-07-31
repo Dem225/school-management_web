@@ -58,6 +58,17 @@
         </div>
       </header>
 
+      
+       {% if messages %}
+            <div class="messagesContainer">
+              {% for message in messages %}
+                <div class="alert {{ message.tags }}">
+                  {{ message }}
+                </div>
+              {% endfor %}
+            </div>
+       {% endif %}
+      
       <section class="addUser">
         <div class="formCard">
           <div class="formTitle">Ajouter un nouvel utilisateur</div>
