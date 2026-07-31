@@ -1,0 +1,147 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Notes - Portail Enseignant</title>
+    <link rel="stylesheet" href="{% static 'PROFESSEUR/css/notes.css' %}" />
+</head>
+<body>
+
+    <div id="app">
+
+        <aside id="sidebar">
+            <div class="logo">
+                <h1 class="logo-title">Portail Enseignant</h1>
+                <span class="logo-subtitle">Institution Ledger v1.0</span>
+            </div>
+
+            <nav class="menu">
+                <ul>
+                    <li class="menu-item"><a href="{% url "Tableau_de_bord_professeur" %}"><span class="menu-icon"></span> Tableau de bord</a></li>
+                    <li class="menu-item"><a href="{% url "mes_etudiant_veiw" %}"><span class="menu-icon"></span> Mes étudiants</a></li>
+                    <li class="menu-item active"><a href="{% url "notes_veiw" %}"><span class="menu-icon"></span> Notes</a></li>
+                    <li class="menu-item"><a href="{% url "absence_veiw" %}"><span class="menu-icon"></span> Absences</a></li>
+                    <li class="menu-item"><a href="{% url "profil_veiw" %}"><span class="menu-icon"></span> Mon profil</a></li>
+                     <li class="menu-item "><a href="{% url "deconnexion" %}"><span class="menu-icon"></span> DÉCONNEXION </a></li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-profile">
+                <span class="profile-avatar"></span>
+                <div class="profile-info">
+                    <span class="profile-name">M. Dubois</span>
+                    <span class="profile-role">Mathématiques</span>
+                </div>
+            </div>
+        </aside>
+
+        <main id="main">
+
+            <header class="topbar">
+                <div class="action-bar">
+                    <div class="search-box">
+                        <input type="text" placeholder="Rechercher un étudiant ou une note..." id="search">
+                    </div>
+                    <div class="icons">
+                        <span class="icon-notification"></span>
+                        <span class="icon-help"></span>
+                    </div>
+                    <button class="btn-primary">+ Ajouter une note</button>
+                </div>
+            </header>
+
+            <section class="page-header">
+                <div class="page-header-text">
+                    <h2 class="page-title">Gestion des Notes</h2>
+                    <p class="page-subtitle"><strong>Mathématiques</strong> — Classe de 1ère B</p>
+                </div>
+            </section>
+
+            <section class="cards">
+                <div class="card">
+                    <span class="card-label">MOYENNE DE CLASSE</span>
+                    <div class="card-value">12.4 <span class="unit">/20</span></div>
+                </div>
+                <div class="card">
+                    <span class="card-label">TOTAL ÉVALUATIONS</span>
+                    <div class="card-value">08</div>
+                </div>
+                <div class="card accent-danger">
+                    <span class="card-label">ALERTES ÉCHEC</span>
+                    <div class="card-value text-danger">04</div>
+                </div>
+                <div class="card accent-neutral">
+                    <span class="card-label">DEVOIRS EN ATTENTE</span>
+                    <div class="card-value">02</div>
+                </div>
+            </section>
+
+            <section class="grades">
+                <div class="table-wrap">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>ÉTUDIANT</th>
+                                <th>NOTE /20</th>
+                                <th>DATE D'AJOUT</th>
+                                <th>ACTIONS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#29402</td>
+                                <td>Sophie Martin</td>
+                                <td><span class="grade-value fail">08.5</span></td>
+                                <td>12 Oct 2023</td>
+                                <td class="actions"><span class="icon-edit">✏️</span> <span class="icon-delete">🗑️</span></td>
+                            </tr>
+                            <tr>
+                                <td>#29415</td>
+                                <td>Thomas Lefebvre</td>
+                                <td><span class="grade-value pass">17.0</span></td>
+                                <td>12 Oct 2023</td>
+                                <td class="actions"><span class="icon-edit">✏️</span> <span class="icon-delete">🗑️</span></td>
+                            </tr>
+                            <tr>
+                                <td>#29428</td>
+                                <td>Amélie Petit</td>
+                                <td><span class="grade-value">12.5</span></td>
+                                <td>11 Oct 2023</td>
+                                <td class="actions"><span class="icon-edit">✏️</span> <span class="icon-delete">🗑️</span></td>
+                            </tr>
+                            <tr>
+                                <td>#29433</td>
+                                <td>Lucas Dubois</td>
+                                <td><span class="grade-value pass">15.5</span></td>
+                                <td>10 Oct 2023</td>
+                                <td class="actions"><span class="icon-edit">✏️</span> <span class="icon-delete">🗑️</span></td>
+                            </tr>
+                            <tr>
+                                <td>#29440</td>
+                                <td>Inès Leroy</td>
+                                <td><span class="grade-value fail">07.0</span></td>
+                                <td>09 Oct 2023</td>
+                                <td class="actions"><span class="icon-edit">✏️</span> <span class="icon-delete">🗑️</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pagination">
+                    <span class="pagination-info">Affichage de 1-5 sur 24 étudiants</span>
+                    <div class="pagination-controls">
+                        <button class="page-btn">&lt;</button>
+                        <button class="page-btn">&gt;</button>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+</body>
+</html>

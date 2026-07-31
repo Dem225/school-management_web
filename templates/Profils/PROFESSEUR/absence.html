@@ -1,0 +1,204 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suivi des Absences - Portail Enseignant</title>
+  <link rel="stylesheet" href="{% static 'PROFESSEUR/css/absence.css' %}" />
+</head>
+<body>
+
+    <div id="app">
+
+        <aside id="sidebar">
+            <div class="logo">
+                <h1 class="logo-title">Portail Enseignant</h1>
+                <span class="logo-subtitle">Institution Ledger v1.0</span>
+            </div>
+
+            <nav class="menu">
+                <ul>
+                    <li class="menu-item"><a href="{% url "Tableau_de_bord_professeur" %}"><span class="menu-icon"></span> Tableau de bord</a></li>
+                    <li class="menu-item"><a href="{% url "mes_etudiant_veiw" %}"><span class="menu-icon"></span> Mes étudiants</a></li>
+                    <li class="menu-item"><a href="{% url "notes_veiw" %}"><span class="menu-icon"></span> Notes</a></li>
+                    <li class="menu-item active"><a href="{% url "absence_veiw" %}"><span class="menu-icon"></span> Absences</a></li>
+                    <li class="menu-item"><a href="{% url "profil_veiw" %}"><span class="menu-icon"></span> Mon profil</a></li>
+                     <li class="menu-item "><a href="{% url "deconnexion" %}"><span class="menu-icon"></span> DÉCONNEXION </a></li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-profile">
+                <span class="profile-avatar"></span>
+                <div class="profile-info">
+                    <span class="profile-name">M. Jean Dupont</span>
+                    <span class="profile-role">Prof. de Littérature</span>
+                </div>
+            </div>
+        </aside>
+
+        <main id="main">
+
+            <header class="topbar">
+                <div class="window-bar">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                    <span class="topbar-window-title">INSTITUTION LEDGER — REGISTRE V1.0.4</span>
+                </div>
+            </header>
+
+            <section class="page-header">
+                <div class="page-header-text">
+                    <h2 class="page-title">Suivi des Absences</h2>
+                    <p class="page-subtitle">Registre officiel des assiduités pour le semestre en cours. Veuillez valider les justifications soumises par l'administration.</p>
+                </div>
+                <button class="btn-primary">⊕ Enregistrer une absence</button>
+            </section>
+
+            <section class="cards">
+                <div class="card">
+                    <span class="card-label">TAUX D'ASSIDUITÉ</span>
+                    <div class="card-value">94.2%</div>
+                </div>
+                <div class="card">
+                    <span class="card-label">À JUSTIFIER</span>
+                    <div class="card-value">08</div>
+                </div>
+                <div class="card accent-danger">
+                    <span class="card-label">NON JUSTIFIÉES</span>
+                    <div class="card-value text-danger">03</div>
+                </div>
+                <div class="card">
+                    <span class="card-label">TOTAL SEMESTRE</span>
+                    <div class="card-value">42</div>
+                </div>
+            </section>
+
+            <section class="absences">
+                <div class="toolbar">
+                    <div class="search-box">
+                        <input type="text" placeholder="Rechercher un étudiant..." id="search">
+                    </div>
+                    <select class="filter-select">
+                        <option>Tous les statuts</option>
+                        <option>Justifiée</option>
+                        <option>À justifier</option>
+                        <option>Non justifiée</option>
+                    </select>
+                    <span class="icon-filter">📅</span>
+                </div>
+
+                <div class="table-wrap">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ÉTUDIANT</th>
+                                <th>DATE</th>
+                                <th>HEURES</th>
+                                <th>STATUT</th>
+                                <th>ACTIONS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="student-cell">
+                                        <span class="student-avatar dark">AL</span>
+                                        <span class="student-name">Alexandre Lefebvre</span>
+                                    </div>
+                                </td>
+                                <td>12/10/2023</td>
+                                <td>08:00 – 10:00</td>
+                                <td><span class="status unjustified">Non justifiée</span></td>
+                                <td class="actions"><a href="#" class="action-link">✏️ Modifier</a></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="student-cell">
+                                        <span class="student-avatar grey">CD</span>
+                                        <span class="student-name">Clara Dubois</span>
+                                    </div>
+                                </td>
+                                <td>11/10/2023</td>
+                                <td>Toute la journée</td>
+                                <td><span class="status tojustify">À justifier</span></td>
+                                <td class="actions"><button class="btn-mark-justified">Marquer comme justifiée</button></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="student-cell">
+                                        <span class="student-avatar dark">HM</span>
+                                        <span class="student-name">Hugo Martinez</span>
+                                    </div>
+                                </td>
+                                <td>10/10/2023</td>
+                                <td>14:00 – 16:00</td>
+                                <td><span class="status justified">Justifiée</span></td>
+                                <td class="actions"><a href="#" class="action-link">👁️ Voir certificat</a></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="student-cell">
+                                        <span class="student-avatar orange">ST</span>
+                                        <span class="student-name">Sophie Tissier</span>
+                                    </div>
+                                </td>
+                                <td>10/10/2023</td>
+                                <td>08:00 – 12:00</td>
+                                <td><span class="status tojustify">À justifier</span></td>
+                                <td class="actions"><button class="btn-mark-justified">Marquer comme justifiée</button></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="student-cell">
+                                        <span class="student-avatar dark">MB</span>
+                                        <span class="student-name">Marc Bertrand</span>
+                                    </div>
+                                </td>
+                                <td>09/10/2023</td>
+                                <td>16:00 – 18:00</td>
+                                <td><span class="status justified">Justifiée</span></td>
+                                <td class="actions"><a href="#" class="action-link">👁️ Voir certificat</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pagination">
+                    <div class="pagination-controls">
+                        <button class="page-btn">&lt;</button>
+                        <button class="page-btn active">1</button>
+                        <button class="page-btn">2</button>
+                        <button class="page-btn">3</button>
+                        <button class="page-btn">4</button>
+                        <button class="page-btn">&gt;</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bottom-section">
+                <div class="activity-feed">
+                    <h4 class="activity-feed-title">🕐 Dernières activités</h4>
+                    <div class="activity-item">
+                        <span class="activity-text">Absence justifiée pour Emma Bernard</span>
+                        <span class="activity-time">Il y a 2 heures — par Admin Delcourt</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-text">Nouvelle absence saisie : Lucas Petit</span>
+                        <span class="activity-time">Il y a 5 heures — par vous</span>
+                    </div>
+                </div>
+                <div class="regulation-box">
+                    <h4 class="regulation-title">Rappel Réglementaire</h4>
+                    <p class="regulation-quote">"Toute absence doit être consignée dans le registre numérique dans un délai maximum de 24 heures suivant le début du cours. L'enseignant est garant de la véracité des faits consignés."</p>
+                    <a href="#" class="link-consult">Consulter les RI ↗</a>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+</body>
+</html>

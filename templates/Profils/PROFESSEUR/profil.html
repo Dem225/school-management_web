@@ -1,0 +1,155 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil de l'Enseignant - Portail Enseignant</title>
+   <link rel="stylesheet" href="{% static 'PROFESSEUR/css/profil.css' %}" />
+</head>
+<body>
+
+    <div id="app">
+
+        <aside id="sidebar">
+            <div class="logo">
+                <h1 class="logo-title">Portail Enseignant</h1>
+                <span class="logo-subtitle">Institution Ledger v1.0</span>
+            </div>
+
+            <nav class="menu">
+                <ul>
+                    <li class="menu-item"><a href="{% url "Tableau_de_bord_professeur" %}"><span class="menu-icon"></span> Tableau de bord</a></li>
+                    <li class="menu-item"><a href="{% url "mes_etudiant_veiw" %}"><span class="menu-icon"></span> Mes étudiants</a></li>
+                    <li class="menu-item"><a href="{% url "notes_veiw" %}"><span class="menu-icon"></span> Notes</a></li>
+                    <li class="menu-item"><a href="{% url "absence_veiw" %}"><span class="menu-icon"></span> Absences</a></li>
+                    <li class="menu-item active"><a href="{% url "profil_veiw" %}"><span class="menu-icon"></span> Mon profil</a></li>
+                    <li class="menu-item "><a href="{% url "deconnexion" %}"><span class="menu-icon"></span> DÉCONNEXION </a></li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-profile">
+                <span class="profile-avatar"></span>
+                <div class="profile-info">
+                    <span class="profile-name">J.P. Dupont</span>
+                    <span class="profile-role">Mathématiques</span>
+
+                    
+                </div>
+
+                 <a href="" class="footer-link" style="text-decoration: none; color: white; margin-left: 29px;">Déconnexion</a> 
+            </div>
+        </aside>
+            
+        <main id="main">
+
+            <header class="topbar">
+                <div class="action-bar">
+                    <div class="search-box">
+                        <input type="text" placeholder="Rechercher un dossier..." id="search">
+                    </div>
+                    <div class="icons">
+                        <span class="icon-notification"></span>
+                        <span class="icon-help"></span>
+                    </div>
+                </div>
+            </header>
+
+            <section class="page-header">
+                <h2 class="page-title underline">Profil de l'Enseignant</h2>
+            </section>
+
+            <section class="profile">
+                <div class="profile-card">
+                    <img class="profile-photo" src="./souce_index/IMAGES/dupont.jpeg" alt="Pr. Jean-Pierre Dupont">
+                    <div class="profile-fields">
+                        <div class="field">
+                            <span class="field-label">IDENTIFIANT REGISTRE</span>
+                            <span class="field-value">PR-01</span>
+                        </div>
+                        <div class="field">
+                            <span class="field-label">NOM COMPLET</span>
+                            <span class="field-value large">Pr. Jean-Pierre Dupont</span>
+                        </div>
+                        <div class="field">
+                            <span class="field-label">DÉPARTEMENT D'ENSEIGNEMENT</span>
+                            <span class="department-badge">Mathématiques Supérieures</span>
+                        </div>
+                        <div class="field-row">
+                            <div class="field">
+                                <span class="field-label">STATUT</span>
+                                <span class="field-value"><span class="status-dot active"></span> Titulaire Actif</span>
+                            </div>
+                            <div class="field">
+                                <span class="field-label">DATE D'ARRIVÉE</span>
+                                <span class="field-value">12 Septembre 2014</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-stats">
+                        <div class="stat-block">
+                            <span class="stat-label">MOYENNE DE CLASSE</span>
+                            <div class="stat-value">14.8 <span class="unit">/20</span></div>
+                            <span class="trend-up">↗ +1.2 ce semestre</span>
+                        </div>
+                        <div class="stat-block">
+                            <span class="stat-label">ÉTUDIANTS SOUS TUTELLE</span>
+                            <div class="stat-value">124</div>
+                            <span class="card-sub">Répartis sur 4 classes</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn-edit-profile">✏️ Modifier mes informations</button>
+
+                <div class="schedule">
+                    <div class="schedule-header">
+                        <h3 class="schedule-title">Emploi du temps hebdomadaire</h3>
+                        <span class="schedule-period">S1 - 2024</span>
+                    </div>
+                    <div class="table-wrap">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>JOUR</th>
+                                    <th>COURS</th>
+                                    <th>SALLE</th>
+                                    <th>HORAIRE</th>
+                                    <th>ACTION</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Lundi</td>
+                                    <td>Algèbre Linéaire (L3)</td>
+                                    <td>AMPHI-B</td>
+                                    <td>08:30 – 10:30</td>
+                                    <td><a href="#" class="link-detail">Détails</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Mardi</td>
+                                    <td>Analyse Complexe (M1)</td>
+                                    <td>S-204</td>
+                                    <td>14:00 – 17:00</td>
+                                    <td><a href="#" class="link-detail">Détails</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Jeudi</td>
+                                    <td>Probabilités (L2)</td>
+                                    <td>AMPHI-A</td>
+                                    <td>09:00 – 12:00</td>
+                                    <td><a href="#" class="link-detail">Détails</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <button class="btn-floating">+</button>
+
+        </main>
+    </div>
+
+</body>
+</html>

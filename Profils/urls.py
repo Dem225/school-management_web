@@ -50,6 +50,10 @@ urlpatterns = [
     path('Deltmatiere/<int:id>/', Deltmatiere, name='Deltmatiere'),
 
     
+    path('profil_veiw/',profil_veiw , name='profil_veiw'),
+    path('notes_veiw/',notes_veiw , name='notes_veiw'),
+    path('mes_etudiant_veiw/',mes_etudiant_veiw , name='mes_etudiant_veiw'),
+    path('absence_veiw/',absence_veiw , name='absence_veiw'),
     
 
 

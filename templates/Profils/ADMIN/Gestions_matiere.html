@@ -113,14 +113,14 @@
                 </tr>
               </thead>
                {% if messages %}
-            <div class="messagesContainer">
+              <div class="messagesContainer">
               {% for message in messages %}
                 <div class="alert {{ message.tags }}">
                   {{ message }}
                 </div>
               {% endfor %}
             </div>
-      {% endif %}
+            {% endif %}
               <tbody>
                 {% for GS in gsmath %}
                   <tr>

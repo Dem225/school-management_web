@@ -73,15 +73,15 @@
                   <th>ACTIONS</th>
                 </tr>
               </thead>
-               {% if messages %}
-                <div class="messagesContainer">
-                   {% for message in messages %}
-                  <div class="alert {{ message.tags }}">
+                {% if messages %}
+              <div class="messagesContainer">
+              {% for message in messages %}
+                <div class="alert {{ message.tags }}">
                   {{ message }}
-                  </div>
-                   {% endfor %}
-                 </div>
-             {% endif %}
+                </div>
+              {% endfor %}
+            </div>
+            {% endif %}
              
               <tbody>
                  {% for prof in professeurs %}

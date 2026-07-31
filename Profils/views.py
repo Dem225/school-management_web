@@ -33,8 +33,9 @@ def Authantification (request):
             password= form.cleaned_data["password"]
             
             user=authenticate(request, username=username,password=password )
-            
+            print(user)
             if user is not None:
+                
                 login(request,user)
                 role = user.role
                 if role=='admin':
@@ -98,6 +99,7 @@ def add_utilisateur_view(resquest):
             last_name = form.cleaned_data.get('last_name')
             email = form.cleaned_data.get('email')
             role = form.cleaned_data.get('role')
+            password = form.cleaned_data.get('password')
             if Utilisateur.objects.filter(username=username).exists():
                 messages.add_error('username', "ce username existe déja !")
             elif Utilisateur.objects.filter(email=email).exists():
@@ -110,6 +112,7 @@ def add_utilisateur_view(resquest):
                     last_name=last_name,
                     email=email,
                     role=role,
+                    password=password
                 )
                 form=Addutilisateur()
                 messages.success(resquest , "UTILISATEUR AJOUTER AVEC SUCCES")
@@ -260,6 +263,7 @@ def UpdateEtudiant(resquest,id):
             return redirect('Gestion_Etudiant')
         else:
             form=Addetudiant(instance=etudiants)
+            messages.success(resquest, "MODIFICATIONs EFFECTUÉE AVEC SUCCÈS")
     context = {
         'form': form,
         'etudiants': etudiants 
@@ -389,3 +393,18 @@ def Deltmatiere(resquest, id):
         return redirect("Gestions_matiere")
     messages.success(resquest , "Envoyer uniqueent en post ")
     return redirect("Gestions_matiere")
+
+
+
+#  GESTIONS DE ETUDIANT
+
+
+def profil_veiw(resquest):
+    return render(resquest , "Profils/PROFESSEUR/profil.html" )
+
+def notes_veiw(resquest):
+    return render(resquest , "Profils/PROFESSEUR/notes.html" )
+def mes_etudiant_veiw(resquest):
+    return render(resquest , "Profils/PROFESSEUR/mes_etudiant.html" )
+def absence_veiw(resquest):
+    return render(resquest , "Profils/PROFESSEUR/absence.html" )

@@ -1,0 +1,159 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Répertoire des Étudiants - Portail Enseignant</title>
+    <link rel="stylesheet" href="{% static 'PROFESSEUR/css/mes_etudiant.css' %}" />
+</head>
+<body>
+
+    <div id="app">
+
+        <aside id="sidebar">
+            <div class="logo">
+                <h1 class="logo-title">Portail Enseignant</h1>
+                <span class="logo-subtitle">Institution Ledger v1.0</span>
+            </div>
+
+            <nav class="menu">
+                <ul>
+                    <li class="menu-item"><a href="{% url "Tableau_de_bord_professeur" %}"><span class="menu-icon"></span> Tableau de bord</a></li>
+                    <li class="menu-item active"><a href="{% url "mes_etudiant_veiw" %}"><span class="menu-icon"></span> Mes étudiants</a></li>
+                    <li class="menu-item"><a href="{% url "notes_veiw" %}"><span class="menu-icon"></span> Notes</a></li>
+                    <li class="menu-item"><a href="{% url "absence_veiw" %}"><span class="menu-icon"></span> Absences</a></li>
+                    <li class="menu-item"><a href="{% url "profil_veiw" %}"><span class="menu-icon"></span> Mon profil</a></li>
+                     <li class="menu-item "><a href="{% url "deconnexion" %}"><span class="menu-icon"></span>  DÉCONNEXION </a></li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-profile">
+                <span class="profile-avatar"></span>
+                <div class="profile-info">
+                    <span class="profile-name">Jean Dupont</span>
+                </div>
+            </div>
+        </aside>
+
+        <main id="main">
+
+            <header class="topbar">
+                <div class="action-bar">
+                    <div class="search-box">
+                        <input type="text" placeholder="Rechercher un étudiant par nom ou matricule..." id="search">
+                    </div>
+                    <select class="filter-select">
+                        <option>Toutes les classes</option>
+                        <option>Terminale S1</option>
+                        <option>Terminale L2</option>
+                    </select>
+                    <div class="icons">
+                        <span class="icon-notification"></span>
+                        <span class="icon-help"></span>
+                    </div>
+                </div>
+            </header>
+
+            <section class="page-header">
+                <div class="page-header-text">
+                    <h2 class="page-title">Répertoire des Étudiants</h2>
+                    <p class="page-subtitle">Année Académique 2023-2024 • Semestre 1</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn-secondary">Exporter CSV</button>
+                    <button class="btn-primary">Imprimer Registre</button>
+                </div>
+            </section>
+
+            <section class="cards">
+                <div class="card">
+                    <span class="card-label">TOTAL ÉTUDIANTS</span>
+                    <div class="card-value">142</div>
+                </div>
+                <div class="card">
+                    <span class="card-label">MOYENNE DE CLASSE</span>
+                    <div class="card-value">14.2 <span class="unit">/20</span></div>
+                </div>
+                <div class="card">
+                    <span class="card-label">TAUX DE PRÉSENCE</span>
+                    <div class="card-value">98.4%</div>
+                </div>
+            </section>
+
+            <section class="students">
+                <div class="table-wrap">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>MATRICULE</th>
+                                <th>NOM</th>
+                                <th>PRÉNOM</th>
+                                <th>CLASSE</th>
+                                <th>MOYENNE ACTUELLE</th>
+                                <th>ACTIONS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>ET 2026 001</td>
+                                <td>ARNAUD</td>
+                                <td>Sébastien</td>
+                                <td><span class="class-badge">TALE B1</span></td>
+                                <td>16.50 <span class="trend-icon up">↗</span></td>
+                                <td><a href="#" class="link-detail">Voir détail</a></td>
+                            </tr>
+                            <tr>
+                                <td>ET 2026 014</td>
+                                <td>BERNARD</td>
+                                <td>Marie-Lise</td>
+                                <td><span class="class-badge">TALE B1</span></td>
+                                <td>12.25 <span class="trend-icon neutral">~</span></td>
+                                <td><a href="#" class="link-detail">Voir détail</a></td>
+                            </tr>
+                            <tr>
+                                <td>ET 2026 042</td>
+                                <td>CHEN</td>
+                                <td>Kevin</td>
+                                <td><span class="class-badge">TALE B1</span></td>
+                                <td>09.50 <span class="trend-icon down">↘</span></td>
+                                <td><a href="#" class="link-detail">Voir détail</a></td>
+                            </tr>
+                            <tr>
+                                <td>ET 2026 105</td>
+                                <td>DIALLO</td>
+                                <td>Amadou</td>
+                                <td><span class="class-badge">TERM L2</span></td>
+                                <td>15.00 <span class="trend-icon up">↗</span></td>
+                                <td><a href="#" class="link-detail">Voir détail</a></td>
+                            </tr>
+                            <tr>
+                                <td>ET 2026 210</td>
+                                <td>GARCIA</td>
+                                <td>Elena</td>
+                                <td><span class="class-badge">TALE B1</span></td>
+                                <td>18.75 <span class="trend-icon up">↗</span></td>
+                                <td><a href="#" class="link-detail">Voir détail</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pagination">
+                    <span class="pagination-info">Affichage de 5 sur 142 étudiants</span>
+                    <div class="pagination-controls">
+                        <button class="page-btn">&lt;</button>
+                        <button class="page-btn active">1</button>
+                        <button class="page-btn">2</button>
+                        <button class="page-btn">3</button>
+                        <button class="page-btn">&gt;</button>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+</body>
+</html>
