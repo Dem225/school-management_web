@@ -62,34 +62,7 @@
 
              <form class="formGrid">
               
-              {% comment %} <div class="formGroup">
-                <label>Nom complet</label>
-                <input type="text" placeholder="ex: Jean Dupont" />
-              </div>
-
-              <div class="formGroup">
-                <label>Rôle</label>
-                <select>
-                  <option>Étudiant</option>
-                  <option>Professeur</option>
-                  <option>Admin</option>
-                </select>
-              </div>
-
-              <div class="formGroup">
-                <label>Identifiant</label>
-                <input type="text" placeholder="identifiant" />
-              </div>
-
-              <div class="formGroup">
-                <label>Nom d'utilisateur</label>
-                <input type="text" value="j.dupont" />
-              </div>
-
-              <div class="formGroup">
-                <label>Mot de passe</label>
-                <input type="password" value="********" />
-              </div>  {% endcomment %}
+             
 
               <div class="formGroup submitGroup">
                 <button type="submit" class="btnAdd">
@@ -133,7 +106,7 @@
                   <td>   {{Users.username}}  </td>
                    <td>    {{Users.email}}  </td>
                   <td class="actions">
-                    <a href="#">Modifier</a>
+                   <p class="viande">  <a href=" {% url 'UpdateUtilisateur' Users.id %} " style="text-decoration: none; color: black;"> modifier</a> </p>
                     <button  type="submit " style="background-color: rgb(213, 31, 31); color: black;" >Supprimer</button>
                     
                   </td>
@@ -143,16 +116,7 @@
             </table>
           </div>
 
-          <div class="pagination">
-            <span class="paginationInfo"></span>
-            <div class="paginationControls">
-              <button class="pageBtn"></button>
-              <button class="pageBtn active">1</button>
-              <button class="pageBtn">2</button>
-              <button class="pageBtn">3</button>
-              <button class="pageBtn"></button>
-            </div>
-          </div>
+          
         </section>
 
       </main>

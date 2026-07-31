@@ -89,7 +89,7 @@
                   <td>    {{ED.age}}  </td>
                   <td>    {{ED.classe}}  </td>
                   <td>
-                      <p class="viande">  <a href="#" style="text-decoration: none; color: black;">Modifier</a></p>
+                    <p class="viande">  <a href=" {% url 'modifier_etudiant' ED.id %} " style="text-decoration: none; color: black;"> modifier</a> </p>
                     <button  type="submit " style="background-color: rgb(213, 31, 31); color: black; border-radius: 2px; border: transparent; padding: 4px;" >Supprimer</button>
                     
                   </td>
@@ -103,18 +103,7 @@
             </table>
           </div>
           <div class="pagination">
-            <span class="pagination-info"
-              >Affichage de 5 sur 842 étudiants enregistrés</span
-            >
-            <div class="pagination-controls">
-              {% comment %} <button class="page-btn">&lt;</button>
-              <button class="page-btn active">1</button>
-              <button class="page-btn">2</button>
-              <button class="page-btn">3</button>
-              <span class="pagination-dots">...</span>
-              <button class="page-btn">169</button>
-              <button class="page-btn">&gt;</button> {% endcomment %}
-            </div>
+           
           </div>
         </section>
         <section class="cards">
@@ -124,20 +113,7 @@
               842 <span class="trend-up">+12% vs année préc.</span>
             </div>
           </div>
-          {% comment %} <div class="card" id="card-attendance"> {% endcomment %}
-            {% comment %} <span class="card-label">TAUX D'ASSIDUITÉ</span>
-            <div class="card-value">
-              94.8% <span class="card-note">Excellent</span>
-            </div>
-          </div> {% endcomment %}
-          {% comment %} <div class="card" id="card-average">
-            <span class="card-label">MOYENNE GÉNÉRALE</span>
-            <div class="card-value">13.4 <span class="unit">Sur 20</span></div>
-          </div> {% endcomment %}
-          {% comment %} <div class="card" id="card-pending">
-            <span class="card-label">DOSSIERS EN ATTENTE</span>
-            <div class="card-value text-danger">14 !</div>
-          </div> {% endcomment %}
+          
         </section>
       </main>
     </div>

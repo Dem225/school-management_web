@@ -1,4 +1,4 @@
-from django.shortcuts import render , redirect
+from django.shortcuts import render , redirect , get_object_or_404
 from django.views.generic import ListView
 from django.contrib.auth import authenticate ,login
 from Profils.models import Utilisateur
@@ -15,6 +15,10 @@ from  Profils.forms  import Addclasse
 from Ecoles.models import Etudiant
 from Ecoles.models import Professeur
 from Ecoles.models import Matieres
+
+
+
+
 # Create your views here.
 
 def Authantification (request):
@@ -93,7 +97,6 @@ def add_utilisateur_view(resquest):
             last_name = form.cleaned_data.get('last_name')
             email = form.cleaned_data.get('email')
             role = form.cleaned_data.get('role')
-            password = form.cleaned_data.get('password')
             if Utilisateur.objects.filter(username=username).exists():
                 form.add_error('username', "ce username existe déja !")
             elif Utilisateur.objects.filter(email=email).exists():
@@ -106,7 +109,6 @@ def add_utilisateur_view(resquest):
                     last_name=last_name,
                     email=email,
                     role=role,
-                    password=password,
                 )
                 form=Addutilisateur()
 
@@ -242,3 +244,98 @@ def Voirprofil_etd(resquest):
 
 #information des untilisateur admin 
 
+#modifier et supprimer pour admin
+
+
+def UpdateEtudiant(resquest,id):
+
+    etudiants=get_object_or_404(Etudiant, id=id)
+    form=Addetudiant(instance=etudiants)
+    if resquest.method=="POST":
+        form=Addetudiant(resquest.POST, instance=etudiants)
+        if form.is_valid():
+            form.save()
+            messages.success(resquest, "MODIFICATION EFFECTUÉE AVEC SUCCÈS")
+            return redirect('Gestion_Etudiant')
+        else:
+            form=Addetudiant(instance=etudiants)
+    context = {
+        'form': form,
+        'etudiants': etudiants 
+    }
+  
+    return render(resquest, "Profils/ADMIN/modifierEtudiant.html", context)
+
+
+
+
+
+
+
+
+
+
+def UpdateUtilisateur(resquest,id):
+
+    Utils=get_object_or_404(Utilisateur, id=id)
+    form=Addutilisateur(instance=Utils)
+    if resquest.method=="POST":
+        form=Addetudiant(resquest.POST, instance=Utils)
+        if form.is_valid():
+            form.save()
+            messages.success(resquest, "MODIFICATION EFFECTUÉE AVEC SUCCÈS")
+            return redirect('Gestions_utilisateur_ADMIN')
+        else:
+            form=Addutilisateur(instance=Utils)
+    context = {
+        'form': form,
+        'Utils': Utils 
+    }
+  
+    return render(resquest, "Profils/ADMIN/modifierutilisateur.html", context)
+
+
+
+
+
+def Updateprofe(resquest,id):
+
+    profe=get_object_or_404(Professeur, id=id)
+    form=Addprofesseur(instance=profe)
+    if resquest.method=="POST":
+        form=Addprofesseur(resquest.POST, instance=profe)
+        if form.is_valid():
+            form.save()
+            messages.success(resquest, "MODIFICATION EFFECTUÉE AVEC SUCCÈS")
+            return redirect('Gestions_professeur')
+        else:
+            form=Addprofesseur(instance=profe)
+    context = {
+        'form': form,
+        'profe': profe 
+    }
+  
+    return render(resquest, "Profils/ADMIN/modifierprofe.html", context)
+
+
+
+
+
+def Updatematier(resquest,id):
+
+    Mathiere=get_object_or_404(Matieres, id=id)
+    form=Addmatiere(instance=Mathiere)
+    if resquest.method=="POST":
+        form=Addmatiere(resquest.POST, instance=Mathiere)
+        if form.is_valid():
+            form.save()
+            messages.success(resquest, "MODIFICATION EFFECTUÉE AVEC SUCCÈS")
+            return redirect('Gestions_matiere')
+        else:
+            form=Addmatiere(instance=Mathiere)
+    context = {
+        'form': form,
+        'Mathiere': Mathiere 
+    }
+  
+    return render(resquest, "Profils/ADMIN/modifiermatiere.html", context) 

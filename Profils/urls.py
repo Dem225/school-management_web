@@ -37,6 +37,17 @@ urlpatterns = [
     path('Gestions_matiere/',Gestions_matiere , name='Gestions_matiere'),
     path('Gestions_matiere/',Gestions_matiere , name='Gestions_matiere'),
     path('Gestions_matiere/',Gestions_matiere , name='Gestions_matiere'),
+
+    
+    path('modifier_etudiant/<int:id>/', UpdateEtudiant, name='modifier_etudiant'),
+    path('UpdateUtilisateur/<int:id>/', UpdateUtilisateur, name='UpdateUtilisateur'),
+    path('Updateprofe/<int:id>/', Updateprofe, name='Updateprofe'),
+    path('Updatematier/<int:id>/', Updatematier, name='Updatematier'),
+    
+
+
+
+    
 ]
 
 

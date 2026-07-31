@@ -85,7 +85,7 @@
                   <td>{{prof.matiere}} </td>
                    
                   <td >
-                      <a href="" style="color: black; text-decoration: none; ">MODIFIE</a>
+                     <p class="viande">  <a href=" {% url 'Updateprofe' prof.id %} " style="text-decoration: none; color: black;"> modifier</a> </p>
 
                     <button  type='submite' style="padding: 5px; margin-left: 9px; background-color: red; border-radius: 5px; border: transparent;"> SUPPRIMER</button>
                   </td>
@@ -96,18 +96,7 @@
              
             </table>
           </div>
-          {% comment %} <div class="pagination">
-            <span class="pagination-info"
-              >Affichage de 1 à 5 sur 42 professeurs</span
-            >
-            <div class="pagination-controls">
-              <button class="page-btn"></button>
-              <button class="page-btn active">1</button>
-              <button class="page-btn">2</button>
-              <button class="page-btn">3</button>
-              <button class="page-btn"></button>
-            </div>
-          </div> {% endcomment %}
+          
         </section>
         <footer class="page-footer">
           <span class="footer-note">Sceau d'Authenticité Académique</span>
