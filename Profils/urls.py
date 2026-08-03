@@ -21,9 +21,9 @@ urlpatterns = [
 
     path('ajoutetudiant/',add_etudiant_view , name='ajoutetudiant'),
     path('addprofesseur/',add_professeur_view , name='addprofesseur'),
-    path('addmatiere/',addmatiere , name='addmatiere'),
+    path('addmatiere/',addmatiere , name='addmatiere'),   
 
-
+    path('addclasse/',addclasse , name='addclasse'),
 
 
 

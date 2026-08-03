@@ -14,10 +14,15 @@ class Matieres (models.Model):
 
 
 class Classes (models.Model):
+    STATUT_CHOICES = [
+            (0, 'AFFECTER'),
+            (1, 'NON AFFECTER '),
+        ]
     nom=models.CharField(max_length=50)
+    status = models.IntegerField(choices=STATUT_CHOICES, default=0)
 
     def __str__(self):
-        return self.nom
+        return f"{self.nom } - Statut : {self.get_status_display()}"
     
 
 

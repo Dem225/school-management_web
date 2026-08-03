@@ -60,14 +60,22 @@
                     <h2 class="page-title">Gestion des Classes</h2>
                     <p class="page-subtitle">Registre officiel des cohortes académiques pour l'année scolaire 2023-2024.</p>
                 </div>
-                <button class="btn-new">+ Nouvelle Classe</button>
+                
+                <button class="btn-new">
+                    
+
+                     <a href="{% url "addclasse" %}" style="text-decoration: none; color: white;">   + Nouvelle Classe  </a>
+                    
+                
+                
+                </button>    
             </section>
 
             <section class="cards">
                 <div class="card">
                     <span class="card-label">TOTAL CLASSES</span>
                     <div class="card-value">24 <span class="card-unit">sections</span></div>
-                    <span class="card-trend up">↗ +2 depuis l'an dernier</span>
+                    <span class="card-trend up"> depuis l'an dernier</span>
                 </div>
                 <div class="card">
                     <span class="card-label">EFFECTIF TOTAL</span>

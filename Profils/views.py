@@ -16,7 +16,7 @@ from  Profils.forms  import Addclasse
 from Ecoles.models import Etudiant
 from Ecoles.models import Professeur
 from Ecoles.models import Matieres
-
+from Ecoles.models import Classes
 
 from  Profils.forms  import Notesetudiant
 
@@ -210,8 +210,27 @@ def addmatiere(resquest):
     }
     return render(resquest, "Profils/ADMIN/addmatiere.html", context)
 
+def addclasse(resquest):
+    form=Addclasse()
+    if resquest.method=='POST':
+        form=Addclasse(resquest.POST)
+        if form.is_valid():
+            nom=form.cleaned_data.get("nom")
+            status=form.cleaned_data.get("status")
+            if Classes.objects.filter(nom=nom).exists():
+                messages.error(resquest, "cette classe existe deja")
+            else:
+                Classes.objects.create(nom=nom , status=status)
+                form=Addclasse()
+                messages.success(resquest, "Classe ajouter avce success")
+    context={
+        "form" :form
+    }
+    return  render (resquest , "Profils/ADMIN/addclasse.html", context)
 
-          
+
+
+
 def  Gestion_Etudiant(resquest):
     etudiant= Etudiant.objects.all()
     conte_Users= Etudiant.objects.count()
@@ -232,6 +251,8 @@ def  Gestions_matiere(resquest ):
     gsmath= Matieres.objects.all()
     conte_Users= Matieres.objects.count()
     return render(resquest,"Profils/ADMIN/Gestions_matiere.html"  ,{"gsmath":gsmath, "conte_Users" :conte_Users} )
+
+
 
 
 def  Gestion_notes(resquest):

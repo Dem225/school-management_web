@@ -162,14 +162,16 @@ class Addmatiere(forms.ModelForm):
 class Addclasse(forms.ModelForm):
     class Meta:
              model=Classes
-             fields=['nom']
+             fields=['nom' ,'status']
              widgets={
                          'nom': forms.TextInput(attrs={
                             'placeholder': 'Entrez le nom de la classe '
                                              }),
+                        'status': forms.Select(attrs={
+                                    
+                           }),
                                                   
                     }
-
 
 
 
@@ -187,10 +189,10 @@ class Notesetudiant(forms.Form):
 
 
          widgets={
-                                  'matricule': forms.TextInput(attrs={
-                                                     'placeholder': 'ENTRZ LE MATRICULE'
+                 'matricule': forms.TextInput(attrs={
+                         'placeholder': 'ENTRZ LE MATRICULE'
                                                  }),
-                                 'notes': forms.TextInput(attrs={
-                                                                 'placeholder': 'Entrez le prenom'
-                                                             })
+                        'notes': forms.TextInput(attrs={
+                         'placeholder': 'Entrez le prenom'
+                     })
                              }
