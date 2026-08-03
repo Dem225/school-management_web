@@ -33,11 +33,9 @@ urlpatterns = [
     path('Gestions_matiere/',Gestions_matiere , name='Gestions_matiere'),
     path('Gestion_notes/',Gestion_notes , name='Gestion_notes'),
 
-    path('Gestions_matiere/',Gestions_matiere , name='Gestions_matiere'),
-    path('Gestions_matiere/',Gestions_matiere , name='Gestions_matiere'),
-    path('Gestions_matiere/',Gestions_matiere , name='Gestions_matiere'),
-    path('Gestions_matiere/',Gestions_matiere , name='Gestions_matiere'),
-
+    path('Gestions_absence/',Gestions_absence , name='Gestions_absence'),
+    path('Gestion_statistique/',Gestion_statistique , name='Gestion_statistique'),
+  
     
     path('modifier_etudiant/<int:id>/', UpdateEtudiant, name='modifier_etudiant'),
     path('UpdateUtilisateur/<int:id>/', UpdateUtilisateur, name='UpdateUtilisateur'),

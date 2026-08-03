@@ -1,0 +1,163 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapport de Performance - Institutional Ledger</title>
+ <link rel="stylesheet" href="{% static "ADMIN/css/Gestionstatistique.css" %}"></head>
+<body>  
+
+    <div id="app">
+
+        <aside id="sidebar">
+            <div class="logo">
+                <h1 class="logo-title">Institutional Ledger</h1>
+                <span class="logo-subtitle">Admin Portal v1.0</span>
+            </div>
+
+            <nav class="menu">
+                <ul>
+                    <li class="menu-item "><a href="{% url "Tableau_de_bord_admin" %}">Tableau de bord</a></li>
+                    <li class="menu-item"><a href="{% url "Gestions_utilisateur_ADMIN" %}">Utilisateurs</a></li>
+                    <li class="menu-item"><a href="{% url "Gestion_Etudiant" %}">Étudiants</a></li>
+                    <li class="menu-item"><a href="{% url "Gestions_professeur" %}">Professeurs</a></li>
+                    <li class="menu-item"><a href="{% url "Gestions_matiere" %}">Matières</a></li>
+                    <li class="menu-item"><a href="{% url "Gestion_notes" %}">Notes</a></li>
+                    <li class="menu-item"><a href="{% url "Gestions_absence" %}">Absences</a></li>
+                    <li class="menu-item active"><a href="{% url "Gestion_statistique" %}">Statistiques</a></li>
+                </ul>
+            </nav>
+
+            <div class="footer">
+                <a href="#" class="footer-link">⚙️ Paramètres</a>
+                 <a href="{% url "deconnexion" %}" class="footer-link">Déconnexion</a>
+            </div>
+        </aside>
+
+        <main id="main">
+
+            <header class="topbar">
+                <div class="window-bar">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <span class="topbar-window-title">Statistiques Périodiques — Institutional Ledger</span>
+                <div class="action-bar">
+                    <div class="search-box">
+                        <input type="text" placeholder="Rechercher une classe..." id="search">
+                    </div>
+                    <button class="btn-export">⬇ Exporter PDF</button>
+                </div>
+            </header>
+
+            <section class="page-header">
+                <h2 class="page-title">Rapport de Performance</h2>
+                <p class="page-subtitle">Données consolidées pour le semestre en cours.</p>
+            </section>
+
+            <section class="cards">
+                <div class="card">
+                    <span class="card-label">MOYENNE GÉNÉRALE ÉCOLE</span>
+                    <div class="card-value">14.82</div>
+                    <span class="trend-up">↗ +0.4 pts</span>
+                </div>
+
+                <div class="card best-student-card">
+                    <span class="card-label">MEILLEUR ÉTUDIANT</span>
+                    <div class="best-student">
+                        <img class="best-student-photo" src="./souce_index/IMAGES/etudiant.jpeg" alt="Julien Lefebvre">
+                        <div class="best-student-info">
+                            <span class="best-student-name">Julien Lefebvre</span>
+                            <span class="best-student-class">Classe de Terminale S1</span>
+                        </div>
+                        <span class="best-student-score">18.95</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <span class="card-label">ABSENCES CUMULÉES (MOIS)</span>
+                    <span class="card-icon">📅</span>
+                    <div class="card-value">124</div>
+                    <span class="card-sub">Heures totales non-justifiées</span>
+                </div>
+            </section>
+
+            <section class="stats">
+                <div class="stats-header">
+                    <h3 class="stats-title">RÉSUMÉ PAR CLASSE</h3>
+                    <div class="stats-icons">
+                        <span class="icon-filter">▼</span>
+                        <span class="icon-more">⋮</span>
+                    </div>
+                </div>
+
+                <div class="table-wrap">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>CLASSE</th>
+                                <th>EFFECTIF</th>
+                                <th>MOYENNE</th>
+                                <th>ABSENCES CUMULÉES</th>
+                                <th>TENDANCE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Terminale S1</td>
+                                <td>32</td>
+                                <td class="class-average">15.42</td>
+                                <td>12h</td>
+                                <td><span class="trend-icon up">↑</span></td>
+                            </tr>
+                            <tr>
+                                <td>Première L2</td>
+                                <td>28</td>
+                                <td class="class-average">13.15</td>
+                                <td>42h</td>
+                                <td><span class="trend-icon neutral">—</span></td>
+                            </tr>
+                            <tr>
+                                <td>Seconde A</td>
+                                <td>35</td>
+                                <td class="class-average">11.90</td>
+                                <td>78h</td>
+                                <td><span class="trend-icon down">↓</span></td>
+                            </tr>
+                            <tr>
+                                <td>Troisième B</td>
+                                <td>30</td>
+                                <td class="class-average">14.88</td>
+                                <td>08h</td>
+                                <td><span class="trend-icon up">↑</span></td>
+                            </tr>
+                            <tr>
+                                <td>Quatrième C</td>
+                                <td>27</td>
+                                <td class="class-average">12.50</td>
+                                <td>25h</td>
+                                <td><span class="trend-icon neutral">—</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pagination">
+                    <span class="pagination-info">Affichage de 5 sur 24 classes</span>
+                    <div class="pagination-controls">
+                        <button class="page-btn text">Précédent</button>
+                        <button class="page-btn text">Suivant</button>
+                    </div>
+                </div>
+            </section>
+
+            <div class="watermark">Scientia Potentia Est</div>
+
+        </main>
+    </div>
+
+</body>
+</html>

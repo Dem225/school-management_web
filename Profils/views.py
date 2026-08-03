@@ -232,6 +232,8 @@ def  Gestions_matiere(resquest):
 def  Gestion_notes(resquest):
     return render(resquest,"Profils/ADMIN/Gestion_notes.html" )
 
+def  Gestion_statistique(resquest):
+    return render(resquest,"Profils/ADMIN/Gestionstatistique.html" )
 
 
 def  Gestions_absence(resquest):
