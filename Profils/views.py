@@ -18,6 +18,8 @@ from Ecoles.models import Professeur
 from Ecoles.models import Matieres
 
 
+from  Profils.forms  import Notesetudiant
+
 
 
 # Create your views here.
@@ -222,8 +224,11 @@ def  Gestions_professeur(resquest):
     conte_Users= Professeur.objects.count()
     return render(resquest,"Profils/ADMIN/Gestions_professeur.html"  ,{"professeurs":professeurs, "conte_Users" :conte_Users} )
 
+
+def Gestion_classe(resquest):
+    return render(resquest , "Profils/ADMIN/Gestionsclasse.html")
         
-def  Gestions_matiere(resquest):
+def  Gestions_matiere(resquest ):
     gsmath= Matieres.objects.all()
     conte_Users= Matieres.objects.count()
     return render(resquest,"Profils/ADMIN/Gestions_matiere.html"  ,{"gsmath":gsmath, "conte_Users" :conte_Users} )
@@ -272,12 +277,6 @@ def UpdateEtudiant(resquest,id):
     }
   
     return render(resquest, "Profils/ADMIN/modifierEtudiant.html", context)
-
-
-
-
-
-
 
 
 
@@ -410,3 +409,16 @@ def mes_etudiant_veiw(resquest):
     return render(resquest , "Profils/PROFESSEUR/mes_etudiant.html" )
 def absence_veiw(resquest):
     return render(resquest , "Profils/PROFESSEUR/absence.html" )
+
+
+
+
+
+
+
+
+#AJOUTEZ DES NOTES A UN ETUDIANT POUR LE PROFFESSEUR
+
+
+# def Notes_etude_add(resquest):
+#     form=

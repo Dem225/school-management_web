@@ -1,0 +1,212 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Classes - Academic Registrar</title>
+   <link rel="stylesheet" href="{% static "ADMIN/css/Gestionsclasse.css" %}">
+</head>
+<body>
+
+    <div id="app">
+
+        <aside id="sidebar">
+            <div class="logo">
+                <h1 class="logo-title">Academic Registrar</h1>
+                <span class="logo-subtitle">Institutional Ledger</span>
+            </div>
+
+            <nav class="menu">
+                <ul>
+                   <li class="menu-item "><a href="{% url "Tableau_de_bord_admin" %}">Tableau de bord</a></li>
+                    <li class="menu-item"><a href="{% url "Gestions_utilisateur_ADMIN" %}">Utilisateurs</a></li>
+                    <li class="menu-item"><a href="{% url "Gestion_Etudiant" %}">Étudiants</a></li>
+                    <li class="menu-item"><a href="{% url "Gestions_professeur" %}">Professeurs</a></li>
+                    <li class="menu-item"><a href="{% url "Gestions_matiere" %}">Matières</a></li>
+                    <li class="menu-item active "><a href="{% url "Gestion_classe" %}"> Classe</a></li>
+                    <li class="menu-item"><a href="{% url "Gestion_notes" %}">Notes</a></li>
+                    <li class="menu-item"><a href="{% url "Gestions_absence" %}">Absences</a></li>
+                    <li class="menu-item"><a href="{% url "Gestion_statistique" %}">Statistiques</a></li>
+                </ul>
+            </nav>
+
+            <div class="footer">
+                <a href="#" class="footer-link"> Parameters </a>
+                <a href="{% url "deconnexion" %}" class="footer-link"> Déconnexion</a>
+                <div class="admin-profile">
+                    <span class="admin-avatar"></span>
+                    <div class="admin-info">
+                        <span class="admin-name">Admin Registrar</span>
+                        <span class="admin-id">ID: 9942-X</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main id="main">
+
+            <header class="topbar">
+                <div class="window-bar">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <span class="breadcrumb">Academic Registrar / Gestion des Classes</span>
+            </header>
+
+            <section class="page-header">
+                <div class="page-header-text">
+                    <h2 class="page-title">Gestion des Classes</h2>
+                    <p class="page-subtitle">Registre officiel des cohortes académiques pour l'année scolaire 2023-2024.</p>
+                </div>
+                <button class="btn-new">+ Nouvelle Classe</button>
+            </section>
+
+            <section class="cards">
+                <div class="card">
+                    <span class="card-label">TOTAL CLASSES</span>
+                    <div class="card-value">24 <span class="card-unit">sections</span></div>
+                    <span class="card-trend up">↗ +2 depuis l'an dernier</span>
+                </div>
+                <div class="card">
+                    <span class="card-label">EFFECTIF TOTAL</span>
+                    <div class="card-value">640 <span class="card-unit">élèves</span></div>
+                    <span class="card-trend neutral">👤 Moyenne 26.6 / classe</span>
+                </div>
+                <div class="card">
+                    <span class="card-label">TAUX D'OCCUPATION</span>
+                    <div class="card-value accent-gold">92%</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 92%;"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="classes">
+                <div class="filters-bar">
+                    <div class="search-box">
+                        <input type="text" placeholder="Rechercher une classe..." id="search">
+                    </div>
+                    <div class="icons">
+                        <span class="icon-filter">☰</span>
+                        <span class="icon-download">⬇</span>
+                    </div>
+                </div>
+
+                <div class="table-wrap">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>CODE CLASSE</th>
+                                <th>NOM DE LA CLASSE</th>
+                                <th>PROFESSEUR PRINCIPAL</th>
+                                <th>EFFECTIF</th>
+                                <th>STATUT</th>
+                                <th>ACTIONS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>CL-3A</td>
+                                <td>3ème A</td>
+                                <td>M. Jean Dupont</td>
+                                <td>32/35</td>
+                                <td><span class="status complete">COMPLET</span></td>
+                                <td class="actions"><a href="#" class="action-link">👁️</a></td>
+                            </tr>
+                            <tr>
+                                <td>CL-3B</td>
+                                <td>3ème B</td>
+                                <td>Mme. Sarah Bernard</td>
+                                <td>28/35</td>
+                                <td><span class="status open">OUVERT</span></td>
+                                <td class="actions"><a href="#" class="action-link">👁️</a></td>
+                            </tr>
+                            <tr>
+                                <td>CL-4A</td>
+                                <td>4ème A</td>
+                                <td>M. Thomas Petit</td>
+                                <td>35/35</td>
+                                <td><span class="status full">SATURÉ</span></td>
+                                <td class="actions"><a href="#" class="action-link">👁️</a></td>
+                            </tr>
+                            <tr>
+                                <td>CL-4B</td>
+                                <td>4ème B</td>
+                                <td>Mme. Lucie Lefebvre</td>
+                                <td>31/35</td>
+                                <td><span class="status open">OUVERT</span></td>
+                                <td class="actions"><a href="#" class="action-link">👁️</a></td>
+                            </tr>
+                            <tr>
+                                <td>CL-5A</td>
+                                <td>5ème A</td>
+                                <td>M. Pierre Morel</td>
+                                <td>30/32</td>
+                                <td><span class="status open">OUVERT</span></td>
+                                <td class="actions"><a href="#" class="action-link">👁️</a></td>
+                            </tr>
+                            <tr>
+                                <td>CL-6A</td>
+                                <td>6ème A</td>
+                                <td>Mme. Sophie Girard</td>
+                                <td>32/32</td>
+                                <td><span class="status complete">COMPLET</span></td>
+                                <td class="actions"><a href="#" class="action-link">👁️</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pagination">
+                    <span class="pagination-info">Affichage 1-6 de 24 classes</span>
+                    <div class="pagination-controls">
+                        <button class="page-btn text-btn">Précédent</button>
+                        <button class="page-btn active">1</button>
+                        <button class="page-btn">2</button>
+                        <button class="page-btn">3</button>
+                        <button class="page-btn text-btn">Suivant</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="summary-grid">
+                <div class="cohort-card">
+                    <h3 class="cohort-title">Répartition des Cohortes</h3>
+
+                    <div class="cohort-row">
+                        <div class="cohort-labels">
+                            <span class="cohort-name">Collège (6ème - 3ème)</span>
+                            <span class="cohort-count">16 Classes</span>
+                        </div>
+                        <div class="cohort-bar">
+                            <div class="cohort-fill dark" style="width: 66%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="cohort-row">
+                        <div class="cohort-labels">
+                            <span class="cohort-name">Lycée (Seconde - Terminale)</span>
+                            <span class="cohort-count">8 Classes</span>
+                        </div>
+                        <div class="cohort-bar">
+                            <div class="cohort-fill gold" style="width: 33%;"></div>
+                        </div>
+                    </div>
+
+                    <p class="cohort-note">Les données de répartition sont mises à jour chaque semestre selon le cycle d'inscription officiel.</p>
+                </div>
+
+                <div class="session-card">
+                    <h3 class="session-title">Statut de la Session</h3>
+                    <span class="session-badge">● DIRECTEUR DU REGISTRE ACTIF</span>
+                    <button class="btn-report">GÉNÉRER RAPPORT GLOBAL</button>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+</body>
+</html>

@@ -4,6 +4,7 @@ from Ecoles.models import Classes
 from Ecoles.models import Etudiant
 from Ecoles.models import Matieres 
 from Ecoles.models import Professeur
+from  Relever_NA.models import Notes
 
 
 class authis( forms.Form):
@@ -177,3 +178,19 @@ class Addclasse(forms.ModelForm):
 
 
 
+class Notesetudiant(forms.Form):
+    class Meta:
+         model= Etudiant
+         model = Notes
+         fields=['matricule', 'notes' ]
+
+
+
+         widgets={
+                                  'matricule': forms.TextInput(attrs={
+                                                     'placeholder': 'ENTRZ LE MATRICULE'
+                                                 }),
+                                 'notes': forms.TextInput(attrs={
+                                                                 'placeholder': 'Entrez le prenom'
+                                                             })
+                             }

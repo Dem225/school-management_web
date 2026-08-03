@@ -47,3 +47,4 @@ class Professeur (models.Model):
         return f"{self.nom} - {self.matiere} - {self.classe}"
 
 
+  

@@ -6,11 +6,11 @@ from  Ecoles.models import Etudiant
 
 class Notes(models.Model):
     note = models.FloatField(help_text="Note sur 20")
-    student_id = models.ForeignKey(to=Etudiant, on_delete=models.CASCADE, related_name='etudiant', null=True)
+    matricule = models.ForeignKey(to=Etudiant, on_delete=models.CASCADE, related_name='etudiant', null=True)
     matiere_id = models.ForeignKey(to=Matieres, on_delete=models.CASCADE, related_name='notes', null=True)
 
     def __str__(self):
-        return f"{self.student_id} - {self.matiere_id} : {self.note}/20"
+        return f"{self.matricule} - {self.matiere_id} : {self.note}/20"
 
 
 class Absence(models.Model):
