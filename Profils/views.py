@@ -7,7 +7,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from  Profils.forms  import Addutilisateur 
 from  Profils.forms  import Addutilisateurpasse
-from Ecoles.genere import GrMatricule
+from Ecoles.genere import GrMatricule 
+from Ecoles.genere import  CodeClasse
 from  Profils.forms  import Addetudiant
 from  Profils.forms  import Addprofesseur
 from  Profils.forms  import Addmatiere
@@ -215,14 +216,15 @@ def addclasse(resquest):
     if resquest.method=='POST':
         form=Addclasse(resquest.POST)
         if form.is_valid():
-            nom=form.cleaned_data.get("nom")
-            status=form.cleaned_data.get("status")
+            nom = form.cleaned_data.get("nom")
+            code_classe =CodeClasse()
             if Classes.objects.filter(nom=nom).exists():
-                messages.error(resquest, "cette classe existe deja")
+                messages.error(resquest, "Cette classe existe déjà")
             else:
-                Classes.objects.create(nom=nom , status=status)
-                form=Addclasse()
-                messages.success(resquest, "Classe ajouter avce success")
+               
+                Classes.objects.create(nom=nom, code_classe=code_classe)
+                form = Addclasse()
+                messages.success(resquest, "Classe ajoutée avec succès")
     context={
         "form" :form
     }
@@ -245,7 +247,9 @@ def  Gestions_professeur(resquest):
 
 
 def Gestion_classe(resquest):
-    return render(resquest , "Profils/ADMIN/Gestionsclasse.html")
+    classe=Classes.objects.all()
+    conte_calssse=Classes.objects.count()
+    return render(resquest , "Profils/ADMIN/Gestionsclasse.html", {"classe":classe, "conte_calssse" :conte_calssse})
         
 def  Gestions_matiere(resquest ):
     gsmath= Matieres.objects.all()
@@ -299,6 +303,26 @@ def UpdateEtudiant(resquest,id):
   
     return render(resquest, "Profils/ADMIN/modifierEtudiant.html", context)
 
+
+def UpdateClasse(resquest,id):
+
+    classe=get_object_or_404(Classes, id=id)
+    form=Addclasse(instance=classe)
+    if resquest.method=="POST":
+        form=Addclasse(resquest.POST, instance=classe)
+        if form.is_valid():
+            form.save()
+            messages.success(resquest, "MODIFICATION EFFECTUÉE AVEC SUCCÈS")
+            return redirect('Gestion_classe')
+        else:
+            form=Addclasse(instance=classe)
+            messages.success(resquest, "MODIFICATIONs EFFECTUÉE AVEC SUCCÈS")
+    context = {
+        'form': form,
+        'classe': classe 
+    }
+  
+    return render(resquest, "Profils/ADMIN/modifierclasse.html", context)
 
 
 
@@ -415,6 +439,17 @@ def Deltmatiere(resquest, id):
         return redirect("Gestions_matiere")
     messages.success(resquest , "Envoyer uniqueent en post ")
     return redirect("Gestions_matiere")
+
+
+def Deltclasse(resquest, id):
+    if resquest.method=="POST":
+        recipe=get_object_or_404(Classes, id=id)
+        recipe.delete()
+        messages.success(resquest, "MATIERE SUPPRIMER supprimer avce success")
+        return redirect("Gestion_classe")
+    messages.success(resquest , "Envoyer uniqueent en post ")
+    return redirect("Gestion_classe")
+
 
 
 

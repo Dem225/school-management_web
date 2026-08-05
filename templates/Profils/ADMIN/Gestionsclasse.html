@@ -74,7 +74,7 @@
             <section class="cards">
                 <div class="card">
                     <span class="card-label">TOTAL CLASSES</span>
-                    <div class="card-value">24 <span class="card-unit">sections</span></div>
+                    <div class="card-value"> {{conte_calssse}} <span class="card-unit">sections</span></div>
                     <span class="card-trend up"> depuis l'an dernier</span>
                 </div>
                 <div class="card">
@@ -114,55 +114,35 @@
                                 <th>ACTIONS</th>
                             </tr>
                         </thead>
+                           {% if messages %}
+                                <div class="messagesContainer">
+                                {% for message in messages %}
+                                        <div class="alert {{ message.tags }}">
+                                        {{ message }}
+                                    </div>
+                                 {% endfor %}
+                                  </div>
+                             {% endif %}
+             
                         <tbody>
+                            {% for Classes in classe %}
                             <tr>
-                                <td>CL-3A</td>
-                                <td>3ème A</td>
-                                <td>M. Jean Dupont</td>
-                                <td>32/35</td>
-                                <td><span class="status complete">COMPLET</span></td>
-                                <td class="actions"><a href="#" class="action-link">👁️</a></td>
+                                <td> {{Classes.code_classe}} </td>
+                                <td> {{Classes.nom}}   </td>
+                                <td></td>
+                                <td></td>
+                                <td><span class="status complete"></span></td>
+                                <td >
+                                    <p class="viande">  <a href=" {% url "UpdateClasse" Classes.id %} " style="text-decoration: none; color: black;"> modifier</a> </p>
+                                    <form action="{% url "Deltclasse" Classes.id %}" method="post">  
+                                    {% csrf_token %}
+                                    <button  type='submite' style="padding: 5px; margin-left: 9px; background-color: red; border-radius: 5px; border: transparent;"> SUPPRIMER</button>
+                                    </form>
+                                </td>
                             </tr>
-                            <tr>
-                                <td>CL-3B</td>
-                                <td>3ème B</td>
-                                <td>Mme. Sarah Bernard</td>
-                                <td>28/35</td>
-                                <td><span class="status open">OUVERT</span></td>
-                                <td class="actions"><a href="#" class="action-link">👁️</a></td>
-                            </tr>
-                            <tr>
-                                <td>CL-4A</td>
-                                <td>4ème A</td>
-                                <td>M. Thomas Petit</td>
-                                <td>35/35</td>
-                                <td><span class="status full">SATURÉ</span></td>
-                                <td class="actions"><a href="#" class="action-link">👁️</a></td>
-                            </tr>
-                            <tr>
-                                <td>CL-4B</td>
-                                <td>4ème B</td>
-                                <td>Mme. Lucie Lefebvre</td>
-                                <td>31/35</td>
-                                <td><span class="status open">OUVERT</span></td>
-                                <td class="actions"><a href="#" class="action-link">👁️</a></td>
-                            </tr>
-                            <tr>
-                                <td>CL-5A</td>
-                                <td>5ème A</td>
-                                <td>M. Pierre Morel</td>
-                                <td>30/32</td>
-                                <td><span class="status open">OUVERT</span></td>
-                                <td class="actions"><a href="#" class="action-link">👁️</a></td>
-                            </tr>
-                            <tr>
-                                <td>CL-6A</td>
-                                <td>6ème A</td>
-                                <td>Mme. Sophie Girard</td>
-                                <td>32/32</td>
-                                <td><span class="status complete">COMPLET</span></td>
-                                <td class="actions"><a href="#" class="action-link">👁️</a></td>
-                            </tr>
+                          
+                           
+                          {% endfor %}
                         </tbody>
                     </table>
                 </div>

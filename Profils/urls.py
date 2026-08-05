@@ -46,8 +46,8 @@ urlpatterns = [
     path('Deltettudiant/<int:id>/', Deltettudiant, name='Deltettudiant'),
     path('Deltprofe/<int:id>/', Deltprofe, name='Deltprofe'),
     path('Deltmatiere/<int:id>/', Deltmatiere, name='Deltmatiere'),
-
-    
+    path('UpdateClasse/<int:id>/', UpdateClasse, name='UpdateClasse'),
+    path('Deltclasse/<int:id>/', Deltclasse, name='Deltclasse'),
     path('profil_veiw/',profil_veiw , name='profil_veiw'),
     path('notes_veiw/',notes_veiw , name='notes_veiw'),
     path('mes_etudiant_veiw/',mes_etudiant_veiw , name='mes_etudiant_veiw'),

@@ -162,14 +162,12 @@ class Addmatiere(forms.ModelForm):
 class Addclasse(forms.ModelForm):
     class Meta:
              model=Classes
-             fields=['nom' ,'status']
+             fields=['nom']
              widgets={
                          'nom': forms.TextInput(attrs={
                             'placeholder': 'Entrez le nom de la classe '
                                              }),
-                        'status': forms.Select(attrs={
-                                    
-                           }),
+    
                                                   
                     }
 
