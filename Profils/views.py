@@ -136,7 +136,7 @@ def add_etudiant_view(resquest):
             id_user = form.cleaned_data.get('id_user')
             matricule = GrMatricule()
             if Etudiant.objects.filter(matricule=matricule).exists():
-                messages.error(resquest, "Erreur de génération du matricule, veuillez réessayer.")
+                messages.error(resquest, "Erreur de génération du matricule, veuillez réessayer. svp")
 
             elif Etudiant.objects.filter(id_user=id_user).exists():
                form.add_error('id_user', "ce id_user existe déjà !")
