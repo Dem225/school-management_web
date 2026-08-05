@@ -29,3 +29,7 @@ dist/
 build/
 *.egg-info/
 
+
+echo "local/" >> .gitignore
+echo "venv/" >> .gitignore
+echo "env/" >> .gitignore
