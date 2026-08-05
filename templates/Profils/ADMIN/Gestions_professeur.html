@@ -71,7 +71,8 @@
                   <th>PRENOM </th>
                   <th> classe </th>
                   <th>MATIÈRE ENSEIGNÉE</th>
-                  <th>ACTIONS</th>
+                  <th>MODIFIER</th>
+                  <th>SUPPRIMER</th>
                 </tr>
               </thead>
                 {% if messages %}
@@ -95,12 +96,16 @@
                   <td>{{prof.matiere}} </td>
                    
                   <td >
-                     <p class="viande">  <a href=" {% url 'Updateprofe' prof.id %} " style="text-decoration: none; color: black;"> modifier</a> </p>
-                    <form action="{% url "Deltprofe" prof.id %}" method="post">
-                      {% csrf_token %}
-                    <button  type='submite' style="padding: 5px; margin-left: 9px; background-color: red; border-radius: 5px; border: transparent;"> SUPPRIMER</button>
-                     </form>
+                      <p class="viande">  <a href=" {% url 'Updateprofe' prof.id %}" style="text-decoration: none; color: black;"> modifier</a> </p>
                   </td>
+                  <td>
+                      <form action="{% url "Deltprofe" prof.id %}" method="post">  
+                            {% csrf_token %}
+                          <button  type='submite' style="padding: 5px; margin-left: 9px; background-color: red; border-radius: 5px; border: transparent;"> SUPPRIMER</button>
+                       </form>
+                  <td>
+
+                      
                 </tr>
 
                  {% endfor %}

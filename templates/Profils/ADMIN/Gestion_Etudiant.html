@@ -79,7 +79,8 @@
                   <th>PRÉNOM</th>
                   <th>ÂGE</th>
                   <th>CLASSE</th>
-                  <th>ACTIONS</th>
+                  <th>MOFIERE</th>
+                  <th>SUPPRIMER</th>
                 </tr>
               </thead>
                {% if messages %}
@@ -99,15 +100,15 @@
                   <td>   {{ED.prenom}}  </td>
                   <td>    {{ED.age}}  </td>
                   <td>    {{ED.classe}}  </td>
-                  <td>
-                    <p class="viande">  <a href=" {% url 'modifier_etudiant' ED.id %} " style="text-decoration: none; color: black;"> modifier</a> </p>
-                   
-                      <form action="{% url "Deltettudiant" ED.id %}" method="post">
-                        {% csrf_token %}
-                    <button  type='submite' style="padding: 5px; margin-left: 9px; background-color: red; border-radius: 5px; border: transparent;"> SUPPRIMER</button>
-                     </form>
-                    
+                  <td >
+                      <p class="viande">  <a href="{% url 'modifier_etudiant' ED.id %}" style="text-decoration: none; color: black;"> modifier</a> </p>
                   </td>
+                  <td>
+                      <form action="{% url "Deltettudiant" ED.id %}" method="post">  
+                            {% csrf_token %}
+                          <button  type='submite' style="padding: 5px; margin-left: 9px; background-color: red; border-radius: 5px; border: transparent;"> SUPPRIMER</button>
+                       </form>
+                  <td>
 
                   
                 </tr>
@@ -117,9 +118,9 @@
               </tbody>
             </table>
           </div>
-          <div class="pagination">
+          <div class="pagination">  
            
-          </div>
+          </div>        
         </section>
         <section class="cards">
           <div class="card" id="card-total">

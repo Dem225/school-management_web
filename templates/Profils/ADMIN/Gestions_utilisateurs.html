@@ -92,8 +92,8 @@
                   <th>Rôle</th>
                   <th>Username</th>
                   <th>EMAIL</th>
-                  <th>Actions</th>
-                  
+                  <th>MOFIERE</th>
+                  <th>SUPPRIMER</th>
                 </tr>
               </thead>
 
@@ -116,13 +116,19 @@
                   <td><span class="roleBadge admin">   {{Users.role}}  </span></td>
                   <td>   {{Users.username}}  </td>
                    <td>    {{Users.email}}  </td>
-                  <td class="actions">
-                   <p class="viande">  <a href=" {% url 'UpdateUtilisateur' Users.id %} " style="text-decoration: none; color: black;"> modifier</a> </p>
-                   <form action="{% url "Deltutilisateur" Users.id %}" method="post">
-                      {% csrf_token %}
-                    <button  type="submit " style="background-color: rgb(213, 31, 31); color: black;" >Supprimer</button>
-                   </form>
+
+                   
+                  <td >
+                      <p class="viande">  <a href=" {% url 'UpdateUtilisateur' Users.id %}" style="text-decoration: none; color: black;"> modifier</a> </p>
                   </td>
+                  <td>
+                      <form action="{% url "Deltutilisateur" Users.id %}" method="post">  
+                            {% csrf_token %}
+                          <button  type='submite' style="padding: 5px; margin-left: 9px; background-color: red; border-radius: 5px; border: transparent;"> SUPPRIMER</button>
+                       </form>
+                    <td>
+
+                    
                 </tr>
                 {% endfor %}
               </tbody>
@@ -130,7 +136,7 @@
           </div>
 
           
-        </section>
+        </section>  
 
       </main>
     </div>
