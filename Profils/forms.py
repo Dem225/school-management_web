@@ -177,20 +177,16 @@ class Addclasse(forms.ModelForm):
 
 
 
-
-class Notesetudiant(forms.Form):
+class Notesetudiant(forms.ModelForm):
     class Meta:
-         model= Etudiant
-         model = Notes
-         fields=['matricule', 'notes' ]
+        model = Notes
+        fields = ['note'] # Ou ['matricule', 'note'] selon les champs de ton modèle Notes
+        
+        widgets = {
+            'note': forms.NumberInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Entrez la note'
+            })
+        }
 
 
-
-         widgets={
-                 'matricule': forms.TextInput(attrs={
-                         'placeholder': 'ENTRZ LE MATRICULE'
-                                                 }),
-                        'notes': forms.TextInput(attrs={
-                         'placeholder': 'Entrez le prenom'
-                     })
-                             }

@@ -49,7 +49,7 @@
                         <span class="icon-notification"></span>
                         <span class="icon-help"></span>
                     </div>
-                    <button class="btn-primary">+ Ajouter une note</button>
+                    <button class="btn-primary">RECHERCHE </button>  
                 </div>
             </header>
 
@@ -80,66 +80,51 @@
             </section>
 
             <section class="grades">
+                {% if messages %}
+                    <div class="messagesContainer" style="margin-bottom: 20px;">
+                        {% for message in messages %}
+                            <div class="alert {{ message.tags }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
                 <div class="table-wrap">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>MARTRICUL</th>
                                 <th>ÉTUDIANT</th>
                                 <th>NOTE /20</th>
                                 <th>DATE D'AJOUT</th>
-                                <th>ACTIONS</th>
+                                <th>ACTION</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>#29402</td>
-                                <td>Sophie Martin</td>
-                                <td><span class="grade-value fail">08.5</span></td>
-                                <td>12 Oct 2023</td>
-                                <td class="actions"><span class="icon-edit">✏️</span> <span class="icon-delete">🗑️</span></td>
-                            </tr>
-                            <tr>
-                                <td>#29415</td>
-                                <td>Thomas Lefebvre</td>
-                                <td><span class="grade-value pass">17.0</span></td>
-                                <td>12 Oct 2023</td>
-                                <td class="actions"><span class="icon-edit">✏️</span> <span class="icon-delete">🗑️</span></td>
-                            </tr>
-                            <tr>
-                                <td>#29428</td>
-                                <td>Amélie Petit</td>
-                                <td><span class="grade-value">12.5</span></td>
-                                <td>11 Oct 2023</td>
-                                <td class="actions"><span class="icon-edit">✏️</span> <span class="icon-delete">🗑️</span></td>
-                            </tr>
-                            <tr>
-                                <td>#29433</td>
-                                <td>Lucas Dubois</td>
-                                <td><span class="grade-value pass">15.5</span></td>
-                                <td>10 Oct 2023</td>
-                                <td class="actions"><span class="icon-edit">✏️</span> <span class="icon-delete">🗑️</span></td>
-                            </tr>
-                            <tr>
-                                <td>#29440</td>
-                                <td>Inès Leroy</td>
-                                <td><span class="grade-value fail">07.0</span></td>
-                                <td>09 Oct 2023</td>
-                                <td class="actions"><span class="icon-edit">✏️</span> <span class="icon-delete">🗑️</span></td>
-                            </tr>
+                            {% for n in notes %}
+                                <tr>
+                                    <td>{{ n.matricul }}</td>
+                                    <td>{{ n.etudiant.nom }} {{ n.etudiant.prenom }}</td>
+                                    <td><span class="roleBadge admin">{{ n.note }} /20</span></td>
+                                    <td>{{ n.date_ajout|default:"N/A" }}</td>
+                                    <td>
+                                        <a href="{% url 'addnotes' n.etudiant.id %}" class="btn-sm">Modifier / Gérer</a>
+                                    </td>
+                                </tr>
+                            {% empty %}
+                                <tr>
+                                    <td colspan="5" style="text-align: center;">Aucune note enregistrée pour le moment.</td>
+                                </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>
 
                 <div class="pagination">
-                    <span class="pagination-info">Affichage de 1-5 sur 24 étudiants</span>
-                    <div class="pagination-controls">
-                        <button class="page-btn">&lt;</button>
-                        <button class="page-btn">&gt;</button>
-                    </div>
+                    <span class="pagination-info">Affichage des notes enregistrées</span>
                 </div>
             </section>
-
         </main>
     </div>
 

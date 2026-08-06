@@ -13,7 +13,7 @@ from  Profils.forms  import Addetudiant
 from  Profils.forms  import Addprofesseur
 from  Profils.forms  import Addmatiere
 from  Profils.forms  import Addclasse
-
+from Relever_NA.models import Notes
 from Ecoles.models import Etudiant
 from Ecoles.models import Professeur
 from Ecoles.models import Matieres
@@ -21,7 +21,7 @@ from Ecoles.models import Classes
 
 from  Profils.forms  import Notesetudiant
 
-
+from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
 
@@ -460,7 +460,18 @@ def profil_veiw(resquest):
     return render(resquest , "Profils/PROFESSEUR/profil.html" )
 
 def notes_veiw(resquest):
-    return render(resquest , "Profils/PROFESSEUR/notes.html" )
+    try:
+        professeur = resquest.user.professeur
+    except ObjectDoesNotExist:
+        professeur = None # Ou gère le cas où le profil n'existe pas encore
+        
+    notes = Notes.objects.filter(matiere=professeur.matiere) if professeur else []
+    
+    context = {
+        'notes': notes,
+        'professeur': professeur,
+    }
+    return render(resquest , "Profils/PROFESSEUR/notes.html" , context)
 def mes_etudiant_veiw(resquest):
     return render(resquest , "Profils/PROFESSEUR/mes_etudiant.html" )
 def absence_veiw(resquest):
@@ -474,7 +485,29 @@ def absence_veiw(resquest):
 
 
 #AJOUTEZ DES NOTES A UN ETUDIANT POUR LE PROFFESSEUR
+def addnotes(request, id=None):
+    try:
+        professeur = request.user.professeur
+    except ObjectDoesNotExist:
+        professeur = None
 
+    etudiant = get_object_or_404(Etudiant, id=id) if id else None
+    matiere = professeur.matiere if professeur else None
 
-# def Notes_etude_add(resquest):
-#     form=
+    if request.method == 'POST':
+        form = Notesetudiant(request.POST)
+        if form.is_valid():
+            note_obj = form.save(commit=False)
+            note_obj.etudiant = etudiant
+            note_obj.matiere = matiere
+            note_obj.save()
+            messages.success(request, "Note ajoutée avec succès !")
+            return redirect('mes_etudiant_veiw')  
+        else:
+            messages.error(request, "Erreur : vérifiez la note saisie.")
+            return redirect('mes_etudiant_veiw')
+    else:
+        form = Notesetudiant()
+
+    context = {'form': form, 'etudiant': etudiant, 'matiere': matiere}
+    return render(request, "Profils/PROFESSEUR/addnotes.html", context)

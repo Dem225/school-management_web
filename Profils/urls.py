@@ -52,9 +52,12 @@ urlpatterns = [
     path('notes_veiw/',notes_veiw , name='notes_veiw'),
     path('mes_etudiant_veiw/',mes_etudiant_veiw , name='mes_etudiant_veiw'),
     path('absence_veiw/',absence_veiw , name='absence_veiw'),
+
+    path('addnotes/', addnotes, name='addnotes_general'),
+    path('addnotes/<int:id>/',addnotes , name='addnotes'),
+
+
     
-
-
 
     
 ]
