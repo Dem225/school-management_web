@@ -1,13 +1,14 @@
-
 {% load static %}
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Répertoire des Étudiants - Portail Enseignant</title>
     <link rel="stylesheet" href="{% static 'PROFESSEUR/css/mes_etudiant.css' %}" />
 </head>
+
 <body>
 
     <div id="app">
@@ -20,12 +21,17 @@
 
             <nav class="menu">
                 <ul>
-                    <li class="menu-item"><a href="{% url "Tableau_de_bord_professeur" %}"><span class="menu-icon"></span> Tableau de bord</a></li>
-                    <li class="menu-item active"><a href="{% url "mes_etudiant_veiw" %}"><span class="menu-icon"></span> Mes étudiants</a></li>
-                    <li class="menu-item"><a href="{% url "notes_veiw" %}"><span class="menu-icon"></span> Notes</a></li>
-                    <li class="menu-item"><a href="{% url "absence_veiw" %}"><span class="menu-icon"></span> Absences</a></li>
-                    <li class="menu-item"><a href="{% url "profil_veiw" %}"><span class="menu-icon"></span> Mon profil</a></li>
-                     <li class="menu-item "><a href="{% url "deconnexion" %}"><span class="menu-icon"></span>  DÉCONNEXION </a></li>
+                    <li class="menu-item"><a href="{% url "Tableau_de_bord_professeur" %}"><span
+                                class="menu-icon"></span> Tableau de bord</a></li>
+                    <li class="menu-item active"><a href="{% url 'mes_etudiant_veiw' %}"> Mes etudiant </li>
+                    <li class="menu-item"><a href="{% url "notes_veiw" %}"><span class="menu-icon"></span> Notes</a>
+                    </li>
+                    <li class="menu-item"><a href="{% url "absence_veiw" %}"><span class="menu-icon"></span>
+                            Absences</a></li>
+                    <li class="menu-item"><a href="{% url "profil_veiw" %}"><span class="menu-icon"></span> Mon
+                            profil</a></li>
+                    <li class="menu-item "><a href="{% url "deconnexion" %}"><span class="menu-icon"></span>
+                            DÉCONNEXION </a></li>
                 </ul>
             </nav>
 
@@ -45,13 +51,12 @@
                         <input type="text" placeholder="Rechercher un étudiant par nom ou matricule..." id="search">
                     </div>
                     <select class="filter-select">
-                        <option>Toutes les classes</option>
-                        <option>Terminale S1</option>
-                        <option>Terminal L2</option>
-                        
+
+                        <option> {{classe}} </option>
+
                     </select>
                     <div class="icons">
-                        <button class="btn-primary">RECHERCHER</button>  
+                        <button class="btn-primary">RECHERCHER</button>
                     </div>
                 </div>
             </header>
@@ -92,19 +97,38 @@
                                 <th>PRÉNOM</th>
                                 <th>CLASSE</th>
                                 <th>MOYENNE ACTUELLE</th>
-                                <th>ACTIONS</th>
+                                <th>AUJOTER NOTES</th>
+                                <th>AUJOTER ABSENCES</th>
                             </tr>
                         </thead>
+                        {% if messages %}
+                        <div class="messagesContainer">
+                            {% for message in messages %}
+                            <div class="alert {{ message.tags }}">
+                                {{ message }}
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
                         <tbody>
+                            {% for etudiant in etudiants %}
                             <tr>
-                                <td>ET 2026 001</td>
-                                <td>ARNAUD</td>
-                                <td>Sébastien</td>
-                                <td><span class="class-badge">TALE B1</span></td>
+                                <td>{{ etudiant.matricule }}</td>
+
+                                <td>{{ etudiant.nom }}</td>
+                                <td>{{ etudiant.prenom }}</td>
+                                <td><span class="class-badge">{{ etudiant.classe }}</span></td>
                                 <td>16.50 <span class="trend-icon up">↗</span></td>
-                                <td>   <button class="btn-primary">AJOUTER</button>   </td>
+                                <td><button>ajouter</button></td>
+                                <td><button>ajouter</button></td>
+                               
                             </tr>
-                            
+                            {% empty %}
+                            <tr>
+                                <td colspan="6" style="text-align: center;">Aucun étudiant enregistré pour le moment.
+                                </td>
+                            </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>
@@ -125,4 +149,5 @@
     </div>
 
 </body>
+
 </html>

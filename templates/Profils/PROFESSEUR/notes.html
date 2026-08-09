@@ -104,7 +104,7 @@
                         <tbody>
                             {% for n in notes %}
                                 <tr>
-                                    <td>{{ n.matricul }}</td>
+                                    <td>{{ n.etudiant.matricule }}</td>
                                     <td>{{ n.etudiant.nom }} {{ n.etudiant.prenom }}</td>
                                     <td><span class="roleBadge admin">{{ n.note }} /20</span></td>
                                     <td>{{ n.date_ajout|default:"N/A" }}</td>

@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render , redirect , get_object_or_404
 from django.views.generic import ListView
 from django.contrib.auth import authenticate ,login
@@ -457,30 +458,53 @@ def Deltclasse(resquest, id):
 
 
 def profil_veiw(resquest):
-    return render(resquest , "Profils/PROFESSEUR/profil.html" )
-
-def notes_veiw(resquest):
     try:
-        professeur = resquest.user.professeur
+            professeur = resquest.user.professeur
     except ObjectDoesNotExist:
-        professeur = None # Ou gère le cas où le profil n'existe pas encore
-        
-    notes = Notes.objects.filter(matiere=professeur.matiere) if professeur else []
+            professeur = None 
+    context = {
+            'professeur': professeur,
+        }
     
+    return render(resquest , "Profils/PROFESSEUR/profil.html" , context)
+@login_required
+def notes_veiw(resquest):
+
+    professeur = getattr(resquest.user, 'professeur', None)
+    
+    if professeur and professeur.matiere:
+        notes = Notes.objects.filter(matiere=professeur.matiere)
+    else:
+        notes = Notes.objects.none()
+  
     context = {
         'notes': notes,
         'professeur': professeur,
     }
     return render(resquest , "Profils/PROFESSEUR/notes.html" , context)
+
+
 def mes_etudiant_veiw(resquest):
-    return render(resquest , "Profils/PROFESSEUR/mes_etudiant.html" )
+    try:
+        professeur = resquest.user.professeur
+    except ObjectDoesNotExist:
+        professeur = None
+
+    if professeur and professeur.classe:
+        etudiants=Etudiant.objects.filter(classe=professeur.classe)
+    else:
+        etudiants=Etudiant.objects.none()
+
+
+    context={
+        'etudiants':etudiants,
+        'matieres':professeur.matiere if professeur else None,
+        'classe': professeur.classe if professeur else None
+    }
+
+    return render(resquest , "Profils/PROFESSEUR/mes_etudiant.html", context )
 def absence_veiw(resquest):
     return render(resquest , "Profils/PROFESSEUR/absence.html" )
-
-
-
-
-
 
 
 
