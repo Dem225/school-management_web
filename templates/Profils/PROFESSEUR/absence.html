@@ -102,66 +102,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    <div class="student-cell">
-                                        <span class="student-avatar dark">AL</span>
-                                        <span class="student-name">Alexandre Lefebvre</span>
-                                    </div>
-                                </td>
-                                <td>12/10/2023</td>
-                                <td>08:00 – 10:00</td>
-                                <td><span class="status unjustified">Non justifiée</span></td>
-                                <td class="actions"><a href="#" class="action-link">✏️ Modifier</a></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="student-cell">
-                                        <span class="student-avatar grey">CD</span>
-                                        <span class="student-name">Clara Dubois</span>
-                                    </div>
-                                </td>
-                                <td>11/10/2023</td>
-                                <td>Toute la journée</td>
-                                <td><span class="status tojustify">À justifier</span></td>
-                                <td class="actions"><button class="btn-mark-justified">Marquer comme justifiée</button></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="student-cell">
-                                        <span class="student-avatar dark">HM</span>
-                                        <span class="student-name">Hugo Martinez</span>
-                                    </div>
-                                </td>
-                                <td>10/10/2023</td>
-                                <td>14:00 – 16:00</td>
-                                <td><span class="status justified">Justifiée</span></td>
-                                <td class="actions"><a href="#" class="action-link">👁️ Voir certificat</a></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="student-cell">
-                                        <span class="student-avatar orange">ST</span>
-                                        <span class="student-name">Sophie Tissier</span>
-                                    </div>
-                                </td>
-                                <td>10/10/2023</td>
-                                <td>08:00 – 12:00</td>
-                                <td><span class="status tojustify">À justifier</span></td>
-                                <td class="actions"><button class="btn-mark-justified">Marquer comme justifiée</button></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="student-cell">
-                                        <span class="student-avatar dark">MB</span>
-                                        <span class="student-name">Marc Bertrand</span>
-                                    </div>
-                                </td>
-                                <td>09/10/2023</td>
-                                <td>16:00 – 18:00</td>
-                                <td><span class="status justified">Justifiée</span></td>
-                                <td class="actions"><a href="#" class="action-link">👁️ Voir certificat</a></td>
-                            </tr>
+                           {% for a in absences %}
+                                    <tr>
+                                        <td>{{ a.student.matricule }}</td>
+                                        <td>{{ a.student.nom }} {{ a.student.prenom }}</td>
+                                        <td>{{ a.date }}</td>
+                                        <td>{{ a.get_status_display }}</td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="4" style="text-align: center;">Aucune absence enregistrée.</td>
+                                    </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>

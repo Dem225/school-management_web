@@ -5,7 +5,7 @@ from Ecoles.models import Etudiant
 from Ecoles.models import Matieres 
 from Ecoles.models import Professeur
 from  Relever_NA.models import Notes
-
+from  Relever_NA.models import Absence
 
 class authis( forms.Form):
 
@@ -190,3 +190,11 @@ class Notesetudiant(forms.ModelForm):
         }
 
 
+class AbsenceForm(forms.ModelForm):
+    class Meta:
+        model = Absence
+        fields = ['date', 'status'] 
+        widgets = {
+            'date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'status': forms.Select(attrs={'class': 'form-control'}),
+        }

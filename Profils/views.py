@@ -15,13 +15,14 @@ from  Profils.forms  import Addprofesseur
 from  Profils.forms  import Addmatiere
 from  Profils.forms  import Addclasse
 from Relever_NA.models import Notes
+from Relever_NA.models import Absence
 from Ecoles.models import Etudiant
 from Ecoles.models import Professeur
 from Ecoles.models import Matieres
 from Ecoles.models import Classes
 
-from  Profils.forms  import Notesetudiant
-
+from  Profils.forms  import Notesetudiant   
+from  Profils.forms  import AbsenceForm
 from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
@@ -467,21 +468,38 @@ def profil_veiw(resquest):
         }
     
     return render(resquest , "Profils/PROFESSEUR/profil.html" , context)
-@login_required
-def notes_veiw(resquest):
 
-    professeur = getattr(resquest.user, 'professeur', None)
+
+
+def notes_veiw(resquest): 
+    try:
+        professeur = resquest.user.professeur
+    except:
+        professeur = None
     
+   
+    note = []
+    etudiants = []
+
     if professeur and professeur.matiere:
-        notes = Notes.objects.filter(matiere=professeur.matiere)
-    else:
-        notes = Notes.objects.none()
-  
+       
+        note = Notes.objects.filter(matiere_id=professeur.matiere_id)
+        
+    if professeur and hasattr(professeur, 'classe') and professeur.classe:
+        etudiants = Etudiant.objects.filter(classe=professeur.classe)
+    
     context = {
-        'notes': notes,
+        'note': note,
         'professeur': professeur,
+        'etudiants': etudiants
     }
-    return render(resquest , "Profils/PROFESSEUR/notes.html" , context)
+    return render(resquest, "Profils/PROFESSEUR/notes.html", context)
+
+
+
+
+
+
 
 
 def mes_etudiant_veiw(resquest):
@@ -503,13 +521,26 @@ def mes_etudiant_veiw(resquest):
     }
 
     return render(resquest , "Profils/PROFESSEUR/mes_etudiant.html", context )
-def absence_veiw(resquest):
-    return render(resquest , "Profils/PROFESSEUR/absence.html" )
+
+def absence_veiw(request):
+    try:
+        professeur = request.user.professeur
+    except:
+        professeur = None
+
+    absences = []
+    if professeur and hasattr(professeur, 'classe') and professeur.classe:
+        etudiants = Etudiant.objects.filter(classe=professeur.classe)
+        absences = Absence.objects.filter(student__in=etudiants)
+
+    context = {'absences': absences}
+    return render(request , "Profils/PROFESSEUR/absence.html" , context )
 
 
 
 #AJOUTEZ DES NOTES A UN ETUDIANT POUR LE PROFFESSEUR
 def addnotes(request, id=None):
+    
     try:
         professeur = request.user.professeur
     except ObjectDoesNotExist:
@@ -519,19 +550,66 @@ def addnotes(request, id=None):
     matiere = professeur.matiere if professeur else None
 
     if request.method == 'POST':
+        etudiant_id = id or request.POST.get('etudiant_id')
+        etudiant = get_object_or_404(Etudiant, id=etudiant_id) if etudiant_id else None
+
+        if etudiant is None or matiere is None:
+            messages.error(request, "Impossible d'ajouter la note : étudiant ou matière introuvable.")
+            return redirect('mes_etudiant_veiw')
+
         form = Notesetudiant(request.POST)
         if form.is_valid():
             note_obj = form.save(commit=False)
-            note_obj.etudiant = etudiant
-            note_obj.matiere = matiere
+            note_obj.matricule = etudiant     
+            note_obj.matiere_id = matiere       
             note_obj.save()
             messages.success(request, "Note ajoutée avec succès !")
-            return redirect('mes_etudiant_veiw')  
+            return redirect('mes_etudiant_veiw')
         else:
             messages.error(request, "Erreur : vérifiez la note saisie.")
-            return redirect('mes_etudiant_veiw')
+
     else:
         form = Notesetudiant()
 
     context = {'form': form, 'etudiant': etudiant, 'matiere': matiere}
     return render(request, "Profils/PROFESSEUR/addnotes.html", context)
+
+
+
+
+def addabsence(request, id=None):
+    try:
+        professeur = request.user.professeur
+    except ObjectDoesNotExist:
+        professeur = None
+
+    etudiant = get_object_or_404(Etudiant, id=id) if id else None
+
+    if request.method == 'POST':
+        etudiant_id = id or request.POST.get('etudiant_id')
+        etudiant = get_object_or_404(Etudiant, id=etudiant_id) if etudiant_id else None
+
+        if etudiant is None:
+            messages.error(request, "Impossible d'ajouter l'absence : étudiant introuvable.")
+            return redirect('mes_etudiant_veiw')
+
+        form = AbsenceForm(request.POST)
+        if form.is_valid():
+            absence_obj = form.save(commit=False)
+            absence_obj.student = etudiant   
+            absence_obj.save()
+            messages.success(request, "Absence ajoutée avec succès !")
+            return redirect('mes_etudiant_veiw')
+        else:
+            messages.error(request, "Erreur : vérifiez les champs saisis.")
+
+    else:
+        form = AbsenceForm()
+
+    context = {'form': form, 'etudiant': etudiant}
+    return render(request, "Profils/PROFESSEUR/addabsence.html", context)
+
+
+
+
+

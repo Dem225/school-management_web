@@ -117,13 +117,13 @@
 
                                 <td>{{ etudiant.nom }}</td>
                                 <td>{{ etudiant.prenom }}</td>
-                                <td><span class="class-badge">{{ etudiant.classe }}</span></td>
+                                <td><span class="class-badge">{{ etudiant.classe }}</span></td>   
                                 <td>16.50 <span class="trend-icon up">↗</span></td>
-                                <td><button>ajouter</button></td>
-                                <td><button>ajouter</button></td>
+                                <td> <button style="padding: 7px;border:transparent; background-color: rgb(11, 193, 248); border-radius: 5px;"> <a href="{% url "addnotes" id=etudiant.id %}" style="text-decoration: none; color: black; padding: 10px;"> ajouter   </a>    </button></td>
+                                <td><button style="padding: 7px; border:transparent;background-color: rgb(11, 193, 248); border-radius: 5px;"> <a href="{% url "addabsence" id=etudiant.id %}" style="text-decoration: none; color: black; padding: 10px;"> ajouter   </a>  </button></td>
                                
                             </tr>
-                            {% empty %}
+                            {% empty %} 
                             <tr>
                                 <td colspan="6" style="text-align: center;">Aucun étudiant enregistré pour le moment.
                                 </td>

@@ -56,7 +56,7 @@ urlpatterns = [
     path('addnotes/', addnotes, name='addnotes_general'),
     path('addnotes/<int:id>/',addnotes , name='addnotes'),
 
-
+    path('addabsence/<int:id>/', addabsence, name='addabsence'),
     
 
     

@@ -67,16 +67,16 @@
 
             {% for field in form %}
             <div class="formGroup">
-              {{ field.label_tag }}
-              {{ field }}
-              {% if field.errors %}
-              <span class="fieldError">{{ field.errors|striptags }}</span>
-              {% endif %}
+                {{ field.label_tag }}
+                {{ field }}
+                {% if field.errors %}
+                <span class="fieldError">{{ field.errors|striptags }}</span>
+                {% endif %}
             </div>
             {% endfor %}
 
             <div class="formGroup submitGroup">
-              <button type="submit" class="btnAdd">Ajouter</button>
+                <button type="submit" class="btnAdd">Ajouter</button>
             </div>
         </form>
         </div>
