@@ -95,23 +95,45 @@
                         <thead>
                             <tr>
                                 <th>MATRICULE</th> 
-                                <th>ÉTUDIANT</th>
+                                <th>NOM</th>
+                                <th>PRENOM</th>
                                 <th>NOTE /20</th>
-                                <th>DATE D'AJOUT</th>
-                                <th>ACTION</th>
+                                <th>DATE</th>
+                                <th>MODIFIERE</th>
+                                <th>SUPPRIMER</th>
                             </tr>
                         </thead>
+
+                  {% if messages %}
+                        <div class="messagesContainer">
+                        {% for message in messages %}
+                            <div class="alert {{ message.tags }}">
+                            {{ message }}
+                            </div>
+                        {% endfor %}
+                        </div>
+                    {% endif %}
                         <tbody>
                             {% for n in note %}
                                 <tr>
                                     <td>{{ n.matricule.matricule }}</td>
-                                    <td>{{ n.matricule.nom }} {{ n.matricule.prenom }}</td>
+                                    <td>{{ n.matricule.nom }} </td>   
+                                    <td>{{ n.matricule.prenom }} </td>
                                     <td><span class="roleBadge admin">{{ n.note }} /20</span></td>
-                                    <td>{{ n.date_ajout|default:"N/A" }}</td>
+                                    <td>{{ n.date}}</td>
                                     <td>
-                                        <a href="#" class="btn-sm">Modifier / Gérer</a>
+                                        <a href="{% url 'UpdateEtudiant_note' id=n.id %}" style="text-decoration: none; color: black;">Modifier</a>
+                                    <td>
+                                    
+                                    <td>  
+                                        <form action="{% url "Deltnote" id=n.id %}" method="post">
+                                                {% csrf_token %}
+                                                <button  type='submite' style="padding: 7px; border:transparent;background-color: rgb(255, 0, 0); border-radius: 5px;"> SUPPRIMER</button>
+                                        </form>
                                     </td>
                                 </tr>
+
+
                             {% empty %}
                                 <tr>
                                     <td colspan="5" style="text-align: center;">Aucune note enregistrée pour le moment.</td>

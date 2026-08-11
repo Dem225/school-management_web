@@ -532,13 +532,23 @@ def absence_veiw(request):
     if professeur and hasattr(professeur, 'classe') and professeur.classe:
         etudiants = Etudiant.objects.filter(classe=professeur.classe)
         absences = Absence.objects.filter(student__in=etudiants)
+        status_filter = request.GET.get('status')
+        if status_filter is not None and status_filter != '':
+            absences = absences.filter(status=status_filter)
 
-    context = {'absences': absences}
+
+    context = {
+        'absences': absences,
+        'statut_choices': Absence.STATUT_CHOICES, 
+        'status_filter': request.GET.get('status', ''), 
+    }
     return render(request , "Profils/PROFESSEUR/absence.html" , context )
 
 
 
+
 #AJOUTEZ DES NOTES A UN ETUDIANT POUR LE PROFFESSEUR
+
 def addnotes(request, id=None):
     
     try:
@@ -558,16 +568,16 @@ def addnotes(request, id=None):
             return redirect('mes_etudiant_veiw')
 
         form = Notesetudiant(request.POST)
+    
         if form.is_valid():
             note_obj = form.save(commit=False)
             note_obj.matricule = etudiant     
-            note_obj.matiere_id = matiere       
+            note_obj.matiere_id = matiere  
             note_obj.save()
             messages.success(request, "Note ajoutée avec succès !")
             return redirect('mes_etudiant_veiw')
         else:
             messages.error(request, "Erreur : vérifiez la note saisie.")
-
     else:
         form = Notesetudiant()
 
@@ -613,3 +623,93 @@ def addabsence(request, id=None):
 
 
 
+#MODIFIERE NOTES & ABCENCE  DES ETUDAINTS
+def UpdateEtudiant_note(request, id):
+    try:
+        professeur = request.user.professeur
+    except ObjectDoesNotExist:
+        professeur = None
+
+    note_obj = get_object_or_404(Notes, id=id)
+
+    if request.method == "POST":
+        form = Notesetudiant(request.POST, instance=note_obj)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "MODIFICATION EFFECTUÉE AVEC SUCCÈS")
+            return redirect('notes_veiw')
+        else:
+            messages.error(request, "Erreur : vérifiez la note saisie.")
+    else:
+        form = Notesetudiant(instance=note_obj)
+
+    context = {
+        'form': form,
+        'note_obj': note_obj
+    }
+    return render(request, "Profils/PROFESSEUR/modifiere_note.html", context)
+
+
+def UpdateEtudiant_absente(request, id):
+    
+    try:
+        professeur = request.user.professeur
+    except ObjectDoesNotExist:
+        professeur = None
+
+    absence_obj = get_object_or_404(Absence, id=id)
+
+    if request.method == "POST":
+        form = AbsenceForm(request.POST, instance=absence_obj)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "MODIFICATION EFFECTUÉE AVEC SUCCÈS")
+            return redirect('absence_veiw')
+        else:
+            messages.error(request, "Erreur : vérifiez les champs saisis.")
+    else:
+        form = AbsenceForm(instance=absence_obj)
+
+    context = {
+        'form': form,
+        'absence_obj': absence_obj
+    }
+    return render(request, "Profils/PROFESSEUR/modifiere_absence.html", context)
+
+
+
+
+
+#SUPPRIMER NOTES ABSENCE
+
+
+def Deltabsence(request, id):
+    try:
+        professeur = request.user.professeur
+    except ObjectDoesNotExist:
+        professeur = None
+
+    if request.method == "POST":
+        absence = get_object_or_404(Absence, id=id)
+        absence.delete()
+        messages.success(request, "Absence supprimée avec succès")
+        return redirect("absence_veiw")
+
+    messages.error(request, "Suppression impossible : requête invalide.")
+    return redirect("absence_veiw")
+
+
+def Deltnote(request, id):
+    try:
+        professeur = request.user.professeur
+    except ObjectDoesNotExist:
+        professeur = None
+
+    if request.method == "POST":
+        note = get_object_or_404(Notes, id=id)
+        note.delete()
+        messages.success(request, "Note supprimée avec succès")
+        return redirect("notes_veiw")
+
+    messages.error(request, "Suppression impossible : requête invalide.")
+    return redirect("notes_veiw")

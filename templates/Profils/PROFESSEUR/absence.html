@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suivi des Absences - Portail Enseignant</title>
-  <link rel="stylesheet" href="{% static 'PROFESSEUR/css/absence.css' %}" />
+    <link rel="stylesheet" href="{% static 'PROFESSEUR/css/absence.css' %}"/>
 </head>
 <body>
 
@@ -94,20 +94,42 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>ÉTUDIANT</th>
+                                <th>MATRICULE</th>
+                                <th>NON</th>
+                                <th>PRENON</th>
                                 <th>DATE</th>
                                 <th>HEURES</th>
                                 <th>STATUT</th>
-                                <th>ACTIONS</th>
+                                <th>MODIFIER</th>
+                                <th>SUPPRIMER</th>
                             </tr>
                         </thead>
+                        
+                        {% if messages %}
+                        <div class="messagesContainer">
+                        {% for message in messages %}
+                            <div class="alert {{ message.tags }}">
+                            {{ message }}
+                            </div>
+                        {% endfor %}
+                        </div>
+                        {% endif %}
                         <tbody>
                            {% for a in absences %}
                                     <tr>
                                         <td>{{ a.student.matricule }}</td>
-                                        <td>{{ a.student.nom }} {{ a.student.prenom }}</td>
+                                        <td>{{ a.student.nom }}</td>
+                                        <td>{{ a.student.prenom }}</td>
                                         <td>{{ a.date }}</td>
+                                        <td>{{ a.heure }}</td>
                                         <td>{{ a.get_status_display }}</td>
+                                        <td> <a href="{% url 'UpdateEtudiant_absente' id=a.id %}" style="text-decoration: none; color: black;">Modifier </a></td>
+                                        <td>
+                                        <form action="{% url "Deltabsence" id=a.id %}" method="post">
+                                                {% csrf_token %}
+                                                <button  type='submite' style="padding: 7px; border:transparent;background-color: rgb(255, 0, 0); border-radius: 5px;"> SUPPRIMER</button>
+                                        </form>
+                                    </td>
                                     </tr>
                                     {% empty %}
                                     <tr>
@@ -132,7 +154,7 @@
 
             <section class="bottom-section">
                 <div class="activity-feed">
-                    <h4 class="activity-feed-title">🕐 Dernières activités</h4>
+                    <h4 class="activity-feed-title">Dernières activités</h4>
                     <div class="activity-item">
                         <span class="activity-text">Absence justifiée pour Emma Bernard</span>
                         <span class="activity-time">Il y a 2 heures — par Admin Delcourt</span>

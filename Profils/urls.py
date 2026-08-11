@@ -58,8 +58,11 @@ urlpatterns = [
 
     path('addabsence/<int:id>/', addabsence, name='addabsence'),
     
+    path('UpdateEtudiant_absente/<int:id>/', UpdateEtudiant_absente, name='UpdateEtudiant_absente'),
+    path('UpdateEtudiant_note/<int:id>/', UpdateEtudiant_note, name='UpdateEtudiant_note'),
 
-    
+    path('Deltabsence/<int:id>/', Deltabsence, name='Deltabsence'),
+    path('Deltnote/<int:id>/', Deltnote, name='Deltnote'),
 ]
 
 
