@@ -24,15 +24,15 @@
                     <li class="menu-item"><a href="{% url "notes_veiw" %}"><span class="menu-icon"></span> Notes</a></li>
                     <li class="menu-item"><a href="{% url "absence_veiw" %}"><span class="menu-icon"></span> Absences</a></li>
                     <li class="menu-item active"><a href="{% url "profil_veiw" %}"><span class="menu-icon"></span> Mon profil</a></li>
-                    <li class="menu-item "><a href="{% url "deconnexion" %}"><span class="menu-icon"></span> DÉCONNEXION </a></li>
                 </ul>
             </nav>
 
             <div class="sidebar-profile">
                 <span class="profile-avatar"></span>
                 <div class="profile-info">
-                    <span class="profile-name">J.P. Dupont</span>
-                    <span class="profile-role">Mathématiques</span>
+                   <li style="list-style-type: none;">
+                            <a href="{% url "deconnexion" %}" style="text-decoration: none; color: white; font-size: 14px; ">
+                            DÉCONNEXION </a></li>
 
                     
                 </div>

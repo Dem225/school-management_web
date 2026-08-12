@@ -24,7 +24,7 @@ from Ecoles.models import Classes
 from  Profils.forms  import Notesetudiant   
 from  Profils.forms  import AbsenceForm
 from django.core.exceptions import ObjectDoesNotExist
-
+from django.db.models import Avg
 # Create your views here.
 
 def Authantification (request):
@@ -271,14 +271,6 @@ def  Gestion_statistique(resquest):
 def  Gestions_absence(resquest):
     return render(resquest,"Profils/ADMIN/Gestions_absence.html" )
 
-def Voirnote_etd(resquest):
-    return render (resquest,"Profils/ETUDIANT/Mes_notes.html")
-def Voir_absences_etd(resquest):
-    return render (resquest,"Profils/ETUDIANT/Mes_absences.html")
-def Voirprofil_etd(resquest):
-    return render (resquest,"Profils/ETUDIANT/Mon_profil.html")
-
-
 
 #information des untilisateur admin 
 
@@ -474,19 +466,21 @@ def profil_veiw(resquest):
 def notes_veiw(resquest): 
     try:
         professeur = resquest.user.professeur
+
+        note = []
+        etudiants = []
+    
+        if professeur and professeur.matiere:
+           
+            note = Notes.objects.filter(matiere_id=professeur.matiere_id)
+            
+        if professeur and hasattr(professeur, 'classe') and professeur.classe:
+            etudiants = Etudiant.objects.filter(classe=professeur.classe)
+        
     except:
         professeur = None
     
    
-    note = []
-    etudiants = []
-
-    if professeur and professeur.matiere:
-       
-        note = Notes.objects.filter(matiere_id=professeur.matiere_id)
-        
-    if professeur and hasattr(professeur, 'classe') and professeur.classe:
-        etudiants = Etudiant.objects.filter(classe=professeur.classe)
     
     context = {
         'note': note,
@@ -499,28 +493,34 @@ def notes_veiw(resquest):
 
 
 
+def mes_etudiant_veiw(request):
+    professeur = None
+    etudiants = Etudiant.objects.none()
 
-
-
-def mes_etudiant_veiw(resquest):
     try:
-        professeur = resquest.user.professeur
+        professeur = request.user.professeur
+        if professeur and professeur.classe:
+            etudiants = Etudiant.objects.filter(classe=professeur.classe)
+            
+            for etu in etudiants:
+             
+                etu.note_list = Notes.objects.filter(matricule=etu, matiere_id=professeur.matiere)
+
+                etu.moyenne = Notes.objects.filter(
+                    matricule=etu,
+                    matiere_id=professeur.matiere
+                ).aggregate(moyenne=Avg('note'))['moyenne']
+                
     except ObjectDoesNotExist:
         professeur = None
 
-    if professeur and professeur.classe:
-        etudiants=Etudiant.objects.filter(classe=professeur.classe)
-    else:
-        etudiants=Etudiant.objects.none()
-
-
-    context={
-        'etudiants':etudiants,
-        'matieres':professeur.matiere if professeur else None,
-        'classe': professeur.classe if professeur else None
+    context = {
+        'etudiants': etudiants,
+        'matieres': professeur.matiere if professeur else None,
+        'classe': professeur.classe if professeur else None,
     }
 
-    return render(resquest , "Profils/PROFESSEUR/mes_etudiant.html", context )
+    return render(request, "Profils/PROFESSEUR/mes_etudiant.html", context)
 
 def absence_veiw(request):
     try:
@@ -713,3 +713,38 @@ def Deltnote(request, id):
 
     messages.error(request, "Suppression impossible : requête invalide.")
     return redirect("notes_veiw")
+
+
+
+
+
+
+
+
+#GERETIONS DE ETUDIANT VOIR LES NOTES ABSCENCE ET PROFIL 
+
+def Voirnote_etd(resquest):
+    return render (resquest,"Profils/ETUDIANT/Mes_notes.html")
+def Voir_absences_etd(resquest):
+    return render (resquest,"Profils/ETUDIANT/Mes_absences.html")
+
+
+
+
+
+
+def Voirprofil_etd(resquest):
+    return render (resquest,"Profils/ETUDIANT/Mon_profil.html")
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -30,15 +30,18 @@
                             Absences</a></li>
                     <li class="menu-item"><a href="{% url "profil_veiw" %}"><span class="menu-icon"></span> Mon
                             profil</a></li>
-                    <li class="menu-item "><a href="{% url "deconnexion" %}"><span class="menu-icon"></span>
-                            DÉCONNEXION </a></li>
                 </ul>
             </nav>
 
             <div class="sidebar-profile">
                 <span class="profile-avatar"></span>
                 <div class="profile-info">
-                    <span class="profile-name">Jean Dupont</span>
+                    <span class="profile-name">  
+
+                         <li style="list-style-type: none;">
+                            <a href="{% url "deconnexion" %}" style="text-decoration: none; color: white; ">
+                            DÉCONNEXION </a></li>
+                    </span>
                 </div>
             </div>
         </aside>
@@ -118,7 +121,7 @@
                                 <td>{{ etudiant.nom }}</td>
                                 <td>{{ etudiant.prenom }}</td>
                                 <td><span class="class-badge">{{ etudiant.classe }}</span></td>   
-                                <td>16.50 <span class="trend-icon up">↗</span></td>
+                                <td> {{etudiant.moyenne}} </td>
                                 <td> <button style="padding: 7px;border:transparent; background-color: rgb(11, 193, 248); border-radius: 5px;"> <a href="{% url "addnotes" id=etudiant.id %}" style="text-decoration: none; color: black; padding: 10px;"> ajouter   </a>    </button></td>
                                 <td><button style="padding: 7px; border:transparent;background-color: rgb(11, 193, 248); border-radius: 5px;"> <a href="{% url "addabsence" id=etudiant.id %}" style="text-decoration: none; color: black; padding: 10px;"> ajouter   </a>  </button></td>
                                
