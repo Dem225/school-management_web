@@ -110,7 +110,7 @@
             <table class="table">
               <thead>
                 <tr>
-                  <th>ID</th>
+                  <th>N°</th>
                   <th>NOM DE LA MATIÈRE</th>
                   <th>PROFESSEUR AFFECTÉ</th>
                   <th>MODIFIER</th>
@@ -129,7 +129,7 @@
               <tbody>
                 {% for GS in gsmath %}
                   <tr>
-                    <td>{{ GS.id }}</td>
+                    <td> {{forloop.counter}} </td>
                     <td>{{ GS.nom }}</td> 
                     <td>
                       <span class="professor">

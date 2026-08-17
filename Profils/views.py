@@ -545,8 +545,6 @@ def absence_veiw(request):
     return render(request , "Profils/PROFESSEUR/absence.html" , context )
 
 
-
-
 #AJOUTEZ DES NOTES A UN ETUDIANT POUR LE PROFFESSEUR
 
 def addnotes(request, id=None):
@@ -585,8 +583,6 @@ def addnotes(request, id=None):
     return render(request, "Profils/PROFESSEUR/addnotes.html", context)
 
 
-
-
 def addabsence(request, id=None):
     try:
         professeur = request.user.professeur
@@ -618,8 +614,6 @@ def addabsence(request, id=None):
 
     context = {'form': form, 'etudiant': etudiant}
     return render(request, "Profils/PROFESSEUR/addabsence.html", context)
-
-
 
 
 
@@ -677,9 +671,6 @@ def UpdateEtudiant_absente(request, id):
     return render(request, "Profils/PROFESSEUR/modifiere_absence.html", context)
 
 
-
-
-
 #SUPPRIMER NOTES ABSENCE
 
 
@@ -723,18 +714,62 @@ def Deltnote(request, id):
 
 #GERETIONS DE ETUDIANT VOIR LES NOTES ABSCENCE ET PROFIL 
 
-def Voirnote_etd(resquest):
-    return render (resquest,"Profils/ETUDIANT/Mes_notes.html")
-def Voir_absences_etd(resquest):
-    return render (resquest,"Profils/ETUDIANT/Mes_absences.html")
 
+def Voirnote_etd(request):
+    etudiants = Etudiant.objects.none()
+    etudiant = None
+    notes = Notes.objects.none()  
 
+    try:
+        etudiant = request.user.etudiant
+        notes = Notes.objects.filter(matricule=etudiant)
+        moyenne = Notes.objects.filter(
+                    matricule=etudiant,
+                ).aggregate(moyenne=Avg('note'))['moyenne']
+        
+                
+    except ObjectDoesNotExist:
+        pass  
 
+    context = {
+        'etudiant': etudiant,
+        'notes': notes,
+        'moyenne': moyenne, 
+        'etudiants': etudiants,
+        
+    }
+    return render(request, "Profils/ETUDIANT/Mes_notes.html", context)
 
+def Voir_absences_etd(request):
+    etudiants = Etudiant.objects.none()
+    etudiant = None
+    absence = Absence.objects.none()  
 
+    try:
+        etudiant = request.user.etudiant
+        absence = Absence.objects.filter(student=etudiant)
+    except ObjectDoesNotExist:
+        pass  
+
+    context = {
+        'etudiant': etudiant,
+        'absence': absence,
+        'etudiants': etudiants
+    }
+    return render(request, "Profils/ETUDIANT/Mes_absences.html", context)
 
 def Voirprofil_etd(resquest):
-    return render (resquest,"Profils/ETUDIANT/Mon_profil.html")
+    etudiants = Etudiant.objects.none()
+    etudiant = None
+    try:
+               etudiant = resquest.user.etudiant
+    except ObjectDoesNotExist:
+                etudiant = None 
+    context = {
+                'etudiant': etudiant,
+                'etudiants':etudiants
+            }
+    return render (resquest,"Profils/ETUDIANT/Mon_profil.html" , context)
 
 
 

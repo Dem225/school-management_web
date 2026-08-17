@@ -23,6 +23,7 @@ class Absence(models.Model):
     student = models.ForeignKey(Etudiant, on_delete=models.CASCADE, related_name='absences')
     date = models.DateField()
     heure = models.DateTimeField(default=timezone.now)
+    matiere = models.ForeignKey(Matieres, on_delete=models.CASCADE, related_name='etudiant', null=True)
     status = models.IntegerField(choices=STATUT_CHOICES, default=0)
 
     def __str__(self):

@@ -73,45 +73,30 @@
                             <th>MATIÈRE</th>
                             <th>NOTE /20</th>
                             <th>DATE</th>
+                            <th> RECLAMATIONS </th>
                         </tr>
                     </thead>
-                    <tbody>
+                   <tbody>
+                        {% for ETB in notes %}
                         <tr>
-                            <td>Mathématiques Expert</td>
-                            <td>16.5</td>
-                            <td>05/10/2023</td>
+                          
+                            <td>{{ ETB.matiere_id }}</td> 
+                            
+                            <td>{{ ETB.note }}</td> 
+                            <td>{{ ETB.date|date:"d/m/Y" }}</td>
+                            
                         </tr>
+                        {% empty %}
                         <tr>
-                            <td>Physique-Chimie</td>
-                            <td>14.2</td>
-                            <td>02/10/2023</td>
+                            <td colspan="4" class="text-center">Aucune note disponible.</td>
                         </tr>
-                        <tr>
-                            <td>Philosophie</td>
-                            <td>11.0</td>
-                            <td>28/09/2023</td>
-                        </tr>
-                        <tr>
-                            <td>Histoire-Géographie</td>
-                            <td class="grade-fail">08.5</td>
-                            <td>25/09/2023</td>
-                        </tr>
-                        <tr>
-                            <td>Anglais (LV1)</td>
-                            <td>17.0</td>
-                            <td>20/09/2023</td>
-                        </tr>
-                        <tr>
-                            <td>Espagnol (LV2)</td>
-                            <td>13.0</td>
-                            <td>15/09/2023</td>
-                        </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
 
                 <div class="average-box">
                     <span class="average-label">MA MOYENNE GÉNÉRALE</span>
-                    <div class="average-value">14.2 <span class="unit">/20</span></div>
+                    <div class="average-value"> {{moyenne}} <span class="unit">/20</span></div>
                     <span class="status status-ok">Validé par le rectorat</span>
                 </div>
             </section>

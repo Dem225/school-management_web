@@ -60,7 +60,7 @@
                 <div class="profile-left">
                     <img class="profile-picture" src="./souce_index/IMAGES/jean.jpeg" alt="Jean Dupont">
                     <span class="profile-label">IDENTIFIANT UNIQUE</span>
-                    <span class="profile-id">ET-2026-001</span>
+                    <span class="profile-id"> {{etudiant.matricule}} </span>
                     <span class="tag">ACTIF / RÉGULIER</span>
 
                     <h4 class="stats-title">Statistiques</h4>
@@ -79,25 +79,25 @@
                 <div class="profile-right">
                     <div class="profile-right-top">
                         <span class="profile-label">INFORMATIONS CIVILES</span>
-                        <span class="tag">3ème A</span>
+                        <span class="tag"> {{etudiant.classe}} </span>
                     </div>
-                    <h3 class="profile-fullname">DUPONT Jean</h3>
+                    <h3 class="profile-fullname">{{etudiant.nom}}</h3>
 
                     <div class="fields-row">
                         <div class="field">
                             <span class="profile-label">NOM DE FAMILLE</span>
-                            <span class="field-value">Dupont</span>
+                            <span class="field-value">{{etudiant.nom}}</span>
                         </div>
                         <div class="field">
                             <span class="profile-label">PRÉNOM</span>
-                            <span class="field-value">Jean</span>
+                            <span class="field-value">{{etudiant.prenom}}</span>
                         </div>
                     </div>
 
                     <div class="fields-row">
                         <div class="field">
                             <span class="profile-label">ÂGE RÉVOLU</span>
-                            <span class="field-value">15 ans</span>
+                            <span class="field-value">{{etudiant.age}}</span>
                         </div>
                         <div class="field">
                             <span class="profile-label">DATE DE NAISSANCE</span>

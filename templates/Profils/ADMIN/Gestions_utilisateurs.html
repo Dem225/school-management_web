@@ -87,7 +87,7 @@
             <table class="table">
               <thead>
                 <tr>
-                  <th>ID</th>
+                  <th>N°</th>
                   <th>Nom</th>
                   <th>Rôle</th>
                   <th>Username</th>
@@ -111,7 +111,7 @@
                 {% for Users in Utilisateurs %}
                 
                 <tr>
-                  <td> {{Users.id}} </td>
+                  <td> {{forloop.counter}} </td>
                   <td>    {{Users.last_name}}  </td>
                   <td><span class="roleBadge admin">   {{Users.role}}  </span></td>
                   <td>   {{Users.username}}  </td>

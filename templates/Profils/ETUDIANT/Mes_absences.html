@@ -90,42 +90,18 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {% for abs in absence %}
                         <tr>
-                            <td>14 Nov 2023</td>
-                            <td>Mathématiques Avancées</td>
-                            <td>2 Heures</td>
-                            <td><span class="status status-wait">À justifier</span></td>
+                            <td> {{abs.date}} </td>
+                            <td>{{ abs.matiere}}</td>
+                            <td>{{ abs.heure}}</td>
+                            <td><span class="status status-wait">{{ abs.status|default:"Non justifié" }}</span></td>
                         </tr>
+                       {% empty %}
                         <tr>
-                            <td>12 Nov 2023</td>
-                            <td>Littérature Française</td>
-                            <td>1 Heure</td>
-                            <td><span class="status status-ok">Justifiée</span></td>
+                            <td colspan="4" class="text-center">Aucune note disponible.</td>
                         </tr>
-                        <tr>
-                            <td>08 Nov 2023</td>
-                            <td>Physique-Chimie</td>
-                            <td>3 Heures</td>
-                            <td><span class="status status-bad">Non justifiée</span></td>
-                        </tr>
-                        <tr>
-                            <td>05 Nov 2023</td>
-                            <td>Histoire-Géographie</td>
-                            <td>1 Heure</td>
-                            <td><span class="status status-ok">Justifiée</span></td>
-                        </tr>
-                        <tr>
-                            <td>02 Nov 2023</td>
-                            <td>Anglais (LV1)</td>
-                            <td>2 Heures</td>
-                            <td><span class="status status-wait">À justifier</span></td>
-                        </tr>
-                        <tr>
-                            <td>28 Oct 2023</td>
-                            <td>Philosophie</td>
-                            <td>4 Heures</td>
-                            <td><span class="status status-ok">Justifiée</span></td>
-                        </tr>
+                      {% endfor %}
                     </tbody>
                 </table>
 

@@ -66,7 +66,7 @@
             <table class="table">
               <thead>
                 <tr>
-                  <th>ID PROFESSEUR</th>
+                  <th>N°</th>
                   <th>NOM </th>
                   <th>PRENOM </th>
                   <th> classe </th>
@@ -89,7 +89,7 @@
                  {% for prof in professeurs %}
 
                 <tr>
-                  <td>{{prof.id}} </td>
+                  <td> {{forloop.counter}} </td>
                   <td>{{prof.nom}} </td>
                   <td>{{prof.prenom}} </td>
                   <td>{{prof.classe}} </td>
