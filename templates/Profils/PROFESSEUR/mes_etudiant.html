@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Répertoire des Étudiants - Portail Enseignant</title>
     <link rel="stylesheet" href="{% static 'PROFESSEUR/css/mes_etudiant.css' %}" />
+     <link rel="stylesheet" href="{% static 'ADMIN/css/Gestions_utilisateur.css' %}">
 </head>
 
 <body>
@@ -104,15 +105,15 @@
                                 <th>AUJOTER ABSENCES</th>
                             </tr>
                         </thead>
-                        {% if messages %}
-                        <div class="messagesContainer">
-                            {% for message in messages %}
-                            <div class="alert {{ message.tags }}">
-                                {{ message }}
-                            </div>
-                            {% endfor %}
-                        </div>
-                        {% endif %}
+                          {% if messages %}
+                                <div class="messagesContainer">
+                                {% for message in messages %}
+                                    <div class="alert {{ message.tags }}">
+                                    {{ message }}
+                                    </div>
+                                {% endfor %}
+                                </div>
+                            {% endif %}
                         <tbody>
                             {% for etudiant in etudiants %}
                             <tr>

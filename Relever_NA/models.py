@@ -1,7 +1,7 @@
-from django.db import models
+from  django.db import models
 from  Ecoles.models import Matieres
 from  Ecoles.models import Etudiant
-from django.utils import timezone
+from  django.utils import timezone
 # Create your models here.
 
 

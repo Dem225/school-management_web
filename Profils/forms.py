@@ -198,9 +198,10 @@ class Notesetudiant(forms.ModelForm):
 class AbsenceForm(forms.ModelForm):
     class Meta:
         model = Absence
-        fields = ['date', 'status', 'heure']
+        fields = ['date', 'status', 'heure' , 'matiere']
         widgets = {
             'date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
             'status': forms.Select(attrs={'class': 'form-control'}),
             'heure': forms.DateTimeInput(attrs={'type': 'datetime-local', 'class': 'form-control'}),
+            'matiere': forms.Select(attrs={'class': 'form-control'}),
         }

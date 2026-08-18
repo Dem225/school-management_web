@@ -95,7 +95,11 @@
                             <td> {{abs.date}} </td>
                             <td>{{ abs.matiere}}</td>
                             <td>{{ abs.heure}}</td>
-                            <td><span class="status status-wait">{{ abs.status|default:"Non justifié" }}</span></td>
+                            <td>
+                                <span class="status {% if abs.status == 1 %}status-ok{% else %}status-wait{% endif %}">
+                                    {{ abs.get_status_display }}
+                                </span>
+                            </td>
                         </tr>
                        {% empty %}
                         <tr>

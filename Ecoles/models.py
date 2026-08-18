@@ -35,16 +35,16 @@ class Etudiant (models.Model):
 
 
 
-
+ 
 class Professeur (models.Model):
     nom=models.CharField(max_length=100)
     prenom =models.CharField(max_length=100)
     age=models.IntegerField(default=0)
     classe = models.ForeignKey(Classes, on_delete=models.SET_NULL,null=True,blank=True)
-    matiere =models.ForeignKey (Matieres, on_delete=models.SET_NULL,null=True, blank=True)
+    matiere = models.ForeignKey(Matieres, on_delete=models.CASCADE, null=True, blank=True)
     id_user =models.OneToOneField(Utilisateur, on_delete=models.CASCADE, related_name='professeur' , null=True )
 
-    def __str__(self):
+    def __str__(self):  
         return f"{self.nom} - {self.matiere} - {self.classe}"
 
 

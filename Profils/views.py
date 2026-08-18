@@ -1,10 +1,10 @@
-from django.contrib.auth.decorators import login_required
+
 from django.shortcuts import render , redirect , get_object_or_404
 from django.views.generic import ListView
 from django.contrib.auth import authenticate ,login
 from Profils.models import Utilisateur
 from Profils.forms import authis
-from django.contrib.auth.decorators import login_required
+
 from django.contrib import messages
 from  Profils.forms  import Addutilisateur 
 from  Profils.forms  import Addutilisateurpasse
@@ -25,6 +25,12 @@ from  Profils.forms  import Notesetudiant
 from  Profils.forms  import AbsenceForm
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Avg
+
+
+from Profils.decorators import professeur_required, etudiant_required, admin_required
+from django.contrib.auth.decorators import login_required
+
+
 # Create your views here.
 
 def Authantification (request):
@@ -75,25 +81,30 @@ def Deconnexion(request):
 
     
 # page d'accueil pour les utilisateur
-
+@login_required
+@admin_required
 def  Tableau_de_bord_Admin(resquest):
     return render(resquest,"Profils/ADMIN/Tableau_de_bord.html" )
-
+@login_required
+@etudiant_required
 def  Tableau_de_bord_ETUDIANT(resquest):
     return render(resquest,"Profils/ETUDIANT/Tableau_de_bord.html" )
-
+@login_required
+@professeur_required
 def  Tableau_de_bord_PROFESSEUR(resquest):
     return render(resquest,"Profils/PROFESSEUR/Tableau_de_bord.html" )
 
 
 # Gestion des  utilisateurs de L'ADMIN
-
+@login_required
+@admin_required
 def  Gestions_utilisateur(resquest):
     Utilisateurs= Utilisateur.objects.all()
     conte_Users= Utilisateur.objects.count()
     return render(resquest,"Profils/ADMIN/Gestions_utilisateurs.html", {"Utilisateurs":Utilisateurs, "conte_Users" :conte_Users}  )
 
-
+@login_required
+@admin_required
 def add_utilisateur_view(resquest):
     form = Addutilisateur()
     if resquest.method=='POST':
@@ -127,6 +138,9 @@ def add_utilisateur_view(resquest):
     
     return render (resquest, "Profils/ADMIN/addutilisateur.html", context)
 
+
+@login_required
+@admin_required
 def add_etudiant_view(resquest):
     form=Addetudiant()
     if resquest.method=='POST':
@@ -162,6 +176,9 @@ def add_etudiant_view(resquest):
 
     return render (resquest, "Profils/ADMIN/addetudiant.html", context)
 
+
+@login_required
+@admin_required
 def add_professeur_view(resquest):
     form = Addprofesseur()
     if resquest.method == 'POST':
@@ -194,6 +211,8 @@ def add_professeur_view(resquest):
 
     return render(resquest, "Profils/ADMIN/addprofesseur.html", context)
 
+@login_required
+@admin_required
 def addmatiere(resquest):
     form = Addmatiere()
     if resquest.method == 'POST':
@@ -213,6 +232,9 @@ def addmatiere(resquest):
     }
     return render(resquest, "Profils/ADMIN/addmatiere.html", context)
 
+
+@login_required
+@admin_required
 def addclasse(resquest):
     form=Addclasse()
     if resquest.method=='POST':
@@ -234,25 +256,31 @@ def addclasse(resquest):
 
 
 
-
+@login_required
+@admin_required
 def  Gestion_Etudiant(resquest):
     etudiant= Etudiant.objects.all()
     conte_Users= Etudiant.objects.count()
     
     return render(resquest,"Profils/ADMIN/Gestion_Etudiant.html" ,{"etudiant":etudiant, "conte_Users" :conte_Users}  )
 
-        
+@login_required
+@admin_required        
 def  Gestions_professeur(resquest):
     professeurs= Professeur.objects.all()
     conte_Users= Professeur.objects.count()
     return render(resquest,"Profils/ADMIN/Gestions_professeur.html"  ,{"professeurs":professeurs, "conte_Users" :conte_Users} )
 
-
+@login_required
+@admin_required
 def Gestion_classe(resquest):
     classe=Classes.objects.all()
     conte_calssse=Classes.objects.count()
     return render(resquest , "Profils/ADMIN/Gestionsclasse.html", {"classe":classe, "conte_calssse" :conte_calssse})
-        
+
+
+@login_required
+@admin_required    
 def  Gestions_matiere(resquest ):
     gsmath= Matieres.objects.all()
     conte_Users= Matieres.objects.count()
@@ -260,14 +288,17 @@ def  Gestions_matiere(resquest ):
 
 
 
-
+@login_required
+@admin_required
 def  Gestion_notes(resquest):
     return render(resquest,"Profils/ADMIN/Gestion_notes.html" )
-
+@login_required
+@admin_required
 def  Gestion_statistique(resquest):
     return render(resquest,"Profils/ADMIN/Gestionstatistique.html" )
 
-
+@login_required
+@admin_required
 def  Gestions_absence(resquest):
     return render(resquest,"Profils/ADMIN/Gestions_absence.html" )
 
@@ -276,7 +307,8 @@ def  Gestions_absence(resquest):
 
 #modifier et supprimer pour admin
 
-
+@login_required
+@admin_required
 def UpdateEtudiant(resquest,id):
 
     etudiants=get_object_or_404(Etudiant, id=id)
@@ -297,7 +329,8 @@ def UpdateEtudiant(resquest,id):
   
     return render(resquest, "Profils/ADMIN/modifierEtudiant.html", context)
 
-
+@login_required
+@admin_required
 def UpdateClasse(resquest,id):
 
     classe=get_object_or_404(Classes, id=id)
@@ -319,7 +352,8 @@ def UpdateClasse(resquest,id):
     return render(resquest, "Profils/ADMIN/modifierclasse.html", context)
 
 
-
+@login_required
+@admin_required
 def UpdateUtilisateur(resquest,id):
 
     Utils=get_object_or_404(Utilisateur, id=id)
@@ -343,7 +377,8 @@ def UpdateUtilisateur(resquest,id):
 
 
 
-
+@login_required
+@admin_required
 def Updateprofe(resquest,id):
 
     profe=get_object_or_404(Professeur, id=id)
@@ -367,7 +402,8 @@ def Updateprofe(resquest,id):
 
 
 
-
+@login_required
+@admin_required
 def Updatematier(resquest,id):
 
     Mathiere=get_object_or_404(Matieres, id=id)
@@ -392,7 +428,8 @@ def Updatematier(resquest,id):
 
 
 #SUPPRIMER
-
+@login_required
+@admin_required
 def Deltutilisateur(resquest, id):
     if resquest.method=="POST":
         recipe=get_object_or_404(Utilisateur, id=id)
@@ -403,7 +440,8 @@ def Deltutilisateur(resquest, id):
     return redirect("Gestions_utilisateur_ADMIN")
 
 
-
+@login_required
+@admin_required
 def Deltettudiant(resquest, id):
     if resquest.method=="POST":
         recipe=get_object_or_404(Etudiant, id=id)
@@ -413,7 +451,8 @@ def Deltettudiant(resquest, id):
     messages.success(resquest , "Envoyer uniqueent en post ")
     return redirect("Gestions_utilisateur_ADMIN")
 
-
+@login_required
+@admin_required
 def Deltprofe(resquest, id):
     if resquest.method=="POST":
         recipe=get_object_or_404(Professeur, id=id)
@@ -424,7 +463,8 @@ def Deltprofe(resquest, id):
     return redirect("Gestions_utilisateur_ADMIN")
 
 
-
+@login_required
+@admin_required
 def Deltmatiere(resquest, id):
     if resquest.method=="POST":
         recipe=get_object_or_404(Matieres, id=id)
@@ -434,7 +474,8 @@ def Deltmatiere(resquest, id):
     messages.success(resquest , "Envoyer uniqueent en post ")
     return redirect("Gestions_matiere")
 
-
+@login_required
+@admin_required
 def Deltclasse(resquest, id):
     if resquest.method=="POST":
         recipe=get_object_or_404(Classes, id=id)
@@ -449,7 +490,8 @@ def Deltclasse(resquest, id):
 
 #  GESTIONS DE ETUDIANT
 
-
+@login_required
+@professeur_required
 def profil_veiw(resquest):
     try:
             professeur = resquest.user.professeur
@@ -462,7 +504,8 @@ def profil_veiw(resquest):
     return render(resquest , "Profils/PROFESSEUR/profil.html" , context)
 
 
-
+@login_required
+@professeur_required
 def notes_veiw(resquest): 
     try:
         professeur = resquest.user.professeur
@@ -491,8 +534,8 @@ def notes_veiw(resquest):
 
 
 
-
-
+@login_required
+@professeur_required
 def mes_etudiant_veiw(request):
     professeur = None
     etudiants = Etudiant.objects.none()
@@ -501,27 +544,24 @@ def mes_etudiant_veiw(request):
         professeur = request.user.professeur
         if professeur and professeur.classe:
             etudiants = Etudiant.objects.filter(classe=professeur.classe)
-            
-            for etu in etudiants:
-             
-                etu.note_list = Notes.objects.filter(matricule=etu, matiere_id=professeur.matiere)
 
+            for etu in etudiants:
+                etu.note_list = Notes.objects.filter(matricule=etu, matiere_id=professeur.matiere)
                 etu.moyenne = Notes.objects.filter(
                     matricule=etu,
                     matiere_id=professeur.matiere
                 ).aggregate(moyenne=Avg('note'))['moyenne']
-                
+
     except ObjectDoesNotExist:
         professeur = None
 
     context = {
+        'professeur': professeur,
         'etudiants': etudiants,
-        'matieres': professeur.matiere if professeur else None,
-        'classe': professeur.classe if professeur else None,
     }
-
     return render(request, "Profils/PROFESSEUR/mes_etudiant.html", context)
-
+@login_required
+@professeur_required
 def absence_veiw(request):
     try:
         professeur = request.user.professeur
@@ -546,7 +586,8 @@ def absence_veiw(request):
 
 
 #AJOUTEZ DES NOTES A UN ETUDIANT POUR LE PROFFESSEUR
-
+@login_required
+@professeur_required
 def addnotes(request, id=None):
     
     try:
@@ -581,15 +622,27 @@ def addnotes(request, id=None):
 
     context = {'form': form, 'etudiant': etudiant, 'matiere': matiere}
     return render(request, "Profils/PROFESSEUR/addnotes.html", context)
-
-
+@login_required
+@professeur_required
 def addabsence(request, id=None):
     try:
         professeur = request.user.professeur
     except ObjectDoesNotExist:
         professeur = None
 
+    if professeur is None:
+        messages.error(request, "Accès refusé : vous n'êtes pas enregistré comme professeur.")
+        return redirect('mes_etudiant_veiw')
+
+    if professeur.matiere is None or professeur.classe is None:
+        messages.error(request, "Vous devez avoir une matière et une classe assignées.")
+        return redirect('mes_etudiant_veiw')
+
     etudiant = get_object_or_404(Etudiant, id=id) if id else None
+
+    if etudiant and etudiant.classe_id != professeur.classe_id:
+        messages.error(request, "Cet étudiant n'appartient pas à votre classe.")
+        return redirect('mes_etudiant_veiw')
 
     if request.method == 'POST':
         etudiant_id = id or request.POST.get('etudiant_id')
@@ -599,10 +652,16 @@ def addabsence(request, id=None):
             messages.error(request, "Impossible d'ajouter l'absence : étudiant introuvable.")
             return redirect('mes_etudiant_veiw')
 
+       
+        if etudiant.classe_id != professeur.classe_id:
+            messages.error(request, "Cet étudiant n'appartient pas à votre classe.")
+            return redirect('mes_etudiant_veiw')
+
         form = AbsenceForm(request.POST)
         if form.is_valid():
             absence_obj = form.save(commit=False)
-            absence_obj.student = etudiant   
+            absence_obj.student = etudiant
+            absence_obj.matiere = professeur.matiere
             absence_obj.save()
             messages.success(request, "Absence ajoutée avec succès !")
             return redirect('mes_etudiant_veiw')
@@ -615,9 +674,9 @@ def addabsence(request, id=None):
     context = {'form': form, 'etudiant': etudiant}
     return render(request, "Profils/PROFESSEUR/addabsence.html", context)
 
-
-
 #MODIFIERE NOTES & ABCENCE  DES ETUDAINTS
+@login_required
+@professeur_required
 def UpdateEtudiant_note(request, id):
     try:
         professeur = request.user.professeur
@@ -643,7 +702,8 @@ def UpdateEtudiant_note(request, id):
     }
     return render(request, "Profils/PROFESSEUR/modifiere_note.html", context)
 
-
+@login_required
+@professeur_required
 def UpdateEtudiant_absente(request, id):
     
     try:
@@ -673,7 +733,8 @@ def UpdateEtudiant_absente(request, id):
 
 #SUPPRIMER NOTES ABSENCE
 
-
+@login_required
+@professeur_required
 def Deltabsence(request, id):
     try:
         professeur = request.user.professeur
@@ -689,7 +750,8 @@ def Deltabsence(request, id):
     messages.error(request, "Suppression impossible : requête invalide.")
     return redirect("absence_veiw")
 
-
+@login_required
+@professeur_required
 def Deltnote(request, id):
     try:
         professeur = request.user.professeur
@@ -714,7 +776,8 @@ def Deltnote(request, id):
 
 #GERETIONS DE ETUDIANT VOIR LES NOTES ABSCENCE ET PROFIL 
 
-
+@login_required
+@etudiant_required
 def Voirnote_etd(request):
     etudiants = Etudiant.objects.none()
     etudiant = None
@@ -739,7 +802,8 @@ def Voirnote_etd(request):
         
     }
     return render(request, "Profils/ETUDIANT/Mes_notes.html", context)
-
+@login_required
+@etudiant_required
 def Voir_absences_etd(request):
     etudiants = Etudiant.objects.none()
     etudiant = None
@@ -757,7 +821,8 @@ def Voir_absences_etd(request):
         'etudiants': etudiants
     }
     return render(request, "Profils/ETUDIANT/Mes_absences.html", context)
-
+@login_required
+@etudiant_required
 def Voirprofil_etd(resquest):
     etudiants = Etudiant.objects.none()
     etudiant = None
