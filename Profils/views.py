@@ -1,4 +1,4 @@
-
+vscode_lsp_terminal_prompt_tracker= {}
 from django.shortcuts import render , redirect , get_object_or_404
 from django.views.generic import ListView
 from django.contrib.auth import authenticate ,login
@@ -81,6 +81,7 @@ def Deconnexion(request):
 
     
 # page d'accueil pour les utilisateur
+
 @login_required
 @admin_required
 def  Tableau_de_bord_Admin(resquest):
