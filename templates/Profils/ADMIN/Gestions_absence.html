@@ -9,9 +9,12 @@
     <title>Gestion des Absences - Institutional Ledger</title>
    
      <link rel="stylesheet" href="{% static "ADMIN/css/Gestions_absence.css" %}">
+     <script src="{% static "ADMIN/js/table_bore.js" %}"></script>
   </head>
   <body>
     <div id="app">
+      <div id="overlay"></div>
+
       <aside id="sidebar">
         <div class="logo">
           <h1 class="logo-title">Institutional Ledger</h1>
@@ -44,16 +47,22 @@
               <a href="{% url "Gestions_absence" %}"><span class="menu-icon"></span> Absences</a>
             </li>
             <li class="menu-item">
-              <a href="{% url "Gestions_absence" %}"><span class="menu-icon"></span> Statistiques</a>
+              <a href="{% url "Gestion_statistique" %}"><span class="menu-icon"></span> Statistiques</a>
             </li>
           </ul>
         </nav>
         <div class="footer">
           <a href="#" class="footer-link"> Paramètres</a>
           <a href="{% url "deconnexion" %}" class="footer-link">Déconnexion</a>
+        </div>
       </aside>
       <main id="main">
         <header class="topbar">
+          <button id="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-controls="sidebar" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
           <div class="window-bar">
             <span class="dot red"></span> <span class="dot yellow"></span>
             <span class="dot green"></span>
@@ -215,5 +224,7 @@
         </div>
       </main>
     </div>
+
+    <script src="{% static "ADMIN/js/admin.js" %}"></script>
   </body>
 </html>

@@ -1,0 +1,399 @@
+/* --- RESET ET BASE --- */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background-color: #F8F9FB;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #333333;
+}
+
+/* --- LAYOUT GLOBAL --- */
+#app {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+#main {
+    flex-grow: 1;
+    height: 100%;
+    overflow-y: auto;
+    background-color: #F8F9FB;
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+}
+
+/* --- SIDEBAR --- */
+#sidebar {
+    width: 240px;
+    height: 100%;
+    background-color: #111111;
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+.logo {
+    padding: 0 20px 20px 20px;
+    border-bottom: 1px solid #222222;
+}
+
+.logo-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.logo-subtitle {
+    font-size: 10px;
+    color: #888888;
+    letter-spacing: 1px;
+}
+
+.menu {
+    flex-grow: 1;
+    margin-top: 20px;
+}
+
+.menu ul {
+    list-style: none;
+}
+
+.menu .menu-item {
+    padding: 12px 20px;
+}
+
+.menu .menu-item.active,
+.menu .menu-item:hover {
+    background-color: #222222;
+    border-left: 4px solid #4EA149;
+}
+
+.menu .menu-item a {
+    text-decoration: none;
+    color: #CCCCCC;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.menu-icon {
+    font-size: 14px;
+}
+
+.sidebar-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+    border-top: 1px solid #222222;
+}
+
+.profile-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #444444;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-name {
+    font-size: 13px;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.profile-role {
+    font-size: 11px;
+    color: #888888;
+}
+
+/* --- TOPBAR --- */
+.topbar {
+    width: 100%;
+    background-color: #FFFFFF;
+    border: 1px solid #EAEAEA;
+    border-radius: 8px;
+    padding: 12px 15px;
+}
+
+.action-bar {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.search-box {
+    flex-grow: 1;
+}
+
+#search {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #D1D5DB;
+    background-color: #F8F9FB;
+    font-size: 12px;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* --- EN-TÊTE DE PAGE --- */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.page-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #111111;
+}
+
+.page-title.underline {
+    display: inline-block;
+    border-bottom: 3px solid #4EA149;
+    padding-bottom: 8px;
+}
+
+/* --- SECTION PROFIL --- */
+.profile {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.profile-card {
+    background-color: #FFFFFF;
+    border: 1px solid #EAEAEA;
+    border-radius: 8px;
+    padding: 25px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+
+.profile-photo {
+    width: 90px;
+    height: 90px;
+    border-radius: 8px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.profile-fields {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.field-row {
+    display: flex;
+    gap: 40px;
+}
+
+.field-label {
+    font-size: 10px;
+    font-weight: bold;
+    color: #9CA3AF;
+    letter-spacing: 0.5px;
+}
+
+.field-value {
+    font-size: 14px;
+    color: #111111;
+}
+
+.field-value.large {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.department-badge {
+    display: inline-block;
+    background-color: #F3F4F6;
+    color: #374151;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 4px;
+    width: fit-content;
+}
+
+.status-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 4px;
+}
+
+.status-dot.active {
+    background-color: #10B981;
+}
+
+.profile-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-left: 30px;
+    border-left: 1px solid #E5E7EB;
+}
+
+.stat-block {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.stat-label {
+    font-size: 10px;
+    font-weight: bold;
+    color: #9CA3AF;
+    letter-spacing: 0.5px;
+}
+
+.stat-value {
+    font-size: 22px;
+    font-weight: bold;
+    color: #111111;
+}
+
+.unit {
+    font-size: 13px;
+    color: #888888;
+    font-weight: normal;
+}
+
+.trend-up {
+    font-size: 11px;
+    color: #10B981;
+    font-weight: bold;
+}
+
+.card-sub {
+    font-size: 11px;
+    color: #666666;
+}
+
+.btn-edit-profile {
+    background-color: #111111;
+    color: #FFFFFF;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* --- EMPLOI DU TEMPS --- */
+.schedule {
+    background-color: #FFFFFF;
+    border: 1px solid #EAEAEA;
+    border-radius: 8px;
+    padding: 15px 20px;
+    width: 100%;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+
+.schedule-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.schedule-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #111111;
+}
+
+.schedule-period {
+    font-size: 11px;
+    color: #9CA3AF;
+}
+
+.table-wrap {
+    width: 100%;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.table th {
+    background-color: #F9FAFB;
+    font-size: 10px;
+    color: #6B7280;
+    padding: 10px;
+    border-bottom: 1px solid #E5E7EB;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.table td {
+    padding: 13px 10px;
+    font-size: 13px;
+    color: #1F2937;
+    border-bottom: 1px solid #F3F4F6;
+}
+
+.link-detail {
+    font-size: 12px;
+    font-weight: bold;
+    color: #111111;
+    text-decoration: none;
+}
+
+/* --- BOUTON FLOTTANT --- */
+.btn-floating {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #F59E0B;
+    color: #FFFFFF;
+    font-size: 22px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}

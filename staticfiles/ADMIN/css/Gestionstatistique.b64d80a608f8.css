@@ -1,0 +1,395 @@
+/* --- RESET ET BASE GLOBALE --- */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background-color: #F8F9FB;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #333333;
+}
+
+/* --- LAYOUT GLOBAL --- */
+#app {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+/* --- SIDEBAR --- */
+#sidebar {
+    width: 240px;
+    height: 100%;
+    background-color: #111111;
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+.logo {
+    padding: 0 20px 20px 20px;
+    border-bottom: 1px solid #222222;
+}
+
+.logo-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.logo-subtitle {
+    font-size: 10px;
+    color: #888888;
+    letter-spacing: 1px;
+}
+
+.menu {
+    flex-grow: 1;
+    margin-top: 20px;
+}
+
+.menu ul {
+    list-style: none;
+}
+
+.menu .menu-item {
+    padding: 12px 20px;
+}
+
+.menu .menu-item.active,
+.menu .menu-item:hover {
+    background-color: #222222;
+    border-left: 4px solid #4EA149;
+}
+
+.menu .menu-item a {
+    text-decoration: none;
+    color: #CCCCCC;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.menu-icon {
+    font-size: 14px;
+}
+
+.footer {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-top: 1px solid #222222;
+}
+
+.footer-link {
+    color: #888888;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+/* --- ZONE PRINCIPALE --- */
+#main {
+    flex-grow: 1;
+    height: 100%;
+    overflow-y: auto;
+    background-color: #F8F9FB;
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* --- TOPBAR (fenêtre) --- */
+.topbar {
+    width: 100%;
+    background-color: #FFFFFF;
+    border: 1px solid #EAEAEA;
+    border-radius: 8px;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.window-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.dot.red { background-color: #FF5F56; }
+.dot.yellow { background-color: #FFBD2E; }
+.dot.green { background-color: #27C93F; }
+
+.topbar-window-title {
+    font-size: 13px;
+    font-weight: bold;
+    color: #333333;
+}
+
+.action-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+#search {
+    padding: 7px 12px;
+    border-radius: 6px;
+    border: 1px solid #D1D5DB;
+    background-color: #F8F9FB;
+    font-size: 12px;
+    width: 200px;
+}
+
+.btn-export {
+    background-color: #111111;
+    color: #FFFFFF;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.btn-export:hover {
+    background-color: #333333;
+}
+
+/* --- EN-TÊTE DE PAGE --- */
+.page-header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.page-title {
+    font-size: 26px;
+    font-weight: bold;
+    color: #111111;
+}
+
+.page-subtitle {
+    font-size: 13px;
+    color: #666666;
+    font-style: italic;
+}
+
+/* --- CARTES KPI --- */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    width: 100%;
+}
+
+.card {
+    background-color: #FFFFFF;
+    padding: 15px 20px;
+    border-radius: 8px;
+    border: 1px solid #EAEAEA;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+}
+
+.card-label {
+    font-size: 10px;
+    font-weight: bold;
+    color: #777777;
+    letter-spacing: 0.5px;
+}
+
+.card-value {
+    font-size: 32px;
+    font-weight: bold;
+    color: #111111;
+}
+
+.trend-up {
+    font-size: 11px;
+    color: #10B981;
+    font-weight: bold;
+}
+
+.card-icon {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 16px;
+}
+
+.card-sub {
+    font-size: 11px;
+    color: #666666;
+}
+
+/* --- CARTE MEILLEUR ÉTUDIANT --- */
+.best-student {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.best-student-photo {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.best-student-info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.best-student-name {
+    font-size: 14px;
+    font-weight: bold;
+    color: #111111;
+}
+
+.best-student-class {
+    font-size: 10px;
+    color: #777777;
+}
+
+.best-student-score {
+    font-size: 20px;
+    font-weight: bold;
+    color: #4EA149;
+}
+
+/* --- SECTION STATISTIQUES PAR CLASSE --- */
+.stats {
+    background-color: #FFFFFF;
+    border: 1px solid #EAEAEA;
+    border-radius: 8px;
+    padding: 15px 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+
+.stats-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.stats-title {
+    font-size: 12px;
+    font-weight: bold;
+    color: #111111;
+    letter-spacing: 0.5px;
+}
+
+.stats-icons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #9CA3AF;
+    cursor: pointer;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.table th {
+    background-color: #F9FAFB;
+    font-size: 10px;
+    color: #6B7280;
+    padding: 10px;
+    border-bottom: 1px solid #E5E7EB;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.table td {
+    padding: 13px 10px;
+    font-size: 13px;
+    color: #1F2937;
+    border-bottom: 1px solid #F3F4F6;
+}
+
+.class-average {
+    font-weight: bold;
+    color: #111111;
+}
+
+.trend-icon {
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.trend-icon.up {
+    color: #10B981;
+}
+
+.trend-icon.down {
+    color: #DC2626;
+}
+
+.trend-icon.neutral {
+    color: #9CA3AF;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid #F3F4F6;
+}
+
+.pagination-info {
+    font-size: 11px;
+    color: #6B7280;
+}
+
+.pagination-controls {
+    display: flex;
+    gap: 15px;
+}
+
+.page-btn.text {
+    background: none;
+    border: none;
+    font-size: 11px;
+    font-weight: bold;
+    color: #374151;
+    cursor: pointer;
+}
+
+/* --- SIGNATURE / WATERMARK --- */
+.watermark {
+    text-align: center;
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 20px;
+    color: #D1D5DB;
+    padding: 10px 0 20px 0;
+}

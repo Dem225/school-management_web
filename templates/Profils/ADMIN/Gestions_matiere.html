@@ -6,9 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Registre des Matières - Institutional Ledger</title>
     <link rel="stylesheet" href="{% static 'ADMIN/css/Gestions_matiere.css' %}">
+    <script src="{% static "ADMIN/js/table_bore.js" %}"></script>
   </head>
   <body>
     <div id="app">
+      <div id="overlay"></div>
+
       <aside id="sidebar">
         <div class="logo">
           <h1 class="logo-title">Institutional Ledger</h1>
@@ -32,7 +35,7 @@
               <a href="{% url 'Gestions_matiere' %}"><span class="menu-icon"></span> Matières</a>  
             </li>
             <li class="menu-item">
-             <a href="{% url "Gestion_classe" %}"><span class="menu-icon"></span> Classe</a></a> 
+             <a href="{% url "Gestion_classe" %}"><span class="menu-icon"></span> Classe</a>
             </li>
             
             <li class="menu-item">
@@ -54,6 +57,11 @@
       
       <main id="main">
         <header class="topbar">
+          <button id="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-controls="sidebar" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
           <div class="window-dots">
             <span class="dot red"></span> <span class="dot yellow"></span>
             <span class="dot green"></span>
@@ -161,5 +169,7 @@
         </section>
       </main>
     </div>
+
+    <script src="{% static 'ADMIN/js/admin.js' %}"></script>
   </body>
 </html>
