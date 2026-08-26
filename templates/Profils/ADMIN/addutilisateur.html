@@ -7,10 +7,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gestion des Utilisateurs - Institutional Ledger</title>
   <link rel="stylesheet" href="{% static 'ADMIN/css/Gestions_utilisateur.css' %}">
+  <script src="{% static 'ADMIN/js/table_bore.js' %}"></script>
+
 </head>
 
 <body>
   <div id="app">
+    <div id="overlay"></div>
 
     <aside id="sidebar">
       <div class="logo">
@@ -41,7 +44,14 @@
 
       <header class="topbar">
         <div class="topbarTitle">
-          <h2>Gestion des Utilisateurs</h2>
+          <div class="topbarTitleRow">
+            <button id="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-controls="sidebar" aria-expanded="false">
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+            <h2>Gestion des Utilisateurs</h2>
+          </div>
           <p class="topbarSubtitle">
             Créez, gérez et supervisez les privilèges d'accès de l'établissement.
           </p>
@@ -58,7 +68,7 @@
         </div>
       </header>
 
-      
+
        {% if messages %}
             <div class="messagesContainer">
               {% for message in messages %}
@@ -68,7 +78,7 @@
               {% endfor %}
             </div>
        {% endif %}
-      
+
       <section class="addUser">
         <div class="formCard">
           <div class="formTitle">Ajouter un nouvel utilisateur</div>
@@ -95,6 +105,7 @@
 
     </main>
   </div>
+
 </body>
 
 </html>

@@ -7,9 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rapport de Performance - Institutional Ledger</title>
  <link rel="stylesheet" href="{% static "ADMIN/css/Gestionstatistique.css" %}"></head>
+ <script src="{% static "ADMIN/js/table_bore.js" %}"></script>
 <body>  
 
     <div id="app">
+        <div id="overlay"></div>
 
         <aside id="sidebar">
             <div class="logo">
@@ -41,6 +43,11 @@
 
             <header class="topbar">
                 <div class="window-bar">
+                    <button id="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-controls="sidebar" aria-expanded="false">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
                     <span class="dot red"></span>
                     <span class="dot yellow"></span>
                     <span class="dot green"></span>
@@ -160,5 +167,6 @@
         </main>
     </div>
 
+    <script src="{% static "ADMIN/js/admin.js" %}"></script>
 </body>
 </html>
