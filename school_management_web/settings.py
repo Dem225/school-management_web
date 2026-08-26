@@ -9,7 +9,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-<<<<<<< HEAD
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
@@ -20,7 +20,7 @@ SECRET_KEY = 'django-insecure-xn^aczsrm#_p_h)m+l-+mgjp!ma*)u*2kgec1@%wwq%p)s4$a0
 DEBUG = True
 
 ALLOWED_HOSTS = ["Schoolmanage.pythonanywhere.com", "localhost", "127.0.0.1"]
-=======
+
 # --- SÉCURITÉ ---
 # La clé secrète et DEBUG sont définis via variables d'environnement,
 # elles-mêmes définies dans le fichier WSGI de PythonAnywhere (voir plus bas).
@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 # DEBUG=True
 # SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-cle-locale-par-defaut')
->>>>>>> 2effc8d6e7085fdc2e69a6a3a2899c9a966a59ae
+
 
 
 _allowed_hosts = os.environ.get('ALLOWED_HOSTS', '')
@@ -115,34 +115,36 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
-
 
 # --- AUTHENTIFICATION ---
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = 'login'
 
 
-<<<<<<< HEAD
+
 
 
 
 # {% if user.is_authenticated %}
-           
+
 #             <form method="post" action="{% url 'logout' %}">
 #                 {% csrf_token %}
 #                 <button type="submit">DÉCONNEXION</button>
 #             </form>
 #         {% else %}
-           
+
 #             <a href="{% url 'login' %}">CONNEXION</a>
 #         {% endif %}
 #  {% endcomment %}
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
-=======
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
->>>>>>> 2effc8d6e7085fdc2e69a6a3a2899c9a966a59ae
+
