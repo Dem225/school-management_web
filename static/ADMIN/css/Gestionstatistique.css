@@ -1,4 +1,4 @@
-/* --- RESET ET BASE GLOBALE --- */
+/* --- GLOBAL BASE ET RESET --- */
 * {
     padding: 0;
     margin: 0;
@@ -6,7 +6,7 @@
 }
 
 body {
-    height: 100vh;
+    min-height: 100vh;
     background-color: #F8F9FB;
     font-family: Arial, Helvetica, sans-serif;
     color: #333333;
@@ -23,6 +23,7 @@ body {
 /* --- SIDEBAR --- */
 #sidebar {
     width: 240px;
+    flex-shrink: 0;
     height: 100%;
     background-color: #111111;
     color: #FFFFFF;
@@ -30,6 +31,8 @@ body {
     flex-direction: column;
     justify-content: space-between;
     padding: 20px 0;
+    transition: transform 0.3s ease;
+    z-index: 100;
 }
 
 .logo {
@@ -52,6 +55,7 @@ body {
 .menu {
     flex-grow: 1;
     margin-top: 20px;
+    overflow-y: auto;
 }
 
 .menu ul {
@@ -95,6 +99,42 @@ body {
     font-size: 13px;
 }
 
+/* --- OVERLAY --- */
+#overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 90;
+}
+
+#overlay.visible {
+    display: block;
+}
+
+/* --- BOUTON HAMBURGER --- */
+#menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    width: 34px;
+    height: 34px;
+    background: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    border-radius: 6px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+#menu-toggle span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: #111111;
+    margin: 0 auto;
+}
+
 /* --- ZONE PRINCIPALE --- */
 #main {
     flex-grow: 1;
@@ -105,6 +145,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    min-width: 0;
 }
 
 /* --- TOPBAR (fenêtre) --- */
@@ -115,8 +156,10 @@ body {
     border-radius: 8px;
     padding: 10px 15px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    gap: 12px;
 }
 
 .window-bar {
@@ -145,6 +188,7 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
+    flex-wrap: wrap;
 }
 
 #search {
@@ -154,6 +198,7 @@ body {
     background-color: #F8F9FB;
     font-size: 12px;
     width: 200px;
+    max-width: 100%;
 }
 
 .btn-export {
@@ -245,6 +290,7 @@ body {
 /* --- CARTE MEILLEUR ÉTUDIANT --- */
 .best-student {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 10px;
 }
@@ -254,12 +300,14 @@ body {
     height: 40px;
     border-radius: 8px;
     object-fit: cover;
+    flex-shrink: 0;
 }
 
 .best-student-info {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    min-width: 100px;
 }
 
 .best-student-name {
@@ -310,8 +358,14 @@ body {
     cursor: pointer;
 }
 
+.table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
 .table {
     width: 100%;
+    min-width: 560px;
     border-collapse: collapse;
     text-align: left;
 }
@@ -324,6 +378,7 @@ body {
     border-bottom: 1px solid #E5E7EB;
     font-weight: bold;
     letter-spacing: 0.5px;
+    white-space: nowrap;
 }
 
 .table td {
@@ -358,8 +413,10 @@ body {
 /* Pagination */
 .pagination {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    gap: 10px;
     margin-top: 15px;
     padding-top: 10px;
     border-top: 1px solid #F3F4F6;
@@ -392,4 +449,66 @@ body {
     font-size: 20px;
     color: #D1D5DB;
     padding: 10px 0 20px 0;
+}
+
+/* ============================= */
+/* RESPONSIVE - TABLETTE/MOBILE  */
+/* ============================= */
+@media (max-width: 1000px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    #menu-toggle {
+        display: flex;
+    }
+
+    #sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 240px;
+        transform: translateX(-100%);
+    }
+
+    #sidebar.open {
+        transform: translateX(0);
+    }
+
+    #main {
+        padding: 16px 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    #main {
+        padding: 14px 16px;
+        gap: 16px;
+    }
+
+    .page-title {
+        font-size: 20px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .action-bar {
+        width: 100%;
+    }
+
+    #search {
+        width: 100%;
+    }
+
+    .btn-export {
+        width: 100%;
+    }
+
+    .table {
+        min-width: 480px;
+    }
 }

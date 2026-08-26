@@ -1,4 +1,4 @@
-/* --- RESET --- */
+Reset
 * {
     margin: 0;
     padding: 0;
@@ -26,7 +26,9 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 20px 0;
+    padding: 10px 0;
+    transition: transform 0.3s ease;
+    z-index: 100;
 }
 
 .logo {
@@ -46,6 +48,7 @@ body {
 .menu {
     margin-top: 20px;
     flex-grow: 1;
+    overflow-y: auto;
 }
 
 .menu ul {
@@ -80,6 +83,48 @@ body {
     color: #888;
     text-decoration: none;
     font-size: 13px;
+}
+
+/* --- OVERLAY (fond sombre derrière la sidebar mobile) --- */
+#overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 90;
+}
+
+#overlay.visible {
+    display: block;
+}
+
+/* --- BOUTON HAMBURGER (caché sur desktop) --- */
+#menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    width: 34px;
+    height: 34px;
+    background: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    border-radius: 6px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+#menu-toggle span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: #111111;
+    margin: 0 auto;
+}
+
+.topbarTitleRow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 /* --- ZONE PRINCIPALE --- */
@@ -119,6 +164,7 @@ body {
     display: flex;
     align-items: center;
     gap: 20px;
+    flex-wrap: wrap;
 }
 
 .totalBadge {
@@ -183,7 +229,7 @@ body {
 .formGroup input,
 .formGroup select {
     width: 100%;
-    padding: 8px 10px;
+    padding: 7px 7px;
     border: 1px solid #D1D5DB;
     border-radius: 6px;
     font-size: 12px;
@@ -255,10 +301,12 @@ body {
 
 .tableWrap {
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .table {
     width: 100%;
+    min-width: 620px;
     border-collapse: collapse;
     text-align: left;
 }
@@ -285,13 +333,14 @@ body {
     gap: 12px;
     align-items: center;
 }
-.actions ,button{
+
+.actions button {
     padding: 2px;
     border-radius: 4px;
     border: transparent;
-    
 }
-.actions a{
+
+.actions a {
     font-size: 12px;
     color: #374151;
     background: none;
@@ -370,34 +419,6 @@ body {
 }
 
 .messagesContainer {
-    margin-bottom: 20px;
-}
-
-.alert {
-    padding: 12px 15px;
-    border-radius: 6px;
-    margin-bottom: 10px;
-    font-size: 14px;
-    font-weight: 500;
-}
-
-
-.alert.success {
-    background-color: #d1e7dd;
-    color: #0f5132;
-    border: 1px solid #badbcc;
-}
-
-
-.alert.error {
-    background-color: #f8d7da;
-    color: #842029;
-    border: 1px solid #f5c2c7;
-}
-
-
-
-.messagesContainer {
   position: fixed;
   top: 20px;
   right: 20px;
@@ -418,28 +439,24 @@ body {
   animation: slideIn 0.3s ease-out;
 }
 
-/* Succès */
 .alert.success {
   background-color: #d4edda;
   color: #155724;
   border-left-color: #28a745;
 }
 
-/* Erreur */
 .alert.error {
   background-color: #f8d7da;
   color: #721c24;
   border-left-color: #dc3545;
 }
 
-/* Avertissement */
 .alert.warning {
   background-color: #fff3cd;
   color: #856404;
   border-left-color: #ffc107;
 }
 
-/* Info */
 .alert.info {
   background-color: #d1ecf1;
   color: #0c5460;
@@ -455,4 +472,92 @@ body {
     opacity: 1;
     transform: translateX(0);
   }
+}
+
+/* ============================= */
+/* RESPONSIVE - TABLETTE/MOBILE  */
+/* ============================= */
+@media (max-width: 900px) {
+    #menu-toggle {
+        display: flex;
+    }
+
+    #sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 240px;
+        transform: translateX(-100%);
+    }
+
+    #sidebar.open {
+        transform: translateX(0);
+    }
+
+    #main {
+        padding: 16px 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    #main {
+        padding: 14px 16px;
+        gap: 16px;
+    }
+
+    .topbarTitle h2 {
+        font-size: 18px;
+    }
+
+    .topbarRight {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .formGroup {
+        flex: 1 1 100%;
+    }
+
+    .submitGroup {
+        width: 100%;
+    }
+
+    .btnAdd {
+        width: 100%;
+    }
+
+    .tableToolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .searchInput {
+        max-width: 100%;
+    }
+
+    .tableButtons {
+        justify-content: stretch;
+    }
+
+    .btnFilter,
+    .btnExport {
+        flex: 1;
+    }
+
+    .table {
+        min-width: 520px;
+    }
+
+    .messagesContainer {
+        left: 12px;
+        right: 12px;
+        max-width: none;
+    }
+}
+
+html, body {
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
 }

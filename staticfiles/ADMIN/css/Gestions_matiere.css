@@ -6,7 +6,11 @@
 }
 
 body {
+<<<<<<< HEAD
     height: 100vh;
+=======
+    min-height: 100vh;
+>>>>>>> 2effc8d6e7085fdc2e69a6a3a2899c9a966a59ae
     background-color: #F8F9FB;
     font-family: Arial, Helvetica, sans-serif;
     color: #333333;
@@ -23,6 +27,10 @@ body {
 /* --- SIDEBAR --- */
 #sidebar {
     width: 240px;
+<<<<<<< HEAD
+=======
+    flex-shrink: 0;
+>>>>>>> 2effc8d6e7085fdc2e69a6a3a2899c9a966a59ae
     height: 100%;
     background-color: #111111;
     color: #FFFFFF;
@@ -30,6 +38,11 @@ body {
     flex-direction: column;
     justify-content: space-between;
     padding: 20px 0;
+<<<<<<< HEAD
+=======
+    transition: transform 0.3s ease;
+    z-index: 100;
+>>>>>>> 2effc8d6e7085fdc2e69a6a3a2899c9a966a59ae
 }
 
 .logo {
@@ -52,6 +65,10 @@ body {
 .menu {
     flex-grow: 1;
     margin-top: 20px;
+<<<<<<< HEAD
+=======
+    overflow-y: auto;
+>>>>>>> 2effc8d6e7085fdc2e69a6a3a2899c9a966a59ae
 }
 
 .menu ul {
@@ -95,6 +112,45 @@ body {
     font-size: 13px;
 }
 
+<<<<<<< HEAD
+=======
+/* --- OVERLAY --- */
+#overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 90;
+}
+
+#overlay.visible {
+    display: block;
+}
+
+/* --- BOUTON HAMBURGER --- */
+#menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    width: 34px;
+    height: 34px;
+    background: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    border-radius: 6px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+#menu-toggle span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: #111111;
+    margin: 0 auto;
+}
+
+>>>>>>> 2effc8d6e7085fdc2e69a6a3a2899c9a966a59ae
 /* --- ZONE PRINCIPALE --- */
 #main {
     flex-grow: 1;
@@ -105,19 +161,35 @@ body {
     display: flex;
     flex-direction: column;
     gap: 20px;
+<<<<<<< HEAD
+=======
+    min-width: 0;
+>>>>>>> 2effc8d6e7085fdc2e69a6a3a2899c9a966a59ae
 }
 
 /* --- TOPBAR (fenêtre) --- */
 .topbar {
+<<<<<<< HEAD
     height: 50px;
+=======
+    min-height: 50px;
+>>>>>>> 2effc8d6e7085fdc2e69a6a3a2899c9a966a59ae
     width: 100%;
     background-color: #FFFFFF;
     border: 1px solid #EAEAEA;
     border-radius: 8px;
     display: flex;
+<<<<<<< HEAD
     justify-content: space-between;
     align-items: center;
     padding: 0 15px;
+=======
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 15px;
+>>>>>>> 2effc8d6e7085fdc2e69a6a3a2899c9a966a59ae
 }
 
 .window-dots {
@@ -155,6 +227,10 @@ body {
     display: flex;
     align-items: center;
     gap: 15px;
+<<<<<<< HEAD
+=======
+    flex-wrap: wrap;
+>>>>>>> 2effc8d6e7085fdc2e69a6a3a2899c9a966a59ae
 }
 
 #search {
@@ -164,6 +240,10 @@ body {
     background-color: #F8F9FB;
     font-size: 12px;
     width: 220px;
+<<<<<<< HEAD
+=======
+    max-width: 100%;
+>>>>>>> 2effc8d6e7085fdc2e69a6a3a2899c9a966a59ae
 }
 
 .icons {
@@ -175,8 +255,15 @@ body {
 /* --- EN-TÊTE DE PAGE --- */
 .page-header {
     display: flex;
+<<<<<<< HEAD
     justify-content: space-between;
     align-items: flex-start;
+=======
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+>>>>>>> 2effc8d6e7085fdc2e69a6a3a2899c9a966a59ae
 }
 
 .page-title {
@@ -200,6 +287,10 @@ body {
     font-size: 13px;
     font-weight: bold;
     cursor: pointer;
+<<<<<<< HEAD
+=======
+    white-space: nowrap;
+>>>>>>> 2effc8d6e7085fdc2e69a6a3a2899c9a966a59ae
 }
 
 .btn-new:hover {
@@ -259,8 +350,19 @@ body {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
 }
 
+<<<<<<< HEAD
 .table {
     width: 100%;
+=======
+.table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.table {
+    width: 100%;
+    min-width: 560px;
+>>>>>>> 2effc8d6e7085fdc2e69a6a3a2899c9a966a59ae
     border-collapse: collapse;
     text-align: left;
 }
@@ -273,6 +375,10 @@ body {
     border-bottom: 1px solid #E5E7EB;
     font-weight: bold;
     letter-spacing: 0.5px;
+<<<<<<< HEAD
+=======
+    white-space: nowrap;
+>>>>>>> 2effc8d6e7085fdc2e69a6a3a2899c9a966a59ae
 }
 
 .table td {
@@ -321,8 +427,15 @@ body {
 /* Pagination */
 .pagination {
     display: flex;
+<<<<<<< HEAD
     justify-content: space-between;
     align-items: center;
+=======
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+>>>>>>> 2effc8d6e7085fdc2e69a6a3a2899c9a966a59ae
     margin-top: 15px;
     padding-top: 10px;
     border-top: 1px solid #F3F4F6;
@@ -459,4 +572,67 @@ body {
     opacity: 1;
     transform: translateX(0);
   }
+<<<<<<< HEAD
+=======
+}
+
+/* ============================= */
+/* RESPONSIVE - TABLETTE/MOBILE  */
+/* ============================= */
+@media (max-width: 1000px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .bottom-section {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 900px) {
+    #menu-toggle {
+        display: flex;
+    }
+
+    #sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 240px;
+        transform: translateX(-100%);
+    }
+
+    #sidebar.open {
+        transform: translateX(0);
+    }
+
+    #main {
+        padding: 16px 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    #main {
+        padding: 14px 16px;
+        gap: 16px;
+    }
+
+    .page-title {
+        font-size: 20px;
+        margin-top: 20px;
+    }
+
+    .btn-new {
+        width: 100%;
+        text-align: center;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .table {
+        min-width: 480px;
+    }
+>>>>>>> 2effc8d6e7085fdc2e69a6a3a2899c9a966a59ae
 }

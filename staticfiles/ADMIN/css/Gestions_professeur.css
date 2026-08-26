@@ -6,7 +6,11 @@
 }
 
 body {
+<<<<<<< HEAD
     height: 120vh;
+=======
+    min-height: 100vh;
+>>>>>>> 2effc8d6e7085fdc2e69a6a3a2899c9a966a59ae
     background-color: #F8F9FB;
     font-family: Arial, Helvetica, sans-serif;
     color: #333333;
@@ -23,6 +27,10 @@ body {
 /* --- SIDEBAR --- */
 #sidebar {
     width: 240px;
+<<<<<<< HEAD
+=======
+    flex-shrink: 0;
+>>>>>>> 2effc8d6e7085fdc2e69a6a3a2899c9a966a59ae
     height: 100%;
     background-color: #111111;
     color: #FFFFFF;
@@ -30,6 +38,11 @@ body {
     flex-direction: column;
     justify-content: space-between;
     padding: 20px 0;
+<<<<<<< HEAD
+=======
+    transition: transform 0.3s ease;
+    z-index: 100;
+>>>>>>> 2effc8d6e7085fdc2e69a6a3a2899c9a966a59ae
 }
 
 .logo {
@@ -52,6 +65,10 @@ body {
 .menu {
     flex-grow: 1;
     margin-top: 20px;
+<<<<<<< HEAD
+=======
+    overflow-y: auto;
+>>>>>>> 2effc8d6e7085fdc2e69a6a3a2899c9a966a59ae
 }
 
 .menu ul {
@@ -88,6 +105,51 @@ body {
     font-size: 13px;
 }
 
+<<<<<<< HEAD
+=======
+/* --- OVERLAY --- */
+#overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 90;
+}
+
+#overlay.visible {
+    display: block;
+}
+
+/* --- BOUTON HAMBURGER --- */
+#menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    width: 34px;
+    height: 34px;
+    background: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    border-radius: 6px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+#menu-toggle span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: #111111;
+    margin: 0 auto;
+}
+
+.topbar-title-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+>>>>>>> 2effc8d6e7085fdc2e69a6a3a2899c9a966a59ae
 /* --- ZONE PRINCIPALE --- */
 #main {
     flex-grow: 1;
@@ -98,6 +160,10 @@ body {
     display: flex;
     flex-direction: column;
     gap: 20px;
+<<<<<<< HEAD
+=======
+    min-width: 0;
+>>>>>>> 2effc8d6e7085fdc2e69a6a3a2899c9a966a59ae
 }
 
 /* --- HEADER DES PROFESSEURS --- */
@@ -105,8 +171,15 @@ body {
     height: auto;
     width: 100%;
     display: flex;
+<<<<<<< HEAD
     justify-content: space-between;
     align-items: center;
+=======
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+>>>>>>> 2effc8d6e7085fdc2e69a6a3a2899c9a966a59ae
     background-color: transparent;
     padding-bottom: 5px;
 }
@@ -157,17 +230,36 @@ body {
 
 .table-toolbar {
     display: flex;
+<<<<<<< HEAD
     justify-content: space-between;
     align-items: center;
     margin-bottom: 15px;
 }
 
+=======
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.search-box {
+    flex: 1 1 220px;
+}
+
+>>>>>>> 2effc8d6e7085fdc2e69a6a3a2899c9a966a59ae
 #search {
     padding: 7px 12px;
     border-radius: 6px;
     border: 1px solid #D1D5DB;
     font-size: 12px;
+<<<<<<< HEAD
     width: 280px;
+=======
+    width: 100%;
+    max-width: 280px;
+>>>>>>> 2effc8d6e7085fdc2e69a6a3a2899c9a966a59ae
     background-color: #FFFFFF;
 }
 
@@ -183,8 +275,19 @@ body {
 }
 
 /* Tableau */
+<<<<<<< HEAD
 .table {
     width: 100%;
+=======
+.table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.table {
+    width: 100%;
+    min-width: 620px;
+>>>>>>> 2effc8d6e7085fdc2e69a6a3a2899c9a966a59ae
     border-collapse: collapse;
     text-align: left;
 }
@@ -197,6 +300,10 @@ body {
     border-bottom: 1px solid #E5E7EB;
     font-weight: bold;
     letter-spacing: 0.5px;
+<<<<<<< HEAD
+=======
+    white-space: nowrap;
+>>>>>>> 2effc8d6e7085fdc2e69a6a3a2899c9a966a59ae
 }
 
 .table td {
@@ -232,8 +339,15 @@ body {
 /* Pagination */
 .pagination {
     display: flex;
+<<<<<<< HEAD
     justify-content: space-between;
     align-items: center;
+=======
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+>>>>>>> 2effc8d6e7085fdc2e69a6a3a2899c9a966a59ae
     margin-top: 15px;
     padding-top: 10px;
     border-top: 1px solid #F3F4F6;
@@ -318,4 +432,61 @@ body {
     opacity: 1;
     transform: translateX(0);
   }
+<<<<<<< HEAD
+=======
+}
+
+/* ============================= */
+/* RESPONSIVE - TABLETTE/MOBILE  */
+/* ============================= */
+@media (max-width: 900px) {
+    #menu-toggle {
+        display: flex;
+    }
+
+    #sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 240px;
+        transform: translateX(-100%);
+    }
+
+    #sidebar.open {
+        transform: translateX(0);
+    }
+
+    #main {
+        padding: 16px 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    #main {
+        padding: 14px 16px;
+        gap: 16px;
+    }
+
+    .topbar-title h2 {
+        font-size: 18px;
+    }
+
+    .add-professor,
+    .btn-new {
+        width: 100%;
+    }
+
+    .table-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #search {
+        max-width: 100%;
+    }
+
+    .table {
+        min-width: 560px;
+    }
+>>>>>>> 2effc8d6e7085fdc2e69a6a3a2899c9a966a59ae
 }

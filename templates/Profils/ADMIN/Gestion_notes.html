@@ -1,5 +1,3 @@
-
-
 {% load static %}
 <!DOCTYPE html>
 <html lang="fr">
@@ -8,17 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registre des Évaluations - Institutional Ledger</title>
     <link rel="stylesheet" href="{% static "ADMIN/css/Gestion_notes.css" %}">
+    <script src="{% static "ADMIN/js/table_bore.js" %}"></script>
 </head>
 <body>
-
     <div id="app">
+        <div id="overlay"></div>
 
         <aside id="sidebar">
             <div class="logo">
                 <h1 class="logo-title">Institutional Ledger</h1>
                 <span class="logo-subtitle">Admin Portal v1.0</span>
             </div>
-
             <nav class="menu">
                 <ul>
                     <li class="menu-item"><a href="{% url "Tableau_de_bord_admin" %}"><span class="menu-icon"></span> Tableau de bord</a></li>
@@ -44,6 +42,11 @@
 
             <header class="topbar">
                 <div class="window-bar">
+                    <button id="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-controls="sidebar" aria-expanded="false">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
                     <span class="dot red"></span>
                     <span class="dot yellow"></span>
                     <span class="dot green"></span>
@@ -141,8 +144,6 @@
         </main>
     </div>
 
+    <script src="{% static "ADMIN/js/admin.js" %}"></script>
 </body>
 </html>
-
-
-

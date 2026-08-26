@@ -5,13 +5,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gestion des Utilisateurs - Institutional Ledger</title>
+  <title>Gestion des Professeurs - Institutional Ledger</title>
   <link rel="stylesheet" href="{% static 'ADMIN/css/Gestions_utilisateur.css' %}">
+  <script src="{% static 'ADMIN/js/table_bore.js' %}"></script>
 </head>
 
 <body>
   <div id="app">
-
+    <div id="overlay"></div>
+    
     <aside id="sidebar">
       <div class="logo">
         <h1 class="logoTitle">Institutional Ledger</h1>
@@ -21,7 +23,7 @@
       <nav class="menu">
         <ul>
           <li class="menuItem"><a href="{% url 'Tableau_de_bord_admin' %}">Tableau de bord</a></li>
-          <li class="menuItem "><a href="{% url 'Gestions_utilisateur_ADMIN' %}">Utilisateurs</a></li>
+          <li class="menuItem"><a href="{% url 'Gestions_utilisateur_ADMIN' %}">Utilisateurs</a></li>
           <li class="menuItem"><a href="{% url 'Gestion_Etudiant' %}">Étudiants</a></li>
           <li class="menuItem active"><a href="{% url 'Gestions_professeur' %}">Professeurs</a></li>
           <li class="menuItem"><a href="{% url 'Gestions_matiere' %}">Matières</a></li>
@@ -41,15 +43,22 @@
 
       <header class="topbar">
         <div class="topbarTitle">
-          <h2>Gestion des Utilisateurs</h2>
+          <div class="topbarTitleRow">
+            <button id="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-controls="sidebar" aria-expanded="false">
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+            <h2>Gestion des Professeurs</h2>
+          </div>
           <p class="topbarSubtitle">
-            Créez, gérez et supervisez les privilèges d'accès de l'établissement.
+            Enregistrez, gérez et supervisez le corps enseignant de l'établissement.
           </p>
         </div>
         <div class="topbarRight">
           <div class="totalBadge">
-            <span class="totalLabel">TOTAL UTILISATEURS</span>
-            <span class="totalValue">{{ conte_Users }}</span>
+            <span class="totalLabel">TOTAL PROFESSEURS</span>
+            <span class="totalValue">{{ conte_Professeurs }}</span>
           </div>
           <div class="icons">
             <span class="iconNotification"></span>
@@ -58,19 +67,19 @@
         </div>
       </header>
 
-        {% if messages %}
-              <div class="messagesContainer">
-              {% for message in messages %}
-                <div class="alert {{ message.tags }}">
-                  {{ message }}
-                </div>
-              {% endfor %}
+      {% if messages %}
+        <div class="messagesContainer">
+          {% for message in messages %}
+            <div class="alert {{ message.tags }}">
+              {{ message }}
             </div>
-            {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
       
       <section class="addUser">
         <div class="formCard">
-          <div class="formTitle">Ajouter un nouvel utilisateur</div>
+          <div class="formTitle">Ajouter un nouveau professeur</div>
 
           <form class="formGrid" method="POST">
             {% csrf_token %}

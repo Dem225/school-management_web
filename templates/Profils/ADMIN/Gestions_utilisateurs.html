@@ -6,16 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gestion des Utilisateurs - Institutional Ledger</title>
     <link rel="stylesheet" href="{% static 'ADMIN/css/Gestions_utilisateur.css' %}">
+    <script src="{% static "ADMIN/js/table_bore.js" %}"></script>
+    
   </head>
   <body>
     <div id="app">
-
+      <div id="overlay"></div>
       <aside id="sidebar">
         <div class="logo">
           <h1 class="logoTitle">Institutional Ledger</h1>
           <span class="logoSubtitle">Admin Portal</span>
         </div>
-
         <nav class="menu">
           <ul>
             <li class="menuItem"><a href="{% url 'Tableau_de_bord_admin' %}">Tableau de bord</a></li>
@@ -40,7 +41,14 @@
 
         <header class="topbar">
           <div class="topbarTitle">
-            <h2>Gestion des Utilisateurs</h2>
+            <div class="topbarTitleRow">
+              <button id="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-controls="sidebar" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+              <h2>Gestion des Utilisateurs</h2>
+            </div>
             <p class="topbarSubtitle">
               Créez, gérez et supervisez les privilèges d'accès de l'établissement.
             </p>
@@ -62,12 +70,12 @@
             <div class="formTitle">Ajouter un nouvel utilisateur</div>
 
              <form class="formGrid">
-              
-             
+
+
 
               <div class="formGroup submitGroup">
                 <button type="submit" class="btnAdd">
-                  
+
                   <a href="{% url "ajouterutilisateur" %}" style="text-decoration: none; color: white;"> Ajouter </a> </button>
               </div>
             </form>
@@ -109,7 +117,7 @@
               <tbody>
 
                 {% for Users in Utilisateurs %}
-                
+
                 <tr>
                   <td> {{forloop.counter}} </td>
                   <td>    {{Users.last_name}}  </td>
@@ -117,28 +125,30 @@
                   <td>   {{Users.username}}  </td>
                    <td>    {{Users.email}}  </td>
 
-                   
+
                   <td >
                       <p class="viande">  <a href=" {% url 'UpdateUtilisateur' Users.id %}" style="text-decoration: none; color: black;"> modifier</a> </p>
                   </td>
                   <td>
-                      <form action="{% url "Deltutilisateur" Users.id %}" method="post">  
+                      <form action="{% url "Deltutilisateur" Users.id %}" method="post">
                             {% csrf_token %}
                           <button  type='submite' style="padding: 5px; margin-left: 9px; background-color: red; border-radius: 5px; border: transparent;"> SUPPRIMER</button>
                        </form>
                     <td>
 
-                    
+
                 </tr>
                 {% endfor %}
               </tbody>
             </table>
           </div>
 
-          
-        </section>  
+
+        </section>
 
       </main>
     </div>
+
+    <script src="{% static 'ADMIN/js/admin.js' %}"></script>
   </body>
 </html>
