@@ -1,0 +1,475 @@
+/* --- RESET ET BASE --- */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background-color: #F8F9FB;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #333333;
+}
+
+/* --- LAYOUT GLOBAL --- */
+#app {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+#main {
+    flex-grow: 1;
+    height: 100%;
+    overflow-y: auto;
+    background-color: #F8F9FB;
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* --- SIDEBAR --- */
+#sidebar {
+    width: 240px;
+    height: 100%;
+    background-color: #111111;
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+.logo {
+    padding: 0 20px 20px 20px;
+    border-bottom: 1px solid #222222;
+}
+
+.logo-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.logo-subtitle {
+    font-size: 10px;
+    color: #888888;
+    letter-spacing: 1px;
+}
+
+.menu {
+    flex-grow: 1;
+    margin-top: 20px;
+}
+
+.menu ul {
+    list-style: none;
+}
+
+.menu .menu-item {
+    padding: 12px 20px;
+}
+
+.menu .menu-item.active,
+.menu .menu-item:hover {
+    background-color: #222222;
+    border-left: 4px solid #4EA149;
+}
+
+.menu .menu-item a {
+    text-decoration: none;
+    color: #CCCCCC;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.menu-icon {
+    font-size: 14px;
+}
+
+.sidebar-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+    border-top: 1px solid #222222;
+}
+
+.profile-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #444444;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-name {
+    font-size: 13px;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.profile-role {
+    font-size: 11px;
+    color: #888888;
+}
+
+/* --- TOPBAR --- */
+.topbar {
+    width: 100%;
+    background-color: #FFFFFF;
+    border: 1px solid #EAEAEA;
+    border-radius: 8px;
+    padding: 12px 15px;
+}
+
+.window-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    position: relative;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.dot.red { background-color: #FF5F56; left: 0; }
+.dot.yellow { background-color: #FFBD2E; left: 16px; }
+.dot.green { background-color: #27C93F; left: 32px; }
+
+.topbar-window-title {
+    font-size: 11px;
+    font-weight: bold;
+    color: #6B7280;
+    letter-spacing: 0.5px;
+}
+
+/* --- EN-TÊTE DE PAGE --- */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.page-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #111111;
+    margin-bottom: 5px;
+}
+
+.page-subtitle {
+    font-size: 13px;
+    color: #666666;
+    max-width: 600px;
+}
+
+.btn-primary {
+    background-color: #111111;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.btn-primary:hover {
+    background-color: #333333;
+}
+
+/* --- CARTES KPI --- */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    width: 100%;
+}
+
+.card {
+    background-color: #FFFFFF;
+    padding: 15px 20px;
+    border-radius: 8px;
+    border: 1px solid #EAEAEA;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.card.accent-danger {
+    border-left: 4px solid #DC2626;
+}
+
+.card-label {
+    font-size: 10px;
+    font-weight: bold;
+    color: #777777;
+    letter-spacing: 0.5px;
+}
+
+.card-value {
+    font-size: 26px;
+    font-weight: bold;
+    color: #111111;
+}
+
+.card-value.text-danger {
+    color: #DC2626;
+}
+
+/* --- SECTION ABSENCES --- */
+.absences {
+    background-color: #FFFFFF;
+    border: 1px solid #EAEAEA;
+    border-radius: 8px;
+    padding: 15px 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+
+.toolbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.search-box {
+    flex-grow: 0;
+}
+
+#search {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #D1D5DB;
+    background-color: #F8F9FB;
+    font-size: 12px;
+    width: 260px;
+}
+
+.filter-select {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #D1D5DB;
+    background-color: #FFFFFF;
+    font-size: 12px;
+    color: #374151;
+}
+
+.icon-filter {
+    margin-left: auto;
+    cursor: pointer;
+}
+
+.table-wrap {
+    width: 100%;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.table th {
+    background-color: #F9FAFB;
+    font-size: 10px;
+    color: #6B7280;
+    padding: 10px;
+    border-bottom: 1px solid #E5E7EB;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.table td {
+    padding: 13px 10px;
+    font-size: 13px;
+    color: #1F2937;
+    border-bottom: 1px solid #F3F4F6;
+}
+
+.student-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.student-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.student-avatar.dark { background-color: #374151; }
+.student-avatar.grey { background-color: #9CA3AF; }
+.student-avatar.orange { background-color: #F59E0B; }
+
+.student-name {
+    font-size: 13px;
+    font-weight: bold;
+    color: #111111;
+}
+
+.status {
+    font-size: 10px;
+    font-weight: bold;
+    padding: 3px 10px;
+    border-radius: 12px;
+}
+
+.status.justified { background-color: #D1FAE5; color: #065F46; }
+.status.tojustify { background-color: #FEF3C7; color: #92400E; }
+.status.unjustified { background-color: #FEE2E2; color: #991B1B; }
+
+.actions {
+    text-align: right;
+}
+
+.action-link {
+    font-size: 12px;
+    font-weight: bold;
+    color: #111111;
+    text-decoration: none;
+}
+
+.btn-mark-justified {
+    background-color: #111111;
+    color: #FFFFFF;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid #F3F4F6;
+}
+
+.pagination-controls {
+    display: flex;
+    gap: 5px;
+}
+
+.page-btn {
+    width: 25px;
+    height: 25px;
+    background-color: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 4px;
+    font-size: 11px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-btn.active {
+    background-color: #111111;
+    color: #FFFFFF;
+    border-color: #111111;
+}
+
+/* --- BAS DE PAGE : ACTIVITÉS + RAPPEL RÉGLEMENTAIRE --- */
+.bottom-section {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 15px;
+}
+
+.activity-feed {
+    background-color: #FFFFFF;
+    border: 1px solid #EAEAEA;
+    border-radius: 8px;
+    padding: 15px 20px;
+}
+
+.activity-feed-title {
+    font-size: 13px;
+    font-weight: bold;
+    color: #111111;
+    margin-bottom: 12px;
+}
+
+.activity-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 8px 0;
+    border-bottom: 1px solid #F3F4F6;
+}
+
+.activity-item:last-child {
+    border-bottom: none;
+}
+
+.activity-text {
+    font-size: 12px;
+    color: #333333;
+}
+
+.activity-time {
+    font-size: 10px;
+    color: #9CA3AF;
+}
+
+.regulation-box {
+    background-color: #111111;
+    color: #FFFFFF;
+    border-radius: 8px;
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.regulation-title {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.regulation-quote {
+    font-size: 12px;
+    font-style: italic;
+    color: #CCCCCC;
+    line-height: 1.5;
+}
+
+.link-consult {
+    font-size: 12px;
+    font-weight: bold;
+    color: #FBBF24;
+    text-decoration: none;
+    align-self: flex-end;
+}

@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-xn^aczsrm#_p_h)m+l-+mgjp!ma*)u*2kgec1@%wwq%p)s4$a0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["Schoolmanage.pythonanywhere.com", "localhost", "127.0.0.1"]
 
 
 # Application definition
@@ -164,3 +164,5 @@ LOGOUT_REDIRECT_URL = 'login'
 #             <a href="{% url 'login' %}">CONNEXION</a>
 #         {% endif %}
 #  {% endcomment %}
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
