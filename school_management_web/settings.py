@@ -18,10 +18,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SÉCURITÉ
 # ============================================================
 
-<<<<<<< HEAD
-SECRET_KEY = os.environ.get('SECRET_KEY')
-
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = [
     'schoolmanage.pythonanywhere.com',
@@ -32,7 +28,7 @@ ALLOWED_HOSTS = [
 CSRF_TRUSTED_ORIGINS = [
     'https://schoolmanage.pythonanywhere.com',
 ]
-=======
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
@@ -51,7 +47,7 @@ ALLOWED_HOSTS = ["Schoolmanage.pythonanywhere.com", "localhost", "127.0.0.1"]
 # DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 # DEBUG=True
 # SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-cle-locale-par-defaut')
->>>>>>> 6c1777afd592eeb493fd8628f6f6be28d2fbcfa1
+
 
 
 # ============================================================
