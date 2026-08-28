@@ -22,15 +22,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-xn^aczsrm#_p_h)m+l-+mgjp!ma*)u*2kgec1@%wwq%p)s4$a0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["Schoolmanage.pythonanywhere.com", "localhost", "127.0.0.1"]
 
 # --- SÉCURITÉ ---
 # La clé secrète et DEBUG sont définis via variables d'environnement,
 # elles-mêmes définies dans le fichier WSGI de PythonAnywhere (voir plus bas).
-SECRET_KEY = os.environ.get('SECRET_KEY')
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+# SECRET_KEY = os.environ.get('SECRET_KEY')
+# DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 # DEBUG=True
 # SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-cle-locale-par-defaut')
 
