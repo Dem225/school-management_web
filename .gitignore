@@ -4,7 +4,7 @@ venv/
 env/
 ENV/
 local/
-
+.env
 # Caches Python et fichiers compilés
 __pycache__/
 *.pyc

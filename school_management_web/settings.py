@@ -5,6 +5,11 @@ Version adaptée pour déploiement sur PythonAnywhere.
 
 import os
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
+
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -82,9 +87,10 @@ WSGI_APPLICATION = 'school_management_web.wsgi.application'
 
 # --- BASE DE DONNÉES ---
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django_libsql",
+        "NAME": os.getenv("TURSO_DATABASE_URL"),
+        "AUTH_TOKEN": os.getenv("TURSO_AUTH_TOKEN"),
     }
 }
 
