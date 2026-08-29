@@ -32,4 +32,4 @@ build/
 
 echo "local/" >> .gitignore
 echo "venv/" >> .gitignore
-echo "env/" >> .gitignore
+echo "env/" >> .gitignore.env
