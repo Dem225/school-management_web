@@ -1,4 +1,5 @@
-vscode_lsp_terminal_prompt_tracker= {}
+from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import redirect, render
 from django.shortcuts import render , redirect , get_object_or_404
 from django.views.generic import ListView
 from django.contrib.auth import authenticate ,login
@@ -75,6 +76,7 @@ def ConnexionView(resquest):
     return render(resquest , "Profils/connexion.html")
 
 def Deconnexion(request):
+    logout(request)
     return redirect('connexion')
 
 
@@ -82,15 +84,15 @@ def Deconnexion(request):
     
 # page d'accueil pour les utilisateur
 
-@login_required
+@login_required(login_url='connexion')
 @admin_required
 def  Tableau_de_bord_Admin(resquest):
     return render(resquest,"Profils/ADMIN/Tableau_de_bord.html" )
-@login_required
+@login_required(login_url='connexion')
 @etudiant_required
 def  Tableau_de_bord_ETUDIANT(resquest):
     return render(resquest,"Profils/ETUDIANT/Tableau_de_bord.html" )
-@login_required
+@login_required(login_url='connexion')
 @professeur_required
 def  Tableau_de_bord_PROFESSEUR(resquest):
     return render(resquest,"Profils/PROFESSEUR/Tableau_de_bord.html" )
